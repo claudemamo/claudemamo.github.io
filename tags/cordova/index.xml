@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cordova on On Code &amp; Design</title>
-    <link>http://oncodesign.io/tags/cordova/</link>
+    <link>https://claudemamo.github.io/tags/cordova/</link>
     <description>Recent content in Cordova on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 Aug 2012 12:04:00 +0000</lastBuildDate>
-    <atom:link href="http://oncodesign.io/tags/cordova/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://claudemamo.github.io/tags/cordova/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Attaching a file in Cordova &amp; uploading it with jQuery Mobile</title>
-      <link>http://oncodesign.io/2012/08/18/attaching-a-file-in-cordova--uploading-it-with-jquery-mobile/</link>
+      <link>https://claudemamo.github.io/2012/08/18/attaching-a-file-in-cordova--uploading-it-with-jquery-mobile/</link>
       <pubDate>Sat, 18 Aug 2012 12:04:00 +0000</pubDate>
       
-      <guid>http://oncodesign.io/2012/08/18/attaching-a-file-in-cordova--uploading-it-with-jquery-mobile/</guid>
+      <guid>https://claudemamo.github.io/2012/08/18/attaching-a-file-in-cordova--uploading-it-with-jquery-mobile/</guid>
       <description>&lt;p&gt;This post is for those unlucky souls who are tasked with developing an Android solution that attaches a file to an HTML form using Cordova and uploads the form via jQuery Mobile. Documentation on these topics is scarce so I&amp;rsquo;ve created a &lt;a href=&#34;https://github.com/claudemamo/file-attach-cordova-upload-jqm&#34; target=&#34;_blank&#34;&gt;minimal example&lt;/a&gt; on my GitHub page demonstrating how to do this. Instructions to run the example are found inside the project&amp;rsquo;s README file.&lt;br /&gt;&lt;br /&gt;&lt;div class=&#34;separator&#34; style=&#34;clear: both; text-align: center;&#34;&gt;&lt;a href=&#34;http://4.bp.blogspot.com/-kp8H1mifMbs/UC9nIB8Fz6I/AAAAAAAAACs/0PXgtGZ8cEs/s1600/attaching-file.png&#34; imageanchor=&#34;1&#34; style=&#34;margin-left: 1em; margin-right: 1em;&#34;&gt;&lt;img border=&#34;0&#34; height=&#34;640&#34; src=&#34;http://4.bp.blogspot.com/-kp8H1mifMbs/UC9nIB8Fz6I/AAAAAAAAACs/0PXgtGZ8cEs/s640/attaching-file.png&#34; width=&#34;384&#34; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&#34;separator&#34; style=&#34;clear: both; text-align: center;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>A WebSocket Cordova plugin for Android</title>
-      <link>http://oncodesign.io/2012/07/06/a-websocket-cordova-plugin-for-android/</link>
+      <link>https://claudemamo.github.io/2012/07/06/a-websocket-cordova-plugin-for-android/</link>
       <pubDate>Fri, 06 Jul 2012 17:14:00 +0000</pubDate>
       
-      <guid>http://oncodesign.io/2012/07/06/a-websocket-cordova-plugin-for-android/</guid>
+      <guid>https://claudemamo.github.io/2012/07/06/a-websocket-cordova-plugin-for-android/</guid>
       <description>&lt;p&gt;&lt;span style=&#34;background-color: white;&#34;&gt;This week I&amp;rsquo;ve investigated the feasibility of leveraging&amp;nbsp;&lt;/span&gt;&lt;a href=&#34;http://avalanche123.com/blog/2012/02/25/interacting-with-zeromq-from-the-browser/&#34; style=&#34;background-color: white;&#34; target=&#34;_blank&#34;&gt;NullMQ&lt;/a&gt;&lt;span style=&#34;background-color: white;&#34;&gt;&amp;nbsp;inside a Cordova/PhoneGap application on Android. NullMQ sends and receives messages via &lt;a href=&#34;http://en.wikipedia.org/wiki/WebSocket&#34; target=&#34;_blank&#34;&gt;WebSocket&lt;/a&gt;, and unfortunately, Android&amp;rsquo;s browser doesn&amp;rsquo;t support the standard yet.&lt;/span&gt;&lt;span style=&#34;background-color: white;&#34;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;background-color: white;&#34;&gt;I found Cordova plugins on GitHub that implement WebSocket. The problem is that none of them functioned properly against the latest version of the WebSocket spec, that is, RFC 6455. So I decided to &lt;a href=&#34;https://github.com/claudemamo/Java-WebSocket&#34; target=&#34;_blank&#34;&gt;fork the Java-WebSocket project&lt;/a&gt; and expose it as a Cordova plugin. The cool thing about the&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;background-color: white;&#34;&gt;&lt;a href=&#34;https://github.com/Davidiusdadi/Java-WebSocket&#34; target=&#34;_blank&#34;&gt;Java-WebSocket&lt;/a&gt; project is that it supports,&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;background-color: white;&#34;&gt;in addition to RFC 6455,&lt;/span&gt;&lt;span style=&#34;background-color: white;&#34;&gt;&amp;nbsp;earlier releases of the spec. Although, by default, the plugin is configured to use&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;background-color: white;&#34;&gt;RFC 6455.&lt;/span&gt;&lt;br /&gt;&lt;span style=&#34;background-color: white;&#34;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&#34;background-color: white;&#34;&gt;The plugin&amp;rsquo;s API is identical to the WebSocket one so you don&amp;rsquo;t need to re-learn a new API or change existing WebSocket calls. To install:&lt;/span&gt;&lt;br /&gt;&lt;ol&gt;&lt;li&gt;Include &lt;a href=&#34;https://raw.github.com/claudemamo/Java-WebSocket/master/assets/www/websocket/websocket.js&#34;&gt;websocket.js&lt;/a&gt; in the your HTML file: &lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/3060460.js?file=index.html&#34;&gt;&lt;/script&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&#34;background-color: white;&#34;&gt;From your console, enter &amp;lsquo;mvn package&amp;rsquo; in the Java-WebSocket project root directory. Move the produced JAR to your Cordova application classpath.&lt;/span&gt;&lt;/li&gt;&lt;br /&gt;&lt;li&gt;&lt;span style=&#34;background-color: white;&#34;&gt;Add the following plugin entry to the plugins.xml file:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/3060460.js?file=plugins.xml&#34;&gt;&lt;/script&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/p&gt;
 </description>
     </item>
