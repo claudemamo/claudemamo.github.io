@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on On Code &amp; Design</title>
+    <link>https://claudemamo.github.io/page/</link>
+    <description>Recent content in Pages on On Code &amp; Design</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 May 2016 21:48:51 -0700</lastBuildDate>
+    <atom:link href="https://claudemamo.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About</title>
+      <link>https://claudemamo.github.io/about/</link>
+      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
+      
+      <guid>https://claudemamo.github.io/about/</guid>
+      <description>&lt;p&gt;I am an independent software contractor living in the island of &lt;a href=&#34;https://en.wikipedia.org/wiki/Malta&#34;&gt;Malta&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My idols in the software industry are &lt;a href=&#34;http://martinfowler.com/&#34;&gt;Martin Fowler&lt;/a&gt;, &lt;a href=&#34;http://dannorth.net/&#34;&gt;Dan North&lt;/a&gt;, and &lt;a href=&#34;https://twitter.com/fgeorge52&#34;&gt;Fred George&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Among my interests are enterprise integration and mobile application development. You can follow my projects on &lt;a href=&#34;https://github.com/claudemamo&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I offer on-site as well as remote consultancy services on the following technologies:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Java EE&lt;/li&gt;
+&lt;li&gt;Mule&lt;/li&gt;
+&lt;li&gt;Ruby/JRuby&lt;/li&gt;
+&lt;li&gt;Ruby on Rails&lt;/li&gt;
+&lt;li&gt;ZeroMQ&lt;/li&gt;
+&lt;li&gt;Apache ActiveMQ&lt;/li&gt;
+&lt;li&gt;Apache CXF&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I am available for:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Software Development&lt;/li&gt;
+&lt;li&gt;Architectural and code reviews&lt;/li&gt;
+&lt;li&gt;Technical support&lt;/li&gt;
+&lt;li&gt;Delivering technical training&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can get in touch with me by connecting on &lt;a href=&#34;https://mt.linkedin.com/in/claudemamo&#34;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
