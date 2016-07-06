@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wadl on On Code &amp; Design</title>
-    <link>https://claudemamo.github.io/tags/wadl/</link>
+    <link>https://www.oncodesign.io/tags/wadl/</link>
     <description>Recent content in Wadl on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 25 Mar 2013 15:37:00 +0000</lastBuildDate>
-    <atom:link href="https://claudemamo.github.io/tags/wadl/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.oncodesign.io/tags/wadl/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How To Publish a WADL with Mule&#39;s REST Router Module </title>
-      <link>https://claudemamo.github.io/2013/03/25/how-to-publish-a-wadl-with-mules-rest-router-module/</link>
+      <link>https://www.oncodesign.io/2013/03/25/how-to-publish-a-wadl-with-mules-rest-router-module/</link>
       <pubDate>Mon, 25 Mar 2013 15:37:00 +0000</pubDate>
       
-      <guid>https://claudemamo.github.io/2013/03/25/how-to-publish-a-wadl-with-mules-rest-router-module/</guid>
+      <guid>https://www.oncodesign.io/2013/03/25/how-to-publish-a-wadl-with-mules-rest-router-module/</guid>
       <description>&lt;p&gt;It seems to me that Mule&amp;rsquo;s &lt;a href=&#34;http://www.mulesoft.org/extensions/rest-module&#34; target=&#34;_blank&#34;&gt;REST Router module&lt;/a&gt;, which I&amp;rsquo;ve previously &lt;a href=&#34;http://ricston.com/blog/?p=2607&#34; target=&#34;_blank&#34;&gt;blogged&lt;/a&gt; about, is gaining popularity as a viable alternative to the Jersey module. Yet, the REST Router has a serious limitation in that it&amp;rsquo;s unable to generate a &lt;a href=&#34;http://www.w3.org/Submission/wadl/&#34; target=&#34;_blank&#34;&gt;WADL&lt;/a&gt;: the REST equivalent of a WSDL. Recently, I had to overcome this limitation owing to a customer requirement for producing client code from the WADL.&lt;br /&gt;&lt;br /&gt;Consider the Mule config below:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5215459.js?file=mule-config-1.xml&#34;&gt;&lt;/script&gt;The REST Router processes HTTP requests that have a URL path matching the &lt;i&gt;templateURI&lt;/i&gt; pattern attribute. Non-matching requests are ignored by the router and passed on to the subsequent message processor which in this case is a static component. Each nested block in the router corresponds to an HTTP method. A GET request is processed by the &lt;i&gt;rest-router:get&lt;/i&gt; element, a PUT request is processed by the &lt;i&gt;rest-router:put&lt;/i&gt; element, and so on.&lt;br /&gt;&lt;br /&gt;WADL generation isn&amp;rsquo;t a feature supported by the REST Router. If I was using the Jersey module in this example, I&amp;rsquo;d get the service WADL on hitting the URL &lt;i&gt;&lt;a href=&#34;http://localhost:8081/application.wadl&#34;&gt;http://localhost:8081/application.wadl&lt;/a&gt;&lt;/i&gt;. Although I&amp;rsquo;d like to avoid using Jersey for various reasons, I could leverage the library&amp;rsquo;s WADL generation feature:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5215459.js?file=mule-config-2.xml&#34;&gt;&lt;/script&gt;The above modified Mule config routes WADL requests to Jersey and all other requests to the REST Router. Upon receiving a WADL request, Jersey returns the WADL derived from the JAX-RS annotated&amp;nbsp;&lt;i&gt;org.ossandme.CommentResource&lt;/i&gt;.&amp;nbsp;&lt;i&gt;CommentResource&lt;/i&gt; describes in Java the same RESTful interface described by the REST Router. Since all service logic is performed by the REST Router, I implement the resource as a Java interface instead of a class:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5215459.js?file=CommentResource.java&#34;&gt;&lt;/script&gt;This example is a Maven project hosted on &lt;a href=&#34;https://github.com/claudemamo/mule-rest-wadl&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;. To run it, (1) open your console and enter from the project root&amp;rsquo;s directory:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5215459.js?file=build.sh&#34;&gt;&lt;/script&gt;(2) Then deploy the package on Mule 3.3.x standalone runtime. Accessing the URL&amp;nbsp;&lt;i&gt;&lt;a href=&#34;http://localhost:8081/application.wadl&#34;&gt;http://localhost:8081/application.wadl&lt;/a&gt;&lt;/i&gt;&amp;nbsp;will give you the following:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5215459.js?file=application.wadl&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>

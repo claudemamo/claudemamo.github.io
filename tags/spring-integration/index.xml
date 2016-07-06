@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Spring Integration on On Code &amp; Design</title>
-    <link>https://claudemamo.github.io/tags/spring-integration/</link>
+    <link>https://www.oncodesign.io/tags/spring-integration/</link>
     <description>Recent content in Spring Integration on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 26 May 2012 11:53:00 +0000</lastBuildDate>
-    <atom:link href="https://claudemamo.github.io/tags/spring-integration/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.oncodesign.io/tags/spring-integration/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Conventions, Conventions, Conventions</title>
-      <link>https://claudemamo.github.io/2012/05/26/conventions-conventions-conventions/</link>
+      <link>https://www.oncodesign.io/2012/05/26/conventions-conventions-conventions/</link>
       <pubDate>Sat, 26 May 2012 11:53:00 +0000</pubDate>
       
-      <guid>https://claudemamo.github.io/2012/05/26/conventions-conventions-conventions/</guid>
+      <guid>https://www.oncodesign.io/2012/05/26/conventions-conventions-conventions/</guid>
       <description>&lt;div style=&#34;text-align: justify;&#34;&gt;I&#39;ve been working with open source projects for a couple of years now and I&#39;ve come to expect two things from such projects:&lt;/div&gt;&lt;ul&gt;&lt;li style=&#34;text-align: justify;&#34;&gt;A set of working examples that comes with the distribution, and a&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li style=&#34;text-align: justify;&#34;&gt;Quick guide on getting started.&lt;/li&gt;&lt;/ul&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;a href=&#34;http://www.mulesoft.org/documentation/display/MULE3START/Basic+Studio+Tutorial&#34; rel=&#34;&#34; target=&#34;_blank&#34;&gt;Mule&lt;/a&gt; has them. &lt;a href=&#34;http://servicemix.apache.org/docs/4.4.0/quickstart/index.html&#34; rel=&#34;&#34; target=&#34;_blank&#34;&gt;ServiceMix&lt;/a&gt; has them. So why not Spring Integration? It&#39;s&amp;nbsp;a shame because I heard a lot of good things about the software. I couldn&#39;t find a reason why SpringSource didn&#39;t post an official guide on getting started quickly in their &lt;a href=&#34;http://www.springsource.org/spring-integration&#34; rel=&#34;&#34; target=&#34;_blank&#34;&gt;main page&lt;/a&gt;. However, they do have&amp;nbsp;a &lt;a href=&#34;http://blog.springsource.org/2010/09/29/new-spring-integration-samples&#34; rel=&#34;&#34; target=&#34;_blank&#34;&gt;reason&lt;/a&gt; for leaving examples out from the distribution. Although&amp;nbsp;for me, it&#39;s not a good enough reason.&amp;nbsp;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;As a frequent user of open source projects, I&#39;m accustomed to certain conventions. For instance, I expect to find a &#34;README.txt&#34; in the distribution&#39;s root folder telling me how to launch the program. When you decide to stay away from conventions, new users have to rely on Google to find what they&#39;re looking for. This is great for Google but not for your open source project since the user might get fed up searching and just try another project. I spent about 5 minutes searching for a simple Spring Integration example. This could have been because I chose a poor search term or I&#39;m a slow reader, but still, for me it was a waste time. Doing the same thing in Mule or ServiceMix took me a second. Why? Not because I used Mule or ServiceMix before but because I &lt;b&gt;&lt;i&gt;expected&lt;/i&gt;&lt;/b&gt;&amp;nbsp;there would be example folders in their distributions.&amp;nbsp;Which project do you think the impatient user will have a better experience learning?&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;/div&gt;
 </description>
     </item>

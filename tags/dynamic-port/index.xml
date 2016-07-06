@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dynamic Port on On Code &amp; Design</title>
-    <link>https://claudemamo.github.io/tags/dynamic-port/</link>
+    <link>https://www.oncodesign.io/tags/dynamic-port/</link>
     <description>Recent content in Dynamic Port on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 28 May 2012 20:43:00 +0000</lastBuildDate>
-    <atom:link href="https://claudemamo.github.io/tags/dynamic-port/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.oncodesign.io/tags/dynamic-port/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Revisiting Dynamic Ports in Mule 3</title>
-      <link>https://claudemamo.github.io/2012/05/28/revisiting-dynamic-ports-in-mule-3/</link>
+      <link>https://www.oncodesign.io/2012/05/28/revisiting-dynamic-ports-in-mule-3/</link>
       <pubDate>Mon, 28 May 2012 20:43:00 +0000</pubDate>
       
-      <guid>https://claudemamo.github.io/2012/05/28/revisiting-dynamic-ports-in-mule-3/</guid>
+      <guid>https://www.oncodesign.io/2012/05/28/revisiting-dynamic-ports-in-mule-3/</guid>
       <description>&lt;p&gt;Daniel Zapata wrote an interesting&amp;nbsp;&lt;a href=&#34;http://blogs.mulesoft.org/dynamic-port-testing-in-mule-3&#34; target=&#34;_blank&#34;&gt;post&lt;/a&gt; about using dynamic ports when testing your Mule 3 application. Since then, subsequent releases of Mule included support for JUnit 4 which meant improved flexibility in terms of dynamic ports.&lt;br /&gt;&lt;br /&gt;Before JUnit 4, an annoying problem with dynamic ports was that you were limited to property placeholder names having the following pattern: &amp;lsquo;port&amp;rsquo; +&amp;nbsp;&lt;i&gt;n&lt;/i&gt; where n is an integer. For example:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/2820059.js?file=mule-config.xml&#34;&gt;&lt;/script&gt;Using JUnit 4, this problem is solved by leveraging the &lt;i&gt;Rule&lt;/i&gt; annotation and the &lt;i&gt;DynamicPort&lt;/i&gt; class. We&amp;rsquo;ll see how this is done. Let&amp;rsquo;s create a simple Mule config for testing dynamic ports out:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/2820059.js?file=dynamic-port-junit4-functional-test-config.xml&#34;&gt;&lt;/script&gt;Notice the property placeholder &amp;ldquo;${foo}&amp;rdquo; in the &lt;i&gt;port&lt;/i&gt; attribute. The next step is to create a test case for the config. The test case &lt;b&gt;must&lt;/b&gt; extend &lt;i&gt;org.mule.tck.junit4.FunctionalTestCase&lt;/i&gt; for this to work:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/2820059.js?file=DynamicPortJunit4TestCase.java&#34;&gt;&lt;/script&gt;The &lt;i&gt;port&lt;/i&gt; variable declaration is what we&amp;rsquo;re interested in. &lt;i&gt;@Rule&lt;/i&gt; instructs JUnit to execute code in the&amp;nbsp;&lt;i&gt;DynamicPort&lt;/i&gt;&amp;nbsp;object before running the test. The code will:&lt;br /&gt;&lt;ol&gt;&lt;li&gt;Find an unused port,&lt;/li&gt;&lt;li&gt;Search the Mule config for a placeholder with the name &amp;lsquo;foo&amp;rsquo;, and then&lt;/li&gt;&lt;li&gt;Replace the placeholder with the unused port number.&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;The newly assigned port no. is retrieved using the &lt;i&gt;getNumber()&lt;/i&gt; method of the &lt;i&gt;DynamicPort&lt;/i&gt; class. The complete example can be found on &lt;a href=&#34;https://github.com/claudemamo/dynamic-port-junit4&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;.&lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
