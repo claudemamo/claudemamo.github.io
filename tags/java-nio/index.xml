@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java Nio on On Code &amp; Design</title>
-    <link>https://claudemamo.github.io/tags/java-nio/</link>
+    <link>https://oncodesign.io/tags/java-nio/</link>
     <description>Recent content in Java Nio on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 23 Dec 2013 11:38:00 +0000</lastBuildDate>
-    <atom:link href="https://claudemamo.github.io/tags/java-nio/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://oncodesign.io/tags/java-nio/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Log4j 2 Memory-Mapped File Appender</title>
-      <link>https://claudemamo.github.io/2013/12/23/log4j-2-memory-mapped-file-appender/</link>
+      <link>https://oncodesign.io/2013/12/23/log4j-2-memory-mapped-file-appender/</link>
       <pubDate>Mon, 23 Dec 2013 11:38:00 +0000</pubDate>
       
-      <guid>https://claudemamo.github.io/2013/12/23/log4j-2-memory-mapped-file-appender/</guid>
+      <guid>https://oncodesign.io/2013/12/23/log4j-2-memory-mapped-file-appender/</guid>
       <description>&lt;p&gt;During the weekend I dug into Java NIO, specifically, mapping files to memory to reduce I/O time. What&amp;rsquo;s more, since I had a lot of free time on my hands, I developed a&amp;nbsp;&lt;a href=&#34;http://logging.apache.org/log4j/2.x/&#34; target=&#34;_blank&#34;&gt;Log4j 2&lt;/a&gt;&amp;nbsp;&lt;a href=&#34;https://issues.apache.org/jira/browse/LOG4J2-431&#34; target=&#34;_blank&#34;&gt;memory-mapped file appender&lt;/a&gt;. On my machine, performance tests running on a single thread using the MemoryMappedFile appender show an improvement by a factor of 3 when compared to the&amp;nbsp;&lt;a href=&#34;http://logging.apache.org/log4j/2.x/manual/appenders.html#RandomAccessFileAppender&#34; target=&#34;_blank&#34;&gt;RandomAccessFile&lt;/a&gt;&amp;nbsp;appender.&lt;/p&gt;
 </description>
     </item>

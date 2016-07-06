@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>As2 on On Code &amp; Design</title>
-    <link>https://claudemamo.github.io/tags/as2/</link>
+    <link>https://oncodesign.io/tags/as2/</link>
     <description>Recent content in As2 on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 15 May 2015 02:09:00 +0000</lastBuildDate>
-    <atom:link href="https://claudemamo.github.io/tags/as2/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://oncodesign.io/tags/as2/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>A Primer to AS2</title>
-      <link>https://claudemamo.github.io/2015/05/15/a-primer-to-as2/</link>
+      <link>https://oncodesign.io/2015/05/15/a-primer-to-as2/</link>
       <pubDate>Fri, 15 May 2015 02:09:00 +0000</pubDate>
       
-      <guid>https://claudemamo.github.io/2015/05/15/a-primer-to-as2/</guid>
+      <guid>https://oncodesign.io/2015/05/15/a-primer-to-as2/</guid>
       <description>&lt;p&gt;Check out my&lt;a href=&#34;http://www.modusbox.com/2015/04/a-primer-to-as2/&#34; target=&#34;_blank&#34;&gt; latest guest post&lt;/a&gt;&amp;nbsp;about AS2 on ModusBox&amp;rsquo;s blog.&lt;/p&gt;
 </description>
     </item>

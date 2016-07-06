@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Spring Mvc on On Code &amp; Design</title>
-    <link>https://claudemamo.github.io/tags/spring-mvc/</link>
+    <link>https://oncodesign.io/tags/spring-mvc/</link>
     <description>Recent content in Spring Mvc on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 02 Mar 2013 12:37:00 +0000</lastBuildDate>
-    <atom:link href="https://claudemamo.github.io/tags/spring-mvc/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://oncodesign.io/tags/spring-mvc/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Posting &amp; Processing JSON with jQuery &amp; Spring MVC</title>
-      <link>https://claudemamo.github.io/2013/03/02/posting--processing-json-with-jquery--spring-mvc/</link>
+      <link>https://oncodesign.io/2013/03/02/posting--processing-json-with-jquery--spring-mvc/</link>
       <pubDate>Sat, 02 Mar 2013 12:37:00 +0000</pubDate>
       
-      <guid>https://claudemamo.github.io/2013/03/02/posting--processing-json-with-jquery--spring-mvc/</guid>
+      <guid>https://oncodesign.io/2013/03/02/posting--processing-json-with-jquery--spring-mvc/</guid>
       <description>&lt;p&gt;Consider an HTML form containing numerous input fields. When the user clicks on the form&amp;rsquo;s submit button, the fields need to be sent as JSON to a service that under the hood is implemented in Spring MVC.&lt;br /&gt;&lt;br /&gt;A jQuery function transforms and posts the form&amp;rsquo;s inputs:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5066797.js?file=NewClientForm.jsp&#34;&gt;&lt;/script&gt;Through the &lt;i&gt;$(&amp;lsquo;form&amp;rsquo;).submit(&amp;hellip;)&lt;/i&gt; function (line 61), jQuery intercepts any click on the submit button and posts the form with the &lt;i&gt;$.ajax(&amp;hellip;)&lt;/i&gt; function (line 63). Before sending the data, jQuery transforms the form&amp;rsquo;s inputs to JSON using&amp;nbsp;&lt;i&gt;JSON.stringify($(this).serializeArray())&lt;/i&gt; (line 66). This function outputs a JSON string consisting of a list of key-value pairs:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5066797.js?file=output.json&#34;&gt;&lt;/script&gt;On the service side, I have the controller to process the form:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5066797.js?file=ApplicationController.java&#34;&gt;&lt;/script&gt;&lt;i&gt;getCreateClientForm()&lt;/i&gt; returns the HTML form to the user. The more interesting method is&amp;nbsp;&lt;i&gt;processSubmitCreateClient(&amp;hellip;)&lt;/i&gt;.&lt;br /&gt;&lt;br /&gt;The &lt;i&gt;headers&lt;/i&gt; annotation attribute tells Spring that&amp;nbsp;&lt;i&gt;processSubmitCreateClient(&amp;hellip;)&lt;/i&gt;&amp;nbsp;should be invoked only if the HTTP request header &lt;i&gt;Content-Type&lt;/i&gt; is set to &lt;i&gt;application/json&lt;/i&gt;. Furthermore,&amp;nbsp;&lt;i&gt;@RequestBody&lt;/i&gt; tells Spring to bind the JSON data to the &lt;i&gt;client&lt;/i&gt; paramater which is a list of maps.&amp;nbsp;&lt;i&gt;processSubmitCreateClient(&amp;hellip;)&lt;/i&gt;&amp;nbsp;iterates through each element to merge the individuals maps into a single map to facilitate processing.&lt;br /&gt;&lt;br /&gt;I &amp;nbsp;added the &lt;a href=&#34;http://wiki.fasterxml.com/JacksonHome&#34; target=&#34;_blank&#34;&gt;Jackson&lt;/a&gt; library to the project&amp;rsquo;s POM since Spring requires a JSON deserializer to perform the data binding:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5066797.js?file=pom.xml&#34;&gt;&lt;/script&gt;You can &lt;a href=&#34;https://github.com/claudemamo/jq-springmvc-json&#34; target=&#34;_blank&#34;&gt;grab the complete example&lt;/a&gt; from GitHub and run it from the project root directory using the following command:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/5066797.js?file=run.sh&#34;&gt;&lt;/script&gt;From your browser, enter &amp;ldquo;&lt;a href=&#34;http://localhost:8080/jq-springmvc-json/create-client.html&#34;&gt;http://localhost:8080/jq-springmvc-json/create-client.html&lt;/a&gt;&amp;rdquo; to access the form.&lt;/p&gt;
 </description>
     </item>
