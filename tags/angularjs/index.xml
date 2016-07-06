@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Angularjs on On Code &amp; Design</title>
-    <link>http://www.oncodesign.io/tags/angularjs/</link>
+    <link>http://oncodesign.io/tags/angularjs/</link>
     <description>Recent content in Angularjs on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 19 Feb 2014 15:21:00 +0000</lastBuildDate>
-    <atom:link href="http://www.oncodesign.io/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://oncodesign.io/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Safely Prevent Template Caching in AngularJS</title>
-      <link>http://www.oncodesign.io/2014/02/19/safely-prevent-template-caching-in-angularjs/</link>
+      <link>http://oncodesign.io/2014/02/19/safely-prevent-template-caching-in-angularjs/</link>
       <pubDate>Wed, 19 Feb 2014 15:21:00 +0000</pubDate>
       
-      <guid>http://www.oncodesign.io/2014/02/19/safely-prevent-template-caching-in-angularjs/</guid>
+      <guid>http://oncodesign.io/2014/02/19/safely-prevent-template-caching-in-angularjs/</guid>
       <description>&lt;p&gt;AngularJS&amp;rsquo;s &lt;i&gt;&lt;a href=&#34;http://docs.angularjs.org/api/ng/service/$templateCache&#34; target=&#34;_blank&#34;&gt;$templateCache&lt;/a&gt;&lt;/i&gt; can be a pain in the ass. Sometimes we don&amp;rsquo;t want templates to be cached. A quick Internet search to disable caching gives the following workaround:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/9092047.js?file=app(1).js&#34;&gt;&lt;/script&gt; But as I have learnt with the &lt;a href=&#34;http://angular-ui.github.io/bootstrap/&#34; target=&#34;_blank&#34;&gt;UI Bootsrap module&lt;/a&gt;, this may cause AngularJS modules that use &lt;i&gt;$templateCache&lt;/i&gt; to break. A solution is to tweak the above workaround so that new cache entries are removed on route change instead of indiscriminately removing all entries:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/9092047.js?file=app(2).js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>

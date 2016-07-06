@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on On Code &amp; Design</title>
-    <link>http://www.oncodesign.io/page/</link>
+    <link>http://oncodesign.io/page/</link>
     <description>Recent content in Pages on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 05 May 2016 21:48:51 -0700</lastBuildDate>
-    <atom:link href="http://www.oncodesign.io/page/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://oncodesign.io/page/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>About</title>
-      <link>http://www.oncodesign.io/about/</link>
+      <link>http://oncodesign.io/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
-      <guid>http://www.oncodesign.io/about/</guid>
+      <guid>http://oncodesign.io/about/</guid>
       <description>&lt;p&gt;I am an independent software contractor living in the island of &lt;a href=&#34;https://en.wikipedia.org/wiki/Malta&#34;&gt;Malta&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;My idols in the software industry are &lt;a href=&#34;http://martinfowler.com/&#34;&gt;Martin Fowler&lt;/a&gt;, &lt;a href=&#34;http://dannorth.net/&#34;&gt;Dan North&lt;/a&gt;, and &lt;a href=&#34;https://twitter.com/fgeorge52&#34;&gt;Fred George&lt;/a&gt;.&lt;/p&gt;
