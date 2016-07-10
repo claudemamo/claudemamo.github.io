@@ -24,13 +24,13 @@ Pages&lt;/a&gt;, giving me more control over
 content.&lt;/p&gt;
 
 &lt;p&gt;Speaking of content, if you&amp;rsquo;re wondering how I&amp;rsquo;m publishing it, I&amp;rsquo;m using &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;
-for this purpose. Hugo has excellent docs and gives you step-by-step instructions
+for this purpose. The static site generator has excellent docs and gives you step-by-step instructions on
 how to set it up for different hosting providers like GitHub Pages and BitBucket.
-One of the nice things about Hugo is that it has a &lt;a href=&#34;https://github.com/natefinch/blogimport&#34;&gt;tool&lt;/a&gt; to convert
+A bonus to using Hugo is that it has a &lt;a href=&#34;https://github.com/natefinch/blogimport&#34;&gt;tool&lt;/a&gt; to convert
 posts from Blogger to Markdown which then can be imported into Hugo. So if you&amp;rsquo;re
 after my old posts, you&amp;rsquo;ll find them on the new blog.&lt;/p&gt;
 
-&lt;p&gt;Of course, I&amp;rsquo;ll keep using &lt;a href=&#34;http://www.addthis.com/&#34;&gt;AddThis&lt;/a&gt; so that readers
+&lt;p&gt;Of course, I&amp;rsquo;ll keep using &lt;a href=&#34;http://www.addthis.com/&#34;&gt;AddThis&lt;/a&gt; so readers
 can share content. Besides this, readers can comment on posts from &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt; which
 is apparently all the rage now.&lt;/p&gt;
 
