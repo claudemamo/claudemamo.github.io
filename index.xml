@@ -6,8 +6,38 @@
     <description>Recent content on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 May 2016 21:48:51 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 10 Jul 2016 20:04:36 +0200</lastBuildDate>
     <atom:link href="http://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Blog 2.0</title>
+      <link>http://oncodesign.io/2016/07/10/blog-2.0/</link>
+      <pubDate>Sun, 10 Jul 2016 20:04:36 +0200</pubDate>
+      
+      <guid>http://oncodesign.io/2016/07/10/blog-2.0/</guid>
+      <description>&lt;p&gt;After a long time of inactivity, I&amp;rsquo;ve decided to give my blog a facelift. Among the changes
+you&amp;rsquo;ll notice the spanking new domain name. I&amp;rsquo;ll still ramble about open-source software
+though I&amp;rsquo;ll be rambling about other subjects as well. A special thanks goes to &lt;a href=&#34;http://www.anthony-galea.com/&#34;&gt;Anthony&lt;/a&gt;, a former
+colleague of mine who recommended technologies I should consider as part of the blog revamp.
+One of them being the hosting provider: the blog is no longer on Blogger but it&amp;rsquo;s now hosted on &lt;a href=&#34;https://github.com/claudemamo/claudemamo.github.io&#34;&gt;GitHub
+Pages&lt;/a&gt;, giving me more control over
+content.&lt;/p&gt;
+
+&lt;p&gt;Speaking of content, if you&amp;rsquo;re wondering how I&amp;rsquo;m publishing it, I&amp;rsquo;m using &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;
+for this purpose. Hugo has excellent docs and gives you step-by-step instructions
+how to set it up for different hosting providers like GitHub Pages and BitBucket.
+What makes Hugo more attractive is the &lt;a href=&#34;https://github.com/natefinch/blogimport&#34;&gt;tool&lt;/a&gt; it has to convert
+posts from Blogger to Markdown which then can be imported into Hugo. So if you&amp;rsquo;re
+after my old posts, you&amp;rsquo;ll find them on the new blog.&lt;/p&gt;
+
+&lt;p&gt;Of course, I&amp;rsquo;ll keep using &lt;a href=&#34;http://www.addthis.com/&#34;&gt;AddThis&lt;/a&gt; so that readers
+can share content. Besides this, readers can comment on posts from &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt; which
+is apparently all the rage now.&lt;/p&gt;
+
+&lt;p&gt;Between work and enjoying the sizzling summer in Malta, I hope to find time to share thoughts on code
+and design so subscribe to the new blog&amp;rsquo;s RSS feed to stay tuned on the latest content.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>About</title>
@@ -171,16 +201,6 @@ I offer on-site as well as remote consultancy services on the following technolo
       
       <guid>http://oncodesign.io/2013/08/27/bridging-mule-and-msmq-with-zeromq/</guid>
       <description>&lt;p&gt;Hearing the words Mule and Microsoft&amp;rsquo;s MSMQ in the same sentence sends a shiver down my spine. I remember once, Mule guru &lt;a href=&#34;http://blogs.mulesoft.org/author/john-demic/&#34; target=&#34;_blank&#34;&gt;John D&amp;rsquo;Emic&lt;/a&gt; and me had spent a considerable amount of time and patience getting Mule and MSMQ to talk to each other through DCOM. The major factor that contributed to this unpleasant experience was our ignorance of the numerous security measures imposed by Windows to restrict DCOM access. The morale of this story is unless you have a veteran Windows administrator at your disposal, avoid the DCOM route.&lt;br /&gt;&lt;br /&gt;So which choices do we have other than DCOM? JNI sounds promising but you are then sacrificing Mule&amp;rsquo;s platform independence. Here&amp;rsquo;s an idea: introduce a &lt;a href=&#34;http://www.eaipatterns.com/MessagingBridge.html&#34; target=&#34;_blank&#34;&gt;messaging bridge&lt;/a&gt; between Mule and MSMQ. The bridge can be implemented in any language that facilitates interaction with MSMQ. C# is an attractive option.&lt;br /&gt;&lt;br /&gt;We still have to consider which middleware to use for exchanging messages between the bridge and Mule. There are many alternatives and among them is &lt;a href=&#34;http://zeromq.org/&#34; target=&#34;_blank&#34;&gt;ZeroMQ&lt;/a&gt;. I think ZeroMQ is a good candidate for several reasons:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;It supports asynchronous communication&lt;/li&gt;&lt;li&gt;You&amp;rsquo;re not adding another component to your architecture&lt;/li&gt;&lt;li&gt;It&amp;rsquo;s well documented in addition to having a low learning curve&lt;/li&gt;&lt;li&gt;A ZeroMQ&amp;nbsp;&lt;a href=&#34;https://github.com/claudemamo/mule-transport-zeromq&#34; target=&#34;_blank&#34;&gt;transport&lt;/a&gt; [1] and &lt;a href=&#34;https://github.com/zeromq/clrzmq&#34; target=&#34;_blank&#34;&gt;binding&lt;/a&gt;&amp;nbsp;are available for Mule and C# respectively&lt;/li&gt;&lt;li&gt;It will more than likely satisfy your message throughput requirements&lt;/li&gt;&lt;/ul&gt;In as little as 15 minutes I developed a simple bridge in C#:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/6345631.js?file=bridge.cs&#34;&gt;&lt;/script&gt; The above code should be self-explanatory but I&amp;rsquo;ve put comments for your convenience.&lt;br /&gt;&lt;br /&gt;Here&amp;rsquo;s the Mule 3 app dispatching messages to the bridge:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/6345631.js?file=mule-config.xml&#34;&gt;&lt;/script&gt;On receiving an HTTP request, Mule leverages the ZeroMQ transport to send asynchronously the request&amp;rsquo;s payload to the bridge.&lt;br /&gt;&lt;br /&gt;In all likelihood, the illustrated bridge code for Mule-MSMQ interoperability won&amp;rsquo;t serve all your needs. I can think about a dozen features that a developer would want such as destination queues resolved at run-time, an agreed format for message content, and etc. But hey, at least it&amp;rsquo;s a start :-)&lt;br /&gt;&lt;br /&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;span style=&#34;font-family: Times, Times New Roman, serif; font-size: small;&#34;&gt;&lt;span class=&#34;num&#34;&gt;1:&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;font-family: Times, Times New Roman, serif;&#34;&gt;I&amp;rsquo;ve recently replaced the transport&amp;rsquo;s ZeroMQ C++ library with a &lt;a href=&#34;https://github.com/zeromq/jeromq&#34; target=&#34;_blank&#34;&gt;pure Java implementation&lt;/a&gt; of ZeroMQ.&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>JRuby Complex Classes in Java Method Signatures</title>
-      <link>http://oncodesign.io/2013/08/19/jruby-complex-classes-in-java-method-signatures/</link>
-      <pubDate>Mon, 19 Aug 2013 11:41:00 +0000</pubDate>
-      
-      <guid>http://oncodesign.io/2013/08/19/jruby-complex-classes-in-java-method-signatures/</guid>
-      <description>&lt;p&gt;As documented in the JRuby wiki,&amp;nbsp;&lt;i&gt;&lt;a href=&#34;https://github.com/jruby/jruby/wiki/GeneratingJavaClasses#generating-java-classes-ahead-of-time&#34; target=&#34;_blank&#34;&gt;java_signature&lt;/a&gt;&lt;/i&gt;&amp;nbsp;changes a method&amp;rsquo;s signature to match the signature string passed to it:&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/6262775.js?file=example(1).rb&#34;&gt;&lt;/script&gt;Observe that the classes in the method signature&amp;nbsp;are primitive. What if we use a complex class as a parameter type?&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/6262775.js?file=example(2).rb&#34;&gt;&lt;/script&gt;Running the above code will give you the following &lt;i&gt;NoMethodError&lt;/i&gt; message:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/6262775.js?file=error&#34;&gt;&lt;/script&gt; The way I went about using complex classes in signatures is to utilise&amp;nbsp;&lt;i&gt;add_method_signature&lt;/i&gt;&amp;nbsp;instead of&amp;nbsp;&lt;i&gt;java_signature&lt;/i&gt;:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/6262775.js?file=example(3).rb&#34;&gt;&lt;/script&gt;&lt;i&gt;add_method_signature&lt;/i&gt;&amp;nbsp;expects the first argument to be the name of the method that will have its signature changed. For the second argument, it expects it to be a list of classes. The list&amp;rsquo;s first item is the return class (e.g.,&amp;nbsp;&lt;i&gt;void&lt;/i&gt;) while the subsequent items are the signature&amp;rsquo;s parameter classes (e.g.,&amp;nbsp;&lt;i&gt;int&lt;/i&gt; and &lt;i&gt;MyClass&lt;/i&gt;). Note that I invoke&amp;nbsp;&lt;i&gt;become_java!&lt;/i&gt;&amp;nbsp;on the complex class. This tells &lt;i&gt;MyClass&lt;/i&gt; to materialize itself into a Java class. The &lt;i&gt;false&lt;/i&gt; flag is needed so that JRuby&amp;rsquo;s main class loader is used to load the class. Without it, you&amp;rsquo;ll be greeted by a&amp;nbsp;&lt;i&gt;java.lang.ClassNotFoundException&lt;/i&gt;.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
     </item>
     
