@@ -58,7 +58,7 @@ to PostGreSQL, where the &lt;em&gt;surname&lt;/em&gt; column will be added:&lt;/
 &lt;script src=&#34;https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V1__init.sql&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;The migration script adding the &lt;em&gt;surname&lt;/em&gt; column to the &lt;em&gt;PERSON&lt;/em&gt; table is like
-the article&amp;rsquo;s BUT with one crucial difference:&lt;/p&gt;
+the article&amp;rsquo;s but with one crucial difference:&lt;/p&gt;
 
 &lt;script src=&#34;https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V2__Add_surname(1).sql&#34;&gt;&lt;/script&gt;
 
