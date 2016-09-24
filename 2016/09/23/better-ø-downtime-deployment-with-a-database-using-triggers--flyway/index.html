@@ -83,7 +83,7 @@ state such that (1) any un-migrated data slipped in from the previous deployment
 is migrated   and (2) the schema is no longer backwards compatible.</p>
 
 <p>What struck me about the above approach is the relatively long deployment procedure
-ops have to follow. Minimally, ops are required to make 3 deployments multiplied by the number of replicas (i.e., 3 * r).
+ops have to follow. Minimally, ops are required to make 3 deployments multiplied by the number of replicas.
 Moreover, for each deployment, a different version of the application needs to be released.
 This means bumping the application version no., tagging the released application source code,
 building it, and so on. Leaving aside logistics, this strategy necessitates
