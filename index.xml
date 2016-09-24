@@ -6,8 +6,83 @@
     <description>Recent content on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Jul 2016 20:04:36 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 23 Sep 2016 14:29:41 +0200</lastBuildDate>
     <atom:link href="http://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Better Ø Downtime Deployment with a Database using Triggers (&amp; Flyway)</title>
+      <link>http://oncodesign.io/2016/09/23/better-%C3%B8-downtime-deployment-with-a-database-using-triggers--flyway/</link>
+      <pubDate>Fri, 23 Sep 2016 14:29:41 +0200</pubDate>
+      
+      <guid>http://oncodesign.io/2016/09/23/better-%C3%B8-downtime-deployment-with-a-database-using-triggers--flyway/</guid>
+      <description>&lt;p&gt;This summer I was initiated into the arcane art of zero downtime deployment.
+A vendor, for better or worse, mandated that application releases are deployed
+on their platform without sacrificing the service&amp;rsquo;s availability. Achieving no downtime
+for a stateless application is more or less straightforward. Take down the application server,
+upgrade the application, and restart the server; repeat per replica. Bringing
+a database into the picture complicates the process because alterations to the database schema or
+data must not break the older application which is live until the upgrade is over (i.e.,
+assuming the upgrade isn&amp;rsquo;t rolled back). If matters weren&amp;rsquo;t complicated enough, a
+subtle requirement for correctness one has to keep in mind is that data must be
+consistent relative to the version of the application reading/writing it. For example,
+if app V1 writes &lt;em&gt;x&lt;/em&gt; to column A and now app V2 starts writing &lt;em&gt;x′&lt;/em&gt; to column B
+superseding column A, we expect app V1&amp;rsquo;s user to see &lt;em&gt;x&lt;/em&gt; while app V2&amp;rsquo;s user to
+see &lt;em&gt;x′&lt;/em&gt; instead of &lt;em&gt;x&lt;/em&gt; while both versions of the application are running side by side given
+that, logically, column A and column B represent the same field.&lt;/p&gt;
+
+&lt;p&gt;I was on unchartered terrain here and, after researching various strategies, I
+came across &lt;a href=&#34;https://spring.io/blog/2016/05/31/zero-downtime-deployment-with-a-database&#34;&gt;Marcin&amp;rsquo;s zero downtime deployment for databases&lt;/a&gt;
+article. Marcin explains how to achieve zero downtime for a database schema upgrade by enumerating through
+a sequence of &lt;em&gt;n&lt;/em&gt; application deployments where &lt;em&gt;n - 1&lt;/em&gt; intermediate deployments migrate
+the database with &lt;a href=&#34;https://flywaydb.org/&#34;&gt;Flyway&lt;/a&gt; in a backwards compatible way. In the final deployment,
+assuming the previous deployments went well, the database is changed to its final
+state such that (1) any un-migrated data slipped in from the previous deployment (i.e., &lt;em&gt;n - 1&lt;/em&gt;)
+is migrated   and (2) the schema is no longer backwards compatible.&lt;/p&gt;
+
+&lt;p&gt;What struck me about the above approach is the relatively long deployment procedure
+ops have to follow. Minimally, ops are required to make 3 deployments multiplied by the number of replicas (i.e., 3 * r).
+Moreover, for each deployment, a different version of the application needs to be released.
+This means bumping the application version no., tagging the released application source code,
+building it, and so on. Leaving aside logistics, this strategy necessitates
+that you temporarily relax &lt;em&gt;NOT NULL&lt;/em&gt; constraints  in the intermediate deployments
+since app V1 doesn&amp;rsquo;t know about the new columns giving way to the possibility of
+tainted data (naturally, one can implement a less safe form of null check constraint
+in the application).&lt;/p&gt;
+
+&lt;p&gt;Given the mentioned drawbacks, I decided to radically alter the approach. Instead of going
+through a long sequence of deployments, I shifted the strategy to using database insert/update triggers.
+All the popular databases have support for triggers and the vendor&amp;rsquo;s database, PostgreSQL, wasn&amp;rsquo;t
+an exception. Consider the following table taken from the article&amp;rsquo;s example, and adapted
+to PostGreSQL, where the &lt;em&gt;surname&lt;/em&gt; column will be added:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V1__init.sql&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The migration script adding the &lt;em&gt;surname&lt;/em&gt; column to the &lt;em&gt;PERSON&lt;/em&gt; table is like
+the article&amp;rsquo;s BUT with one crucial difference:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V2__Add_surname(1).sql&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Can you spot it? I&amp;rsquo;ve made &lt;em&gt;surname&lt;/em&gt; &lt;em&gt;NOT NULL&lt;/em&gt; guaranteeing a value to
+be always be present. The subsequent &lt;em&gt;ON INSERT OR UPDATE&lt;/em&gt; trigger will copy from
+&lt;em&gt;last_name&lt;/em&gt; to &lt;em&gt;surname&lt;/em&gt; preventing the &lt;em&gt;NOT NULL&lt;/em&gt; constraint from firing when app
+V1 is inserting a record into &lt;em&gt;PERSON&lt;/em&gt;:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V2__Add_surname(2).sql&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;With the trigger in place, I only have to deploy the application once for every
+replica because the heavy lifting is performed inside the system-wide trigger
+as opposed to the application. In the next release, the trigger
+and the obsolete column will be dropped from the database.&lt;/p&gt;
+
+&lt;p&gt;Note that if the database we were on wasn&amp;rsquo;t PostGreSQL, it might be possible
+for data to be inserted or updated without firing the trigger. Indeed, the &lt;em&gt;NOT NULL&lt;/em&gt;
+constraint imposed on the &lt;em&gt;surname&lt;/em&gt; column may be fired from app V1 if an attempt to insert the data is performed
+between the time &lt;em&gt;surname&lt;/em&gt; is added and the trigger is created. The reason
+is that many databases don&amp;rsquo;t support transactional DDL. However, this &lt;a href=&#34;https://wiki.postgresql.org/wiki/Transactional_DDL_in_PostgreSQL:_A_Competitive_Analysis&#34;&gt;isn&amp;rsquo;t the case
+for PostGreSQL&lt;/a&gt;
+and therefore the DML and DDL will run in single transaction.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Blog 2.0</title>
@@ -183,16 +258,6 @@ connecting on &lt;a href=&#34;https://mt.linkedin.com/in/claudemamo&#34;&gt;Link
       
       <guid>http://oncodesign.io/2013/12/11/apache-kafka-for-event-sourcing/</guid>
       <description>&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;a href=&#34;http://martinfowler.com/eaaDev/EventSourcing.html&#34; target=&#34;_blank&#34;&gt;Event Sourcing&lt;/a&gt; is a pattern intended for &#34;&lt;i&gt;capturing all changes to an application state as a sequence of events&lt;/i&gt;&#34;. As explained by Fowler, the pattern is useful when you want the ability to completely rebuild the application state, perform temporal querying, or replay events. The &lt;a href=&#34;http://www.infoq.com/presentations/LMAX&#34; target=&#34;_blank&#34;&gt;LMAX platform&lt;/a&gt; is a famous example where Event Sourcing is applied to keep all application state in-memory and consequently contributing to the system&#39;s surprisingly high throughput and low latency.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;While investigating the architectural components of &lt;a href=&#34;http://samza.incubator.apache.org/&#34; target=&#34;_blank&#34;&gt;Samza&lt;/a&gt;, I came across a component that can be of great help when implementing Event Sourcing:&amp;nbsp;&lt;a href=&#34;https://kafka.apache.org/&#34; target=&#34;_blank&#34;&gt;Apache Kafka&lt;/a&gt;. &lt;a href=&#34;http://research.microsoft.com/en-us/um/people/srikanth/netdb11/netdb11papers/netdb11-final12.pdf&#34; target=&#34;_blank&#34;&gt;Created&lt;/a&gt; by the folks at LinkedIn as a solution to their log processing requirements, Kafka is a broker with message replay built-in.&lt;/div&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&#34;text-align: left;&#34;&gt;Kafka consumers receive messages from publish/subscribe channels known as topics. A topic is divided into user-defined partitions where a partition can serve messages only to a single consumer process. Balancing the message load between consumers is a matter of adding more partitions to the topic, assigning those partitions to other consumer instances, and finally, publishing messages to all topic partitions in a round robin fashion.&lt;/div&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;separator&#34; style=&#34;clear: both; text-align: center;&#34;&gt;&lt;a href=&#34;http://3.bp.blogspot.com/-kvjAcN0vFfg/Uqb4m63H3_I/AAAAAAAAAGw/zJ7XrGdjiDA/s1600/kafka-concepts.png&#34; imageanchor=&#34;1&#34; style=&#34;clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: left;&#34;&gt;&lt;img border=&#34;0&#34; src=&#34;http://3.bp.blogspot.com/-kvjAcN0vFfg/Uqb4m63H3_I/AAAAAAAAAGw/zJ7XrGdjiDA/s640/kafka-concepts.png&#34; height=&#34;356&#34; width=&#34;640&#34; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;What fascinates about Kafka is that at any point in time a consumer can rewind back through the history of messages and re-consume messages at a particular offset. In the above diagram, Consumer B can consume the latest messages or replay messages, say, starting from offset 1.&amp;nbsp;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;At face value we could be forgiven to think that a broker with in-built message replay would have trouble achieving high throughput for large message volumes. After all, Kafka is retaining&amp;nbsp;unconsumed&amp;nbsp;as well as consumed messages on disk: presumably costlier than simply keeping unconsumed messages in memory. However, a &lt;a href=&#34;http://kafka.apache.org/documentation.html#design&#34; target=&#34;_blank&#34;&gt;few&lt;/a&gt; clever design decisions, such as relying on the OS page cache and minimising random disk I/O, gave LinkedIn engineers impressive throughput results when comparing Kafka against both ActiveMQ and RabbitMQ.&lt;/div&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;With the basic concepts and performance considerations out of the way, let me illustrate my point about Kafka&#39;s suitability for Event Sourcing by giving a &lt;a href=&#34;https://github.com/claudemamo/kafka-replays&#34; target=&#34;_blank&#34;&gt;code example&lt;/a&gt;:&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/7840143.js?file=MyProducer.java&#34;&gt;&lt;/script&gt;The above producer publishes, for a number of times, a message to the topic &lt;i&gt;ossandme &lt;/i&gt;on partition 0. In particular, it creates a message by instantiating the&amp;nbsp;&lt;i&gt;KeyedMessage&lt;/i&gt; class with the following parameters (line 19):&lt;/div&gt;&lt;/div&gt;&lt;ul&gt;&lt;li style=&#34;text-align: left;&#34;&gt;Name of the topic to which the message is published.&lt;/li&gt;&lt;li style=&#34;text-align: left;&#34;&gt;ID of the partition the message will sit on.&lt;/li&gt;&lt;li style=&#34;text-align: left;&#34;&gt;Message content, in this case, the time the message was published.&lt;/li&gt;&lt;/ul&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;The following consumer pulls messages from the&amp;nbsp;topic&amp;nbsp;&lt;i&gt;ossandme&lt;/i&gt;:&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/7840143.js?file=MyConsumer.java&#34;&gt;&lt;/script&gt;For each message received, the application outputs the message&#39;s offset on partition 0 in addition to its content (line 50). The first thing to observe is that I&#39;ve programmed against Kafka&#39;s low-level&amp;nbsp;&lt;a href=&#34;http://kafka.apache.org/documentation.html#simpleconsumerapi&#34; target=&#34;_blank&#34;&gt;SimpleConsumer&lt;/a&gt;&amp;nbsp;API. Alternatively, I could have opted for the&amp;nbsp;&lt;a href=&#34;http://kafka.apache.org/documentation.html#highlevelconsumerapi&#34; target=&#34;_blank&#34;&gt;High Level Consumer&lt;/a&gt;&amp;nbsp;API to reduce development time. I chose the former because with the latter I was unable to find a way to replay any set of messages I wanted.&amp;nbsp;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;Event Sourcing comes into play when an exception occurs. On exception, the application rewinds back to the first message in the partition and re-attempts to process all of the partition&#39;s messages (line 24). I like the fact that, to get this type of behaviour, I didn&#39;t have to introduce a database but simply leveraged the broker&#39;s message replay capability. Without a database, I&#39;ve one less moving part to think about in my architecture.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;div style=&#34;text-align: left;&#34;&gt;Kafka is a young project and I&#39;m interested to see how it matures. I&#39;m keen to hear people&#39;s experiences using Kafka and whether it proved to be the right solution for them. As the project matures, I suspect we&#39;ll hear more often about Kafka in our technical discussions along with the other, more established, open source brokers.&lt;/div&gt;&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Bridging Mule and MSMQ with ZeroMQ</title>
-      <link>http://oncodesign.io/2013/08/27/bridging-mule-and-msmq-with-zeromq/</link>
-      <pubDate>Tue, 27 Aug 2013 17:36:00 +0000</pubDate>
-      
-      <guid>http://oncodesign.io/2013/08/27/bridging-mule-and-msmq-with-zeromq/</guid>
-      <description>&lt;p&gt;Hearing the words Mule and Microsoft&amp;rsquo;s MSMQ in the same sentence sends a shiver down my spine. I remember once, Mule guru &lt;a href=&#34;http://blogs.mulesoft.org/author/john-demic/&#34; target=&#34;_blank&#34;&gt;John D&amp;rsquo;Emic&lt;/a&gt; and me had spent a considerable amount of time and patience getting Mule and MSMQ to talk to each other through DCOM. The major factor that contributed to this unpleasant experience was our ignorance of the numerous security measures imposed by Windows to restrict DCOM access. The morale of this story is unless you have a veteran Windows administrator at your disposal, avoid the DCOM route.&lt;br /&gt;&lt;br /&gt;So which choices do we have other than DCOM? JNI sounds promising but you are then sacrificing Mule&amp;rsquo;s platform independence. Here&amp;rsquo;s an idea: introduce a &lt;a href=&#34;http://www.eaipatterns.com/MessagingBridge.html&#34; target=&#34;_blank&#34;&gt;messaging bridge&lt;/a&gt; between Mule and MSMQ. The bridge can be implemented in any language that facilitates interaction with MSMQ. C# is an attractive option.&lt;br /&gt;&lt;br /&gt;We still have to consider which middleware to use for exchanging messages between the bridge and Mule. There are many alternatives and among them is &lt;a href=&#34;http://zeromq.org/&#34; target=&#34;_blank&#34;&gt;ZeroMQ&lt;/a&gt;. I think ZeroMQ is a good candidate for several reasons:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;It supports asynchronous communication&lt;/li&gt;&lt;li&gt;You&amp;rsquo;re not adding another component to your architecture&lt;/li&gt;&lt;li&gt;It&amp;rsquo;s well documented in addition to having a low learning curve&lt;/li&gt;&lt;li&gt;A ZeroMQ&amp;nbsp;&lt;a href=&#34;https://github.com/claudemamo/mule-transport-zeromq&#34; target=&#34;_blank&#34;&gt;transport&lt;/a&gt; [1] and &lt;a href=&#34;https://github.com/zeromq/clrzmq&#34; target=&#34;_blank&#34;&gt;binding&lt;/a&gt;&amp;nbsp;are available for Mule and C# respectively&lt;/li&gt;&lt;li&gt;It will more than likely satisfy your message throughput requirements&lt;/li&gt;&lt;/ul&gt;In as little as 15 minutes I developed a simple bridge in C#:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/6345631.js?file=bridge.cs&#34;&gt;&lt;/script&gt; The above code should be self-explanatory but I&amp;rsquo;ve put comments for your convenience.&lt;br /&gt;&lt;br /&gt;Here&amp;rsquo;s the Mule 3 app dispatching messages to the bridge:&lt;br /&gt;&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/6345631.js?file=mule-config.xml&#34;&gt;&lt;/script&gt;On receiving an HTTP request, Mule leverages the ZeroMQ transport to send asynchronously the request&amp;rsquo;s payload to the bridge.&lt;br /&gt;&lt;br /&gt;In all likelihood, the illustrated bridge code for Mule-MSMQ interoperability won&amp;rsquo;t serve all your needs. I can think about a dozen features that a developer would want such as destination queues resolved at run-time, an agreed format for message content, and etc. But hey, at least it&amp;rsquo;s a start :-)&lt;br /&gt;&lt;br /&gt;&lt;div style=&#34;text-align: justify;&#34;&gt;&lt;span style=&#34;font-family: Times, Times New Roman, serif; font-size: small;&#34;&gt;&lt;span class=&#34;num&#34;&gt;1:&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;font-family: Times, Times New Roman, serif;&#34;&gt;I&amp;rsquo;ve recently replaced the transport&amp;rsquo;s ZeroMQ C++ library with a &lt;a href=&#34;https://github.com/zeromq/jeromq&#34; target=&#34;_blank&#34;&gt;pure Java implementation&lt;/a&gt; of ZeroMQ.&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
     

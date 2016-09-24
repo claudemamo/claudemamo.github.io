@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Triggers on On Code &amp; Design</title>
+    <link>http://oncodesign.io/tags/triggers/</link>
+    <description>Recent content in Triggers on On Code &amp; Design</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Sep 2016 14:29:41 +0200</lastBuildDate>
+    <atom:link href="http://oncodesign.io/tags/triggers/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Better Ø Downtime Deployment with a Database using Triggers (&amp; Flyway)</title>
+      <link>http://oncodesign.io/2016/09/23/better-%C3%B8-downtime-deployment-with-a-database-using-triggers--flyway/</link>
+      <pubDate>Fri, 23 Sep 2016 14:29:41 +0200</pubDate>
+      
+      <guid>http://oncodesign.io/2016/09/23/better-%C3%B8-downtime-deployment-with-a-database-using-triggers--flyway/</guid>
+      <description>&lt;p&gt;This summer I was initiated into the arcane art of zero downtime deployment.
+A vendor, for better or worse, mandated that application releases are deployed
+on their platform without sacrificing the service&amp;rsquo;s availability. Achieving no downtime
+for a stateless application is more or less straightforward. Take down the application server,
+upgrade the application, and restart the server; repeat per replica. Bringing
+a database into the picture complicates the process because alterations to the database schema or
+data must not break the older application which is live until the upgrade is over (i.e.,
+assuming the upgrade isn&amp;rsquo;t rolled back). If matters weren&amp;rsquo;t complicated enough, a
+subtle requirement for correctness one has to keep in mind is that data must be
+consistent relative to the version of the application reading/writing it. For example,
+if app V1 writes &lt;em&gt;x&lt;/em&gt; to column A and now app V2 starts writing &lt;em&gt;x′&lt;/em&gt; to column B
+superseding column A, we expect app V1&amp;rsquo;s user to see &lt;em&gt;x&lt;/em&gt; while app V2&amp;rsquo;s user to
+see &lt;em&gt;x′&lt;/em&gt; instead of &lt;em&gt;x&lt;/em&gt; while both versions of the application are running side by side given
+that, logically, column A and column B represent the same field.&lt;/p&gt;
+
+&lt;p&gt;I was on unchartered terrain here and, after researching various strategies, I
+came across &lt;a href=&#34;https://spring.io/blog/2016/05/31/zero-downtime-deployment-with-a-database&#34;&gt;Marcin&amp;rsquo;s zero downtime deployment for databases&lt;/a&gt;
+article. Marcin explains how to achieve zero downtime for a database schema upgrade by enumerating through
+a sequence of &lt;em&gt;n&lt;/em&gt; application deployments where &lt;em&gt;n - 1&lt;/em&gt; intermediate deployments migrate
+the database with &lt;a href=&#34;https://flywaydb.org/&#34;&gt;Flyway&lt;/a&gt; in a backwards compatible way. In the final deployment,
+assuming the previous deployments went well, the database is changed to its final
+state such that (1) any un-migrated data slipped in from the previous deployment (i.e., &lt;em&gt;n - 1&lt;/em&gt;)
+is migrated   and (2) the schema is no longer backwards compatible.&lt;/p&gt;
+
+&lt;p&gt;What struck me about the above approach is the relatively long deployment procedure
+ops have to follow. Minimally, ops are required to make 3 deployments multiplied by the number of replicas (i.e., 3 * r).
+Moreover, for each deployment, a different version of the application needs to be released.
+This means bumping the application version no., tagging the released application source code,
+building it, and so on. Leaving aside logistics, this strategy necessitates
+that you temporarily relax &lt;em&gt;NOT NULL&lt;/em&gt; constraints  in the intermediate deployments
+since app V1 doesn&amp;rsquo;t know about the new columns giving way to the possibility of
+tainted data (naturally, one can implement a less safe form of null check constraint
+in the application).&lt;/p&gt;
+
+&lt;p&gt;Given the mentioned drawbacks, I decided to radically alter the approach. Instead of going
+through a long sequence of deployments, I shifted the strategy to using database insert/update triggers.
+All the popular databases have support for triggers and the vendor&amp;rsquo;s database, PostgreSQL, wasn&amp;rsquo;t
+an exception. Consider the following table taken from the article&amp;rsquo;s example, and adapted
+to PostGreSQL, where the &lt;em&gt;surname&lt;/em&gt; column will be added:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V1__init.sql&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The migration script adding the &lt;em&gt;surname&lt;/em&gt; column to the &lt;em&gt;PERSON&lt;/em&gt; table is like
+the article&amp;rsquo;s BUT with one crucial difference:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V2__Add_surname(1).sql&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Can you spot it? I&amp;rsquo;ve made &lt;em&gt;surname&lt;/em&gt; &lt;em&gt;NOT NULL&lt;/em&gt; guaranteeing a value to
+be always be present. The subsequent &lt;em&gt;ON INSERT OR UPDATE&lt;/em&gt; trigger will copy from
+&lt;em&gt;last_name&lt;/em&gt; to &lt;em&gt;surname&lt;/em&gt; preventing the &lt;em&gt;NOT NULL&lt;/em&gt; constraint from firing when app
+V1 is inserting a record into &lt;em&gt;PERSON&lt;/em&gt;:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V2__Add_surname(2).sql&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;With the trigger in place, I only have to deploy the application once for every
+replica because the heavy lifting is performed inside the system-wide trigger
+as opposed to the application. In the next release, the trigger
+and the obsolete column will be dropped from the database.&lt;/p&gt;
+
+&lt;p&gt;Note that if the database we were on wasn&amp;rsquo;t PostGreSQL, it might be possible
+for data to be inserted or updated without firing the trigger. Indeed, the &lt;em&gt;NOT NULL&lt;/em&gt;
+constraint imposed on the &lt;em&gt;surname&lt;/em&gt; column may be fired from app V1 if an attempt to insert the data is performed
+between the time &lt;em&gt;surname&lt;/em&gt; is added and the trigger is created. The reason
+is that many databases don&amp;rsquo;t support transactional DDL. However, this &lt;a href=&#34;https://wiki.postgresql.org/wiki/Transactional_DDL_in_PostgreSQL:_A_Competitive_Analysis&#34;&gt;isn&amp;rsquo;t the case
+for PostGreSQL&lt;/a&gt;
+and therefore the DML and DDL will run in single transaction.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
