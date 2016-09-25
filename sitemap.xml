@@ -7,7 +7,7 @@
   </url>
   
   <url>
-    <loc>http://oncodesign.io/2016/09/23/better-0-downtime-deployment-with-a-database-using-triggers--flyway/</loc>
+    <loc>http://oncodesign.io/2016/09/23/better-zero-downtime-deployment-with-a-database-using-triggers-and-flyway/</loc>
     <lastmod>2016-09-23T14:29:41+02:00</lastmod>
   </url>
   
@@ -67,7 +67,7 @@
   </url>
   
   <url>
-    <loc>http://oncodesign.io/2014/01/07/scaling-up-mule-with-async-request-handling/continuations/</loc>
+    <loc>http://oncodesign.io/2014/01/07/scaling-up-mule-with-async-request-handlingcontinuations/</loc>
     <lastmod>2014-01-07T14:01:00+00:00</lastmod>
   </url>
   
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>http://oncodesign.io/2012/11/06/mule-zeromq-transport-lightweight-rpc-with-%C3%B8mq-and-protocol-buffers/</loc>
+    <loc>http://oncodesign.io/2012/11/06/mule-zeromq-transport-lightweight-rpc-with-0mq-and-protocol-buffers/</loc>
     <lastmod>2012-11-06T22:12:00+00:00</lastmod>
   </url>
   

@@ -21,10 +21,10 @@
     
     <item>
       <title>Mule ZeroMQ Transport: Lightweight RPC with ØMQ and Protocol Buffers</title>
-      <link>http://oncodesign.io/2012/11/06/mule-zeromq-transport-lightweight-rpc-with-%C3%B8mq-and-protocol-buffers/</link>
+      <link>http://oncodesign.io/2012/11/06/mule-zeromq-transport-lightweight-rpc-with-0mq-and-protocol-buffers/</link>
       <pubDate>Tue, 06 Nov 2012 22:12:00 +0000</pubDate>
       
-      <guid>http://oncodesign.io/2012/11/06/mule-zeromq-transport-lightweight-rpc-with-%C3%B8mq-and-protocol-buffers/</guid>
+      <guid>http://oncodesign.io/2012/11/06/mule-zeromq-transport-lightweight-rpc-with-0mq-and-protocol-buffers/</guid>
       <description>&lt;p&gt;Check out John D&amp;rsquo;Emic&amp;rsquo;s awesome&amp;nbsp;&lt;a href=&#34;http://blogs.mulesoft.org/lightweight-rpc-with-%C3%B8mq-and-protocol-buffers/&#34; target=&#34;_blank&#34;&gt;blog post&lt;/a&gt; demonstrating how&amp;nbsp;ØMQ and Mule could be used for exchanging stock quote data between a front-end and back-end application.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
     </item>
