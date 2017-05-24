@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21" />
+
+
+<title>Paging One-to-Many Results in SQL - On Code &amp; Design</title>
+<meta property="og:title" content="Paging One-to-Many Results in SQL - On Code &amp; Design">
+<meta property="og:type" content="article" />
+
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://oncodesign.io/css/main.css" media="all">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700">
+<link rel='stylesheet' href="//fonts.googleapis.com/css?family=Noto+Serif">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="http://oncodesign.io/" class="nav-logo"><img src="http://oncodesign.io/images/avatar.png" width="50" height="50"></a>
+    <a class="nav-logo nav-links about-link" href="/about/">About</a>
+  </ul>
+  <ul class="nav-links">
+    
+    <li><a href="https://github.com/claudemamo" target="_blank"><i class="nav-icon fa fa-github fa-3x" aria-hidden="true"></i></a></li>
+    <li><a href="http://mt.linkedin.com/in/claudemamo" target="_blank"><i class="nav-icon fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></li>
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3 min read</span>
+    
+
+    <h1 class="article-title">Paging One-to-Many Results in SQL</h1>
+
+    
+    <span class="article-date">April 4, 2017</span>
+    
+
+    <div class="article-content">
+      <p>Pagination in databases, the division of query results into manageable subsets, is often
+implemented in terms of SQL constructs like <em>LIMIT</em> or <em>FETCH FIRST</em>, and <em>OFFSET</em>. This
+works well when the result is compromised of one-to-one relationships. On the other hand,
+hypothesize what happens if the relationship is a one-to-many as in the following DDL [1]:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=schema.sql"></script>
+
+<p>An author can publish <em>n</em> books and this relationship is expressed as a foreign key constraint declared
+on Book&rsquo;s <em>authorId</em> column. A <em>SELECT * FROM</em> statement joining the two tables by the author&rsquo;s ID will produce a row for
+each book the author has written. This means that if you have 3 authors and each author has written 3 books,
+the query will return 9 rows:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-1.txt"></script>
+
+<p>The first attempt at formulating a query that fetches the first page of the result, ordered by author
+name and were a page can have at most 2 authors, might go like this:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=limit-offset.sql"></script>
+
+<p>The above <em>SELECT</em> statement, with a <em>LIMIT</em> of 3 and an <em>OFFSET</em> of 0, will only return books
+authored by Antonopoulos as opposed to books authored by Chomsky in addition to Antonopoulos
+because authors are duplicated in the result set:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-2.txt"></script>
+
+<p>Paging a one-to-many relationship isn&rsquo;t a trivial problem to solve in pure SQL.
+In fact, it might be tempting to page the result from within the application to achieve
+the desired outcome but such a solution would arguably suffer for large result sets given
+that all rows in the result need to be brought over from the database to the application.</p>
+
+<p>Most popular vendor DBMSs offer window functions for performing calculations over ranges of rows. One such
+function is <em>DENSE_RANK</em>. This function ranks each row against the rest of the rows
+to produce a sequence of numbers starting from 1. Rows which are equal in rank have
+the same sequence number. <em>DENSE_RANK</em> is the key to solving the one-to-many pagination
+problem as it helps us simulate logical counts and offsets based on the author&rsquo;s primary key column:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=dense-rank-offset.sql"></script>
+
+<p>This <em>SELECT</em> statement uses <em>DENSE_RANK</em> combined with <em>ORDER BY</em> to produce rows such that
+row <em>x</em> and <em>y</em> have the same rank if and only if row <em>x</em>&rsquo;s author ID and name are equal
+to row <em>y</em>&rsquo;s author&rsquo;s ID and name:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-3.txt"></script>
+
+<p>With the <em>offset_</em> rank column, we can scroll forwards or backwards taking into account
+that duplicate authors in the result have the same rank. Say we want to get records
+ starting from offset 1. Keeping in mind that <em>rank = offset + 1</em>, this requirement would be simply expressed as:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=dense-rank-offset-1.sql"></script>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-4.txt"></script>
+
+<p>To add a logical count, another rank, representing the count, is re-computed over the sub-select&rsquo;s result:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=dense-rank-offset-1-count.sql"></script>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-5.txt"></script>
+
+<p>In the beginning of this post, we wanted to fetch the first page of the result
+with a limit of 2 authors. Here&rsquo;s how to achieve this with DENSE_RANK:</p>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=dense-rank-offset-0-count-2.sql"></script>
+
+<script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-6.txt"></script>
+
+<div style="text-align: justify; line-height: 1.3;">
+  <span style="font-family: Times, Times New Roman, serif; font-size: small;">
+    <span class="num">1: All SQL examples target PostgreSQL.</span>
+  </span>
+  <br/>
+  <span style="font-family: Times, Times New Roman, serif; font-size: small;">
+    2: The described solution won't solve the one-to-many paging problem should the result be ordered by a column in the Book table. I'll leave it as an exercise for the reader to figure out why that's the case.
+  </span>
+</div>
+
+    </div>
+  </article>
+
+  
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'oncodesign';
+    var disqus_identifier = 'http:\/\/oncodesign.io\/2017\/04\/22\/paging-one-to-many-results-in-sql\/';
+    var disqus_title = 'Paging One-to-Many Results in SQL';
+    var disqus_url = 'http:\/\/oncodesign.io\/2017\/04\/22\/paging-one-to-many-results-in-sql\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="http://oncodesign.io/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+
+        </ul>
+      </footer>
+
+    </div>
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80349200-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+    
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fc0c4604ad8648e"></script>
+  </body>
+</html>
+

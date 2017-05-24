@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 25 Sep 2015 14:56:00 +0000</lastBuildDate>
-    <atom:link href="http://oncodesign.io/tags/raml/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://oncodesign.io/tags/raml/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Describing API Key Authentication in RAML</title>
@@ -15,8 +17,7 @@
       <pubDate>Fri, 25 Sep 2015 14:56:00 +0000</pubDate>
       
       <guid>http://oncodesign.io/2015/09/25/describing-api-key-authentication-in-raml/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve finally figured out how to say in &lt;a href=&#34;http://raml.org/&#34;&gt;RAML&lt;/a&gt; that API operations are protected by an API key query parameter:&lt;br /&gt;&lt;script src=&#34;https://gist.github.com/claudemamo/045dcd97953b69fdad6c.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-</description>
+      <description>I&amp;rsquo;ve finally figured out how to say in RAML that API operations are protected by an API key query parameter:</description>
     </item>
     
   </channel>
