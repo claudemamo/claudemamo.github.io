@@ -17,7 +17,7 @@
       <pubDate>Sat, 22 Apr 2017 09:33:52 +0200</pubDate>
       
       <guid>http://oncodesign.io/2017/04/22/paging-one-to-many-results-in-sql/</guid>
-      <description>Pagination in databases, the division of query results into manageable subsets, is often implemented in terms of SQL constructs like LIMIT or FETCH FIRST, and OFFSET. This works well when the result is compromised of one-to-one relationships. On the other hand, hypothesize what happens if the relationship is a one-to-many as in the following DDL [1]:
+      <description>Pagination in databases, the division of query results into manageable subsets, is often implemented in terms of SQL constructs like LIMIT or FETCH FIRST, and OFFSET. This works well when the result is compromised of one-to-one relationships. On the other hand, hypothesise what happens if the relationship is a one-to-many as in the following DDL [1]:
  An author can publish n books and this relationship is expressed as a foreign key constraint declared on Book&amp;rsquo;s authorId column.</description>
     </item>
     
