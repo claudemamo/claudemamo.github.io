@@ -67,7 +67,7 @@ hypothesise what happens if the relationship is a one-to-many as in the followin
 
 <p>An author can write <em>n</em> books and this relationship is expressed as a foreign key constraint declared
 on Book&rsquo;s <em>authorId</em> column. A <em>SELECT * FROM</em> statement joining the two tables by the author&rsquo;s ID will produce a row for
-each book the author has written. This means that if you have 3 authors and each author has written 3 books,
+each book the author has written. This means that if you have 3 authors and each one has authored 3 books,
 the query will return 9 rows:</p>
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-1.txt"></script>
