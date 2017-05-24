@@ -72,12 +72,12 @@ the query will return 9 rows:</p>
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-1.txt"></script>
 
-<p>The first attempt at formulating a query that fetches the first page of the result, ordered by author
-name and were a page can have at most 2 authors, might go like this:</p>
+<p>An attempt at formulating a query that sorts the result by author name and fetches
+the first page of the result, were the page can have at most 2 authors, might go like this:</p>
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=limit-offset.sql"></script>
 
-<p>The above <em>SELECT</em> statement, with a <em>LIMIT</em> of 3 and an <em>OFFSET</em> of 0, will only return books
+<p>The above <em>SELECT</em> statement, with a <em>LIMIT</em> of 2 and an <em>OFFSET</em> of 0, will only return books
 authored by Antonopoulos as opposed to books authored by Chomsky in addition to Antonopoulos
 because authors are duplicated in the result set:</p>
 
