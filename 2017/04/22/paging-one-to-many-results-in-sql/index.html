@@ -77,16 +77,17 @@ the result&rsquo;s first page, were the page can have at most 2 authors, might g
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=limit-offset.sql"></script>
 
-<p>The above <em>SELECT</em> statement, with a <em>LIMIT</em> of 2 and an <em>OFFSET</em> of 0, will only return books
-authored by Antonopoulos as opposed to books authored by Chomsky in addition to Antonopoulos
-because authors are duplicated in the result set:</p>
+<p>Perhaps to your surprise, the above <em>SELECT</em> statement, with a <em>LIMIT</em> of 2 and an <em>OFFSET</em> of 0, will only return books
+authored by Antonopoulos:</p>
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-2.txt"></script>
 
-<p>Paging a one-to-many relationship isn&rsquo;t a trivial problem to solve in pure SQL.
-In fact, it might be tempting to page the result from within the application to achieve
-the desired outcome but such a solution would arguably suffer for large result sets given
-that all rows in the result need to be brought over from the database to the application.</p>
+<p>The books authored by Chomsky weren&rsquo;t included in the result because it&rsquo;s the many-side
+of the relationship (i.e., books) that is paginated as opposed to the one-side (i.e, authors).
+Paging the one-side of a one-to-many relationship isn&rsquo;t a trivial problem to solve in pure SQL.
+In fact, it might be tempting to page the result from within the application to achieve the
+desired outcome though this means that the application needs to bring over all the result&rsquo;s rows from
+the database before they can be paginated.</p>
 
 <p>Most popular vendor DBMSs offer window functions for performing calculations over ranges of rows. One such
 function is <em>DENSE_RANK</em>. This function ranks each row against the rest of the rows
