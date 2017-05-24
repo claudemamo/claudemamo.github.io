@@ -91,8 +91,8 @@ the database before they can be paginated.</p>
 
 <p>Most popular vendor DBMSs offer window functions for performing calculations over ranges of rows. One such
 function is <em>DENSE_RANK</em>. This function ranks each row against the rest of the rows
-to produce a sequence of numbers starting from 1. Rows which are equal in rank have
-the same sequence number. <em>DENSE_RANK</em> is the key to solving the one-to-many pagination
+to produce a sequence of numbers starting from 1. Rows equal in rank have the
+same sequence number. <em>DENSE_RANK</em> is the key to solving the one-to-many pagination
 problem as it helps us simulate logical counts and offsets based on the author&rsquo;s primary key column:</p>
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=dense-rank-offset.sql"></script>
