@@ -83,7 +83,7 @@ authored by Antonopoulos:</p>
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-2.txt"></script>
 
 <p>The books authored by Chomsky weren&rsquo;t included in the result because it&rsquo;s the many-side
-of the relationship (i.e., books) that is paginated as opposed to the one-side (i.e., authors).
+of the relationship (i.e., books) which is paginated as opposed to the one-side (i.e., authors).
 Paging the one-side of a one-to-many relationship isn&rsquo;t a trivial problem to solve in pure SQL
 without re-writing part of the query as a sub-select:</p>
 
@@ -109,7 +109,7 @@ to row <em>y</em>&rsquo;s author&rsquo;s ID and name:</p>
 
 <p>With the <em>offset_</em> rank column, we can scroll forwards or backwards taking into account
 that duplicate authors in the result have the same rank. Say we want to get records
- starting from offset 1. Keeping in mind that <em>rank = offset + 1</em>, this requirement would be simply expressed as:</p>
+ starting from offset 1. Keeping in mind <em>rank = offset + 1</em>, this requirement would be simply expressed as:</p>
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=dense-rank-offset-1.sql"></script>
 
@@ -128,13 +128,14 @@ with a limit of 2 authors. Here&rsquo;s how to achieve this with DENSE_RANK:</p>
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-6.txt"></script>
 
-<p>Note that <em>DENSE_RANK</em> allows us to more or less to <strong>wrap around</strong> the main query rather than change it.
+<p>Note how <em>DENSE_RANK</em> allows us to more or less to <strong>wrap around</strong> the main query rather than changing it.
 We can even take this one step further:</p>
 
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=dense-rank-offset-0-count-2-wrapped.sql"></script>
 
-<p>By moving the computation of the offset rank outside of the main query, we can
-easily write code that dynamically, and transparently, applies paging to the queries a developer writes.</p>
+<p>By moving the computation of the offset rank outside of the main query, we have
+the possibility of easily writing string manipulation code in the application that
+dynamically, and transparently, applies pagination to queries.</p>
 
 <div style="text-align: justify; line-height: 1.3;">
   <span style="font-family: Times, Times New Roman, serif; font-size: small;">
