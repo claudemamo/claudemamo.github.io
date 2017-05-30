@@ -96,7 +96,7 @@ in the application).</p>
 through a long sequence of deployments, I shifted the strategy to using database insert/update triggers.
 All the popular databases have support for triggers and the vendor&rsquo;s database, PostgreSQL, wasn&rsquo;t
 an exception. Consider the following table taken from the article&rsquo;s example, and adapted
-to PostGreSQL, where the <em>surname</em> column will be added:</p>
+to PostgreSQL, where the <em>surname</em> column will be added:</p>
 
 <script src="https://gist.github.com/claudemamo/e4b3af389f7a5ba031f7813716c0c3de.js?file=V1__init.sql"></script>
 
@@ -117,12 +117,12 @@ replica because the heavy lifting is performed inside the system-wide trigger
 as opposed to the application. In the next release, the trigger
 and the obsolete column will be dropped from the database.</p>
 
-<p>Note that if the database we were on wasn&rsquo;t PostGreSQL, it might be possible
+<p>Note that if the database we were on wasn&rsquo;t PostgreSQL, it might be possible
 for data to be inserted or updated without firing the trigger. Indeed, the <em>NOT NULL</em>
 constraint imposed on the <em>surname</em> column may be fired from app V1 if an attempt to insert the data is performed
 between the time <em>surname</em> is added and the trigger is created. The reason
 is that many databases don&rsquo;t support transactional DDL. However, this <a href="https://wiki.postgresql.org/wiki/Transactional_DDL_in_PostgreSQL:_A_Competitive_Analysis">isn&rsquo;t the case
-for PostGreSQL</a>
+for PostgreSQL</a>
 and therefore the DML and DDL will run in single transaction.</p>
 
     </div>
