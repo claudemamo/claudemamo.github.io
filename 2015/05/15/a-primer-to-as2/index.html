@@ -72,7 +72,7 @@ HTTPs protects your data while it&rsquo;s transiting from point-to-point; not en
 that a document intended for your partner passes through an HTTPs intermediary such as a
 gateway owned by a third-party:</p>
 
-<p><img src="/images/gateway.png" alt="gateway" /></p>
+<p><img src="/images/gateway.png" alt="Gateway" /></p>
 
 <p>After the gateway&rsquo;s HTTPs software peels off the request&rsquo;s security layers, the document is
 open for reading and modification with potential harmful consequences. End-to-end security
@@ -108,6 +108,8 @@ protocol, say, like TLS/SSL.</p>
 good reason why one might want to transport documents on top of AS2. Consider the gateway example.
 You send a purchase order for 1000 widgets over HTTPs to the manufacturer. An encoding bug
 in the gateway software causes it to add an additional zero to the order amount:</p>
+
+<p><img src="/images/gateway-error.png" alt="Gateway error" /></p>
 
 <p>You get a 200 OK HTTP status code confirming the order was processed so you assume the
 manufacturer received the order as it was sent. The next month, to your surprise, you
