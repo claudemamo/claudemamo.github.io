@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://oncodesign.io/2018/10/17/the-many-facets-of-edi-integration/</loc>
+    <lastmod>2018-10-17T10:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://oncodesign.io/2017/04/22/paging-one-to-many-results-in-sql/</loc>
     <lastmod>2017-04-22T09:33:52+02:00</lastmod>
   </url>
@@ -305,6 +310,12 @@
   </url>
   
   <url>
+    <loc>http://oncodesign.io/tags/edi/</loc>
+    <lastmod>2018-10-17T10:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://oncodesign.io/tags/etl/</loc>
     <lastmod>2015-12-09T11:23:00+00:00</lastmod>
     <priority>0</priority>
@@ -516,7 +527,7 @@
   
   <url>
     <loc>http://oncodesign.io/</loc>
-    <lastmod>2017-04-22T09:33:52+02:00</lastmod>
+    <lastmod>2018-10-17T10:00:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -552,7 +563,7 @@
   
   <url>
     <loc>http://oncodesign.io/post/</loc>
-    <lastmod>2017-04-22T09:33:52+02:00</lastmod>
+    <lastmod>2018-10-17T10:00:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
