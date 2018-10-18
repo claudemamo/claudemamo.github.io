@@ -74,7 +74,7 @@ HTTPs protects your data while it&rsquo;s transiting from point-to-point; not en
 that a document intended for your partner passes through an HTTPs intermediary such as a
 gateway owned by a third-party:</p>
 
-<p><img src="/images/gateway.png" alt="Gateway" /></p>
+<p><img src="/images/gateway.png" alt="Gateway" style="max-width:80%"/></p>
 
 <p>After the gateway&rsquo;s HTTPs software peels off the request&rsquo;s security layers, the document is
 open for reading and modification with potential harmful consequences. End-to-end security
@@ -84,7 +84,7 @@ entire journey across the network from unauthorized recipients and tampering. Mo
 digital signatures give confidence to the recipient that the sender is really who it claims
 to be. AS2 processes for securing the data and reading it are depicted as follows:</p>
 
-<p><img src="/images/as2-send-receive.png" alt="AS2 send and receive" /></p>
+<p><img src="/images/as2-send-receive.png" alt="AS2 send and receive" height="450" style="max-width:55%"/></p>
 
 <p>For an AS2 sender to secure the document, it:</p>
 
@@ -111,7 +111,7 @@ good reason why one might want to transport documents on top of AS2. Consider th
 You send a purchase order for 1000 widgets over HTTPs to the manufacturer. An encoding bug
 in the gateway software causes it to add an additional zero to the order amount:</p>
 
-<p><img src="/images/gateway-error.png" alt="Gateway error" /></p>
+<p><img src="/images/gateway-error.png" alt="Gateway error" style="max-width:80%"/></p>
 
 <p>You get a 200 OK HTTP status code confirming the order was processed so you assume the
 manufacturer received the order as it was sent. The next month, to your surprise, you
@@ -126,7 +126,7 @@ happen when businesses are communicating over a fully secure AS2 channel due to 
 MICs and receipts as well as digital signatures. Below is high-level view of how AS2 proceeds
 to achieve this state of affairs without encryption:</p>
 
-<p><img src="/images/as2-process.png" alt="AS2 process" /></p>
+<p><img src="/images/as2-process.png" alt="AS2 process" style="max-width:80%"/></p>
 
 <p>Before sending an HTTP POST containing the document, the AS2 sender:</p>
 
@@ -170,7 +170,7 @@ an AS2-specific HTTP header and it provides two major benefits:</p>
 
 <p>Below we have an illustration of how async MDNs work given the document is encrypted and signed:</p>
 
-<p><img src="/images/as2-process-signed-encrypted.png" alt="AS2 process for signing and encrypting" /></p>
+<p><img src="/images/as2-process-signed-encrypted.png" alt="AS2 process for signing and encrypting" style="max-width:80%"/></p>
 
 <p>As you can see above, the recipient replies with a 200 OK as soon as it receives the request.
 The HTTP response only acknowledges that a request was received; not that its content was
