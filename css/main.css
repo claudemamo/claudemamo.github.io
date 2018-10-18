@@ -5,6 +5,10 @@ body {
   position: relative;
 }
 
+img {
+  width: 100%;
+}
+
 body {
   font-family: 'Merriweather', serif;
   text-rendering: optimizeLegibility;
