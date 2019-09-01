@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jruby on On Code &amp; Design</title>
+    <title>JRuby on On Code &amp; Design</title>
     <link>http://oncodesign.io/tags/jruby/</link>
-    <description>Recent content in Jruby on On Code &amp; Design</description>
+    <description>Recent content in JRuby on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Aug 2013 11:41:00 +0000</lastBuildDate>
