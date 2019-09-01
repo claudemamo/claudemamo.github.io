@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>database on On Code &amp; Design</title>
-    <link>http://oncodesign.io/tags/database/</link>
+    <link>https://oncodesign.io/tags/database/</link>
     <description>Recent content in database on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Sep 2019 09:54:34 +0200</lastBuildDate>
     
-	<atom:link href="http://oncodesign.io/tags/database/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://oncodesign.io/tags/database/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A Scalable Multi-Tenant JDBC Connection Pool</title>
-      <link>http://oncodesign.io/2019/09/01/a-scalable-multi-tenant-jdbc-connection-pool/</link>
+      <link>https://oncodesign.io/2019/09/01/a-scalable-multi-tenant-jdbc-connection-pool/</link>
       <pubDate>Sun, 01 Sep 2019 09:54:34 +0200</pubDate>
       
-      <guid>http://oncodesign.io/2019/09/01/a-scalable-multi-tenant-jdbc-connection-pool/</guid>
+      <guid>https://oncodesign.io/2019/09/01/a-scalable-multi-tenant-jdbc-connection-pool/</guid>
       <description>Multi-tenancy is a frequent requirement when architecting distributed systems. A question one ought to ask is how will the system restrict a tenant’s use of resources. After all, without restrictions and given a finite amount of resources, letting a tenant run wild on the APIs will certainly degrade the performance of other active tenants. The answer to this question will take different forms depending on which part of the technology stack is discussed.</description>
     </item>
     
     <item>
       <title>Better 0-Downtime Deployment with a Database using Triggers (&amp; Flyway)</title>
-      <link>http://oncodesign.io/2016/09/23/better-zero-downtime-deployment-with-a-database-using-triggers-and-flyway/</link>
+      <link>https://oncodesign.io/2016/09/23/better-zero-downtime-deployment-with-a-database-using-triggers-and-flyway/</link>
       <pubDate>Fri, 23 Sep 2016 14:29:41 +0200</pubDate>
       
-      <guid>http://oncodesign.io/2016/09/23/better-zero-downtime-deployment-with-a-database-using-triggers-and-flyway/</guid>
+      <guid>https://oncodesign.io/2016/09/23/better-zero-downtime-deployment-with-a-database-using-triggers-and-flyway/</guid>
       <description>This summer I was initiated into the arcane art of zero downtime deployment. A vendor, for better or worse, mandated that application releases are deployed on their platform without sacrificing the service&amp;rsquo;s availability. Achieving no downtime for a stateless application is more or less straightforward. Take down the application server, upgrade the application, and restart the server; repeat per replica. Bringing a database into the picture complicates the process because alterations to the database schema or data must not break the older application which is live until the upgrade is over (i.</description>
     </item>
     
