@@ -17,7 +17,7 @@
       <pubDate>Sun, 01 Sep 2019 09:54:34 +0200</pubDate>
       
       <guid>http://oncodesign.io/2019/09/01/a-scalable-multi-tenant-jdbc-connection-pool/</guid>
-      <description>Multi-tenancy is a frequent requirement when architecting distributed systems. A question one ought to ask is how will the system restrict a tenant’s use of resources. Afterall, without restrictions and given a finite amount of resources, letting a tenant run wild on the APIs will certainly degrade the performance of other active tenants. The answer to this question will take different forms depending on which part of the technology stack is discussed.</description>
+      <description>Multi-tenancy is a frequent requirement when architecting distributed systems. A question one ought to ask is how will the system restrict a tenant’s use of resources. After all, without restrictions and given a finite amount of resources, letting a tenant run wild on the APIs will certainly degrade the performance of other active tenants. The answer to this question will take different forms depending on which part of the technology stack is discussed.</description>
     </item>
     
     <item>
