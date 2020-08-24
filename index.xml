@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>On Code &amp; Design</title>
@@ -6,10 +6,19 @@
     <description>Recent content on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Sep 2019 09:54:34 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2020 08:15:00 +0200</lastBuildDate>
     
 	<atom:link href="https://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>First Milestone Release of Smooks 2</title>
+      <link>https://oncodesign.io/2020/08/24/first-milestone-release-of-smooks-2/</link>
+      <pubDate>Mon, 24 Aug 2020 08:15:00 +0200</pubDate>
+      
+      <guid>https://oncodesign.io/2020/08/24/first-milestone-release-of-smooks-2/</guid>
+      <description>Following my short stint with Smooks, I joined its developer community to contribute back. As technologies like Apache Daffodil mature, Smooks has become more relevant today than it ever was. Thanks to the guidance of Smooks creator Tom Fennelly, the code repositories are bursting again with commit activity in preparation for the release of Smooks 2! The first milestone was published to Maven Central a few days ago and, among the several notable improvements, we are pleased to announce the new DFDL cartridge which forms the technological underpinnings of the overhauled EDI cartridge.</description>
+    </item>
     
     <item>
       <title>A Scalable Multi-Tenant JDBC Connection Pool</title>
@@ -151,7 +160,7 @@ AS2 (Applicability Statement 2) is a protocol that operates over HTTP/s and is t
       
       <guid>https://oncodesign.io/2014/02/11/dynamically-create-bitcoin-wallets-payment-pages-on-coinbase-in-ruby/</guid>
       <description>Last weekend, as part of my new year&amp;rsquo;s resolution to dedicate some time to good causes, I participated in Hack4good: a global 48 hour hackathon aimed at bringing ideas for the social good into life. In Malta, our team brought forward a crowd funding solution for charitable fundraisers with minimal transaction fees. To this end, we selected BitCoin as the donation currency and Coinbase to host fundraise donations.
-One requirement in our project was to have Coinbase automatically issue a BitCoin wallet to each&amp;nbsp;fundraiser.</description>
+One requirement in our project was to have Coinbase automatically issue a BitCoin wallet to each fundraiser.</description>
     </item>
     
     <item>
@@ -169,7 +178,7 @@ One requirement in our project was to have Coinbase automatically issue a BitCoi
       <pubDate>Mon, 23 Dec 2013 11:38:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2013/12/23/log4j-2-memory-mapped-file-appender/</guid>
-      <description>During the weekend I dug into Java NIO, specifically, mapping files to memory to reduce I/O time. What&amp;rsquo;s more, since I had a lot of free time on my hands, I developed a&amp;nbsp;Log4j 2&amp;nbsp;memory-mapped file appender. On my machine, performance tests running on a single thread using the MemoryMappedFile appender show an improvement by a factor of 3 when compared to the&amp;nbsp;RandomAccessFile&amp;nbsp;appender.</description>
+      <description>During the weekend I dug into Java NIO, specifically, mapping files to memory to reduce I/O time. What&amp;rsquo;s more, since I had a lot of free time on my hands, I developed a Log4j 2 memory-mapped file appender. On my machine, performance tests running on a single thread using the MemoryMappedFile appender show an improvement by a factor of 3 when compared to the RandomAccessFile appender.</description>
     </item>
     
     <item>
@@ -196,11 +205,11 @@ One requirement in our project was to have Coinbase automatically issue a BitCoi
       <pubDate>Mon, 19 Aug 2013 11:41:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2013/08/19/jruby-complex-classes-in-java-method-signatures/</guid>
-      <description>As documented in the JRuby wiki,&amp;nbsp;java_signature&amp;nbsp;changes a method&amp;rsquo;s signature to match the signature string passed to it:
-Observe that the classes in the method signature&amp;nbsp;are primitive. What if we use a complex class as a parameter type?
+      <description>As documented in the JRuby wiki, java_signature changes a method&amp;rsquo;s signature to match the signature string passed to it:
+Observe that the classes in the method signature are primitive. What if we use a complex class as a parameter type?
 Running the above code will give you the following NoMethodError message:
- The way I went about using complex classes in signatures is to utilise&amp;nbsp;add_method_signature&amp;nbsp;instead of&amp;nbsp;java_signature:
-add_method_signature&amp;nbsp;expects the first argument to be the name of the method that will have its signature changed.</description>
+ The way I went about using complex classes in signatures is to utilise add_method_signature instead of java_signature:
+add_method_signature expects the first argument to be the name of the method that will have its signature changed.</description>
     </item>
     
     <item>
@@ -218,8 +227,8 @@ add_method_signature&amp;nbsp;expects the first argument to be the name of the m
       <pubDate>Wed, 24 Jul 2013 12:59:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2013/07/24/the-rails-way-to-search-filtering/</guid>
-      <description>It&amp;rsquo;s been a while since my last post. Numerous changes took place in my professional life since then. I decided to take a break from my career and focus my energy to learning new technologies outside my area of expertise. One biggie is Ruby on Rails&amp;nbsp;3.
-To test my RoR as well as my UI skills, I created&amp;nbsp;evplore.com: a website for sharing, discovering and creating events. A requirement for evplore is to allow users to filter events by country, locality, tag, or date as shown below:</description>
+      <description>It&amp;rsquo;s been a while since my last post. Numerous changes took place in my professional life since then. I decided to take a break from my career and focus my energy to learning new technologies outside my area of expertise. One biggie is Ruby on Rails 3.
+To test my RoR as well as my UI skills, I created evplore.com: a website for sharing, discovering and creating events. A requirement for evplore is to allow users to filter events by country, locality, tag, or date as shown below:</description>
     </item>
     
     <item>
@@ -248,9 +257,8 @@ Consider the Mule config below:</description>
       <pubDate>Sun, 27 Jan 2013 17:22:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2013/01/27/replyto-in-zeromq-using-ws-addressing/</guid>
-      <description>In my last post, I mentioned how one could leverage SOAP along with WS-Addressing to implement the return address pattern in&amp;nbsp;ØMQ&amp;nbsp;(known in the JMS world as&amp;nbsp;ReplyTo&amp;nbsp;and in the MSMQ world as&amp;nbsp;ResponseQueue). In this post, I&amp;rsquo;ll go into more detail by giving a code example using CXF&amp;rsquo;s ØMQ transport.
-Below is a WSDL that is similar in many respects to the WSDL of the previous post:
-Like the other WSDL, this one declares that the service has an operation named sayHi.</description>
+      <description>In my last post, I mentioned how one could leverage SOAP along with WS-Addressing to implement the return address pattern in ØMQ (known in the JMS world as ReplyTo and in the MSMQ world as ResponseQueue). In this post, I&amp;rsquo;ll go into more detail by giving a code example using CXF&amp;rsquo;s ØMQ transport.
+Below is a WSDL that is similar in many respects to the WSDL of the previous post:</description>
     </item>
     
     <item>
@@ -259,9 +267,9 @@ Like the other WSDL, this one declares that the service has an operation named s
       <pubDate>Tue, 15 Jan 2013 22:28:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2013/01/15/soap-over-zeromq-with-apache-cxf/</guid>
-      <description>You&amp;rsquo;re probably asking yourself&amp;nbsp;one of these two questions on reading this post&amp;rsquo;s title:
+      <description>You&amp;rsquo;re probably asking yourself one of these two questions on reading this post&amp;rsquo;s title:
 Who in his right mind would use SOAP as a data format for ØMQ?Why the heck would I want to have SOAP on top of ØMQ as opposed to HTTP?For the first question, consider a system requiring:
-A return address pattern such as the one offered by JMS&amp;nbsp;and MSMQ.Guaranteed message delivery.&amp;nbsp;Encryption and authentication of messages.ØMQ wasn&amp;rsquo;t designed to cover these requirements so it&amp;rsquo;s up to the developer to come up with a solution.</description>
+A return address pattern such as the one offered by JMS and MSMQ.Guaranteed message delivery. Encryption and authentication of messages.</description>
     </item>
     
     <item>
@@ -270,7 +278,7 @@ A return address pattern such as the one offered by JMS&amp;nbsp;and MSMQ.Guaran
       <pubDate>Thu, 20 Dec 2012 22:17:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/12/20/demystifying-apache-cxf-a-restful-hello-world-app/</guid>
-      <description>The first post&amp;nbsp;of this&amp;nbsp;how-to&amp;nbsp;series showed you what it takes to expose a Hello World application as a SOAP over HTTP Web Service using CXF. For this post, I&amp;rsquo;ll show you how to expose the same app as a RESTful service.
+      <description>The first post of this how-to series showed you what it takes to expose a Hello World application as a SOAP over HTTP Web Service using CXF. For this post, I&amp;rsquo;ll show you how to expose the same app as a RESTful service.
 In the Java world, we use JAX-RS for mapping a class to a RESTful service. Giving a RESTful interface to our Hello World app is just a matter of adding JAX-RS annotations to HelloWorldImpl:</description>
     </item>
     
@@ -280,7 +288,7 @@ In the Java world, we use JAX-RS for mapping a class to a RESTful service. Givin
       <pubDate>Wed, 19 Dec 2012 07:56:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/12/19/demystifying-apache-cxf-a-hello-world-app/</guid>
-      <description>&amp;ldquo;CXF scares the sh**t out of me!&amp;rdquo;.&amp;nbsp;This was a client&amp;rsquo;s comment during our discussion on&amp;nbsp;Apache CXF and I think it&amp;rsquo;s a feeling shared by many. This feeling usually arises from a complaint I hear on CXF: the lack of documentation. However, I suspect that CXF&amp;rsquo;s flexibility confuses numerous newbies and therefore contributes to the negative feelings towards it.&amp;nbsp;The bad news is that, for some, it&amp;rsquo;s hard to live without CXF. Popular open source software such as Apache Camel, Mule, and JBoss AS rely on CXF for their out-of-the-box web service support.</description>
+      <description>&amp;ldquo;CXF scares the sh**t out of me!&amp;rdquo;. This was a client&amp;rsquo;s comment during our discussion on Apache CXF and I think it&amp;rsquo;s a feeling shared by many. This feeling usually arises from a complaint I hear on CXF: the lack of documentation. However, I suspect that CXF&amp;rsquo;s flexibility confuses numerous newbies and therefore contributes to the negative feelings towards it. The bad news is that, for some, it&amp;rsquo;s hard to live without CXF.</description>
     </item>
     
     <item>
@@ -298,7 +306,7 @@ In the Java world, we use JAX-RS for mapping a class to a RESTful service. Givin
       <pubDate>Tue, 06 Nov 2012 22:12:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/11/06/mule-zeromq-transport-lightweight-rpc-with-0mq-and-protocol-buffers/</guid>
-      <description>Check out John D&amp;rsquo;Emic&amp;rsquo;s awesome&amp;nbsp;blog post demonstrating how&amp;nbsp;ØMQ and Mule could be used for exchanging stock quote data between a front-end and back-end application.</description>
+      <description>Check out John D&amp;rsquo;Emic&amp;rsquo;s awesome blog post demonstrating how ØMQ and Mule could be used for exchanging stock quote data between a front-end and back-end application.</description>
     </item>
     
     <item>
@@ -307,7 +315,7 @@ In the Java world, we use JAX-RS for mapping a class to a RESTful service. Givin
       <pubDate>Mon, 22 Oct 2012 18:23:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/10/22/testing-web-services-from-junit-using-soapui/</guid>
-      <description>There is no doubt that SoapUI is a superb tool for testing Web Services. Yet, some people&amp;nbsp;seem to think that SoapUI is&amp;nbsp;just&amp;nbsp;used for manual testing.&amp;nbsp;In addition to manual tests, SoapUI supports automated tests, that is, test suites. Test suites are a step in the right direction towards automation but running them still requires human intervention. In other words, the user still has to launch SoapUI and click on the &amp;ldquo;Run&amp;hellip;&amp;rdquo; button.</description>
+      <description>There is no doubt that SoapUI is a superb tool for testing Web Services. Yet, some people seem to think that SoapUI is just used for manual testing. In addition to manual tests, SoapUI supports automated tests, that is, test suites. Test suites are a step in the right direction towards automation but running them still requires human intervention. In other words, the user still has to launch SoapUI and click on the &amp;ldquo;Run&amp;hellip;&amp;rdquo; button.</description>
     </item>
     
     <item>
@@ -316,7 +324,7 @@ In the Java world, we use JAX-RS for mapping a class to a RESTful service. Givin
       <pubDate>Fri, 12 Oct 2012 12:01:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/10/12/setting-up-a-mule-proxy-to-validate-soap-requests/</guid>
-      <description>Check out my latest post on the Ricston blog:&amp;nbsp;Setting up a Mule Proxy to Validate SOAP Requests.</description>
+      <description>Check out my latest post on the Ricston blog: Setting up a Mule Proxy to Validate SOAP Requests.</description>
     </item>
     
     <item>
@@ -343,8 +351,8 @@ In the Java world, we use JAX-RS for mapping a class to a RESTful service. Givin
       <pubDate>Fri, 03 Aug 2012 10:15:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/08/03/sharing-an-ftp-service-between-un-clustered-mule-instances/</guid>
-      <description>One notorious problem&amp;nbsp;when having Mule instances consuming files from the same FTP server is that it&amp;rsquo;s possibile for two or more Mule instances&amp;nbsp;to concurrently download the same file. This leads to duplicate messages: Mule messages representing&amp;nbsp;the same file in different Mule nodes.
-The clustering solution offered by Mule EE 3.2 addresses this issue by having Mule instances&amp;nbsp;coordinate among each other on who will download files from the FTP server.&amp;nbsp;</description>
+      <description>One notorious problem when having Mule instances consuming files from the same FTP server is that it&amp;rsquo;s possibile for two or more Mule instances to concurrently download the same file. This leads to duplicate messages: Mule messages representing the same file in different Mule nodes.
+The clustering solution offered by Mule EE 3.2 addresses this issue by having Mule instances coordinate among each other on who will download files from the FTP server.</description>
     </item>
     
     <item>
@@ -353,7 +361,7 @@ The clustering solution offered by Mule EE 3.2 addresses this issue by having Mu
       <pubDate>Wed, 18 Jul 2012 09:55:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/07/18/rest-module-a-lightweight-alternative-to-mules-jersey-module/</guid>
-      <description>Check out my latest post on the Ricston blog:&amp;nbsp;Rest Module: A lightweight alternative to Mule’s Jersey Module.</description>
+      <description>Check out my latest post on the Ricston blog: Rest Module: A lightweight alternative to Mule’s Jersey Module.</description>
     </item>
     
     <item>
@@ -362,7 +370,7 @@ The clustering solution offered by Mule EE 3.2 addresses this issue by having Mu
       <pubDate>Fri, 06 Jul 2012 17:14:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/07/06/a-websocket-cordova-plugin-for-android/</guid>
-      <description>This week I&amp;rsquo;ve investigated the feasibility of leveraging&amp;nbsp;NullMQ&amp;nbsp;inside a Cordova/PhoneGap application on Android. NullMQ sends and receives messages via WebSocket, and unfortunately, Android&amp;rsquo;s browser doesn&amp;rsquo;t support the standard yet.&amp;nbsp;I found Cordova plugins on GitHub that implement WebSocket. The problem is that none of them functioned properly against the latest version of the WebSocket spec, that is, RFC 6455. So I decided to fork the Java-WebSocket project and expose it as a Cordova plugin.</description>
+      <description>This week I&amp;rsquo;ve investigated the feasibility of leveraging NullMQinside a Cordova/PhoneGap application on Android. NullMQ sends and receives messages via WebSocket, and unfortunately, Android&amp;rsquo;s browser doesn&amp;rsquo;t support the standard yet.I found Cordova plugins on GitHub that implement WebSocket. The problem is that none of them functioned properly against the latest version of the WebSocket spec, that is, RFC 6455. So I decided to fork the Java-WebSocket project and expose it as a Cordova plugin.</description>
     </item>
     
     <item>
@@ -389,8 +397,8 @@ The clustering solution offered by Mule EE 3.2 addresses this issue by having Mu
       <pubDate>Mon, 28 May 2012 20:43:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/05/28/revisiting-dynamic-ports-in-mule-3/</guid>
-      <description>Daniel Zapata wrote an interesting&amp;nbsp;post about using dynamic ports when testing your Mule 3 application. Since then, subsequent releases of Mule included support for JUnit 4 which meant improved flexibility in terms of dynamic ports.
-Before JUnit 4, an annoying problem with dynamic ports was that you were limited to property placeholder names having the following pattern: &amp;lsquo;port&amp;rsquo; +&amp;nbsp;n where n is an integer. For example:
+      <description>Daniel Zapata wrote an interesting post about using dynamic ports when testing your Mule 3 application. Since then, subsequent releases of Mule included support for JUnit 4 which meant improved flexibility in terms of dynamic ports.
+Before JUnit 4, an annoying problem with dynamic ports was that you were limited to property placeholder names having the following pattern: &amp;lsquo;port&amp;rsquo; + n where n is an integer. For example:
 Using JUnit 4, this problem is solved by leveraging the Rule annotation and the DynamicPort class.</description>
     </item>
     

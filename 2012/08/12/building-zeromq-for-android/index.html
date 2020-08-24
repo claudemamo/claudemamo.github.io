@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.74.3" />
 
 
 <title>Building ZeroMQ for Android - On Code &amp; Design</title>
@@ -12,9 +12,8 @@
 
 
 
+
   
-
-
 
 
 
@@ -58,7 +57,7 @@
     
 
     <div class="article-content">
-      <p>This weekend I ran ZeroMQ on the Android platform. The ZeroMQ website gives <a href="http://www.zeromq.org/build:android" target="_blank">instructions</a> on how to build ZeroMQ for Android and (surprise, surprise) I got errors following them. At least I wasn&rsquo;t alone. Fellow blogger <a href="http://iso3103.blogspot.com/2012/05/java-zeromq-for-android.html" target="_blank">Victor was just as lucky as me</a>. He solved these errors, and what&rsquo;s even better, he created a <a href="https://github.com/vperron/android-jzeromq" target="_blank">set of scripts</a> which correctly build ZeroMQ for Android. Alas, running &ldquo;<i>make all</i>&rdquo; on the project gave me the following error:<br /><br /><script src="https://gist.github.com/claudemamo/3330498.js"> </script> The compiler complained because it couldn&rsquo;t find some <a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank">Android NDK</a> header files which had their location changed in the latest&nbsp;release of the NDK (at the time of the writing the version is R8b). This was an easy fix. I just passed some flags to the compiler specifying the new header file locations. On my GitHub page, you&rsquo;ll find a <a href="https://github.com/claudemamo/android-jzeromq" target="_blank">fork</a> of Victor&rsquo;s project which applies the fix. Enjoy!</p>
+      <p>This weekend I ran ZeroMQ on the Android platform. The ZeroMQ website gives <a href="http://www.zeromq.org/build:android" target="_blank">instructions</a> on how to build ZeroMQ for Android and (surprise, surprise) I got errors following them. At least I wasn&rsquo;t alone. Fellow blogger <a href="http://iso3103.blogspot.com/2012/05/java-zeromq-for-android.html" target="_blank">Victor was just as lucky as me</a>. He solved these errors, and what&rsquo;s even better, he created a <a href="https://github.com/vperron/android-jzeromq" target="_blank">set of scripts</a> which correctly build ZeroMQ for Android. Alas, running &ldquo;<i>make all</i>&rdquo; on the project gave me the following error:<br /><br /><script src="https://gist.github.com/claudemamo/3330498.js"> </script> The compiler complained because it couldn&rsquo;t find some <a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank">Android NDK</a> header files which had their location changed in the latest release of the NDK (at the time of the writing the version is R8b). This was an easy fix. I just passed some flags to the compiler specifying the new header file locations. On my GitHub page, you&rsquo;ll find a <a href="https://github.com/claudemamo/android-jzeromq" target="_blank">fork</a> of Victor&rsquo;s project which applies the fix. Enjoy!</p>
 
     </div>
   </article>
@@ -90,10 +89,7 @@
 
       <footer class="footer">
         <ul class="footer-links">
-          <li>
-            <a href="https://oncodesign.io/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
-          </li>
-
+          
         </ul>
       </footer>
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.74.3" />
 
 
 <title>Log4j 2 Memory-Mapped File Appender - On Code &amp; Design</title>
@@ -12,9 +12,8 @@
 
 
 
+
   
-
-
 
 
 
@@ -58,7 +57,7 @@
     
 
     <div class="article-content">
-      <p>During the weekend I dug into Java NIO, specifically, mapping files to memory to reduce I/O time. What&rsquo;s more, since I had a lot of free time on my hands, I developed a&nbsp;<a href="http://logging.apache.org/log4j/2.x/" target="_blank">Log4j 2</a>&nbsp;<a href="https://issues.apache.org/jira/browse/LOG4J2-431" target="_blank">memory-mapped file appender</a>. On my machine, performance tests running on a single thread using the MemoryMappedFile appender show an improvement by a factor of 3 when compared to the&nbsp;<a href="http://logging.apache.org/log4j/2.x/manual/appenders.html#RandomAccessFileAppender" target="_blank">RandomAccessFile</a>&nbsp;appender.</p>
+      <p>During the weekend I dug into Java NIO, specifically, mapping files to memory to reduce I/O time. What&rsquo;s more, since I had a lot of free time on my hands, I developed a <a href="http://logging.apache.org/log4j/2.x/" target="_blank">Log4j 2</a> <a href="https://issues.apache.org/jira/browse/LOG4J2-431" target="_blank">memory-mapped file appender</a>. On my machine, performance tests running on a single thread using the MemoryMappedFile appender show an improvement by a factor of 3 when compared to the <a href="http://logging.apache.org/log4j/2.x/manual/appenders.html#RandomAccessFileAppender" target="_blank">RandomAccessFile</a> appender.</p>
 
     </div>
   </article>
@@ -90,10 +89,7 @@
 
       <footer class="footer">
         <ul class="footer-links">
-          <li>
-            <a href="https://oncodesign.io/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
-          </li>
-
+          
         </ul>
       </footer>
 

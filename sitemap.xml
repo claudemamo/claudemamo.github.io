@@ -1,55 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://oncodesign.io/2019/09/01/a-scalable-multi-tenant-jdbc-connection-pool/</loc>
-    <lastmod>2019-09-01T09:54:34+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/connection-pool/</loc>
-    <lastmod>2019-09-01T09:54:34+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/database/</loc>
-    <lastmod>2019-09-01T09:54:34+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jdbc/</loc>
-    <lastmod>2019-09-01T09:54:34+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/multi-tenancy/</loc>
-    <lastmod>2019-09-01T09:54:34+02:00</lastmod>
+    <loc>https://oncodesign.io/2020/08/24/first-milestone-release-of-smooks-2/</loc>
+    <lastmod>2020-08-24T08:15:00+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://oncodesign.io/</loc>
+    <lastmod>2020-08-24T08:15:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oncodesign.io/2019/09/01/a-scalable-multi-tenant-jdbc-connection-pool/</loc>
     <lastmod>2019-09-01T09:54:34+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/post/</loc>
-    <lastmod>2019-09-01T09:54:34+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/</loc>
-    <lastmod>2019-09-01T09:54:34+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/b2b/</loc>
-    <lastmod>2018-10-17T10:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/edi/</loc>
-    <lastmod>2018-10-17T10:00:00+01:00</lastmod>
   </url>
   
   <url>
@@ -58,32 +23,7 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/dense_rank/</loc>
-    <lastmod>2017-04-22T09:33:52+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/one-to-many/</loc>
-    <lastmod>2017-04-22T09:33:52+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/pagination/</loc>
-    <lastmod>2017-04-22T09:33:52+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2017/04/22/paging-one-to-many-results-in-sql/</loc>
-    <lastmod>2017-04-22T09:33:52+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/postgresql/</loc>
-    <lastmod>2017-04-22T09:33:52+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/sql/</loc>
     <lastmod>2017-04-22T09:33:52+02:00</lastmod>
   </url>
   
@@ -93,63 +33,13 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/flyway/</loc>
-    <lastmod>2016-09-23T14:29:41+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/triggers/</loc>
-    <lastmod>2016-09-23T14:29:41+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/zero-downtime-deployment/</loc>
-    <lastmod>2016-09-23T14:29:41+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/blog/</loc>
-    <lastmod>2016-07-10T20:04:36+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2016/07/10/blog-2.0/</loc>
-    <lastmod>2016-07-10T20:04:36+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/github-pages/</loc>
-    <lastmod>2016-07-10T20:04:36+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/hugo/</loc>
     <lastmod>2016-07-10T20:04:36+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://oncodesign.io/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/page/</loc>
-    <lastmod>2016-05-05T21:48:51-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/anti-pattern/</loc>
-    <lastmod>2015-12-09T11:23:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/etl/</loc>
-    <lastmod>2015-12-09T11:23:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/messaging/</loc>
-    <lastmod>2015-12-09T11:23:00+00:00</lastmod>
   </url>
   
   <url>
@@ -163,63 +53,13 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/java/</loc>
-    <lastmod>2015-11-09T13:42:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jose.4.j/</loc>
-    <lastmod>2015-11-09T13:42:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/json-web-token/</loc>
-    <lastmod>2015-11-09T13:42:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jwt/</loc>
-    <lastmod>2015-11-09T13:42:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/replicas/</loc>
-    <lastmod>2015-11-09T13:42:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/replication/</loc>
-    <lastmod>2015-11-09T13:42:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/tokens/</loc>
-    <lastmod>2015-11-09T13:42:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2015/09/25/describing-api-key-authentication-in-raml/</loc>
     <lastmod>2015-09-25T14:56:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/raml/</loc>
-    <lastmod>2015-09-25T14:56:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/apache-kafka/</loc>
-    <lastmod>2015-09-19T13:31:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2015/09/19/retiring-kafka-web-console/</loc>
     <lastmod>2015-09-19T13:31:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/drools/</loc>
-    <lastmod>2015-08-10T15:12:00+00:00</lastmod>
   </url>
   
   <url>
@@ -233,28 +73,8 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/as2/</loc>
-    <lastmod>2015-05-15T02:09:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/mule/</loc>
-    <lastmod>2015-05-15T02:09:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/smooks/</loc>
-    <lastmod>2014-09-16T17:28:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2014/09/16/the-trials-of-smooks/</loc>
     <lastmod>2014-09-16T17:28:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/angularjs/</loc>
-    <lastmod>2014-02-19T15:21:00+00:00</lastmod>
   </url>
   
   <url>
@@ -263,43 +83,13 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/bitcoin/</loc>
-    <lastmod>2014-02-11T16:53:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/coinbase/</loc>
-    <lastmod>2014-02-11T16:53:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2014/02/11/dynamically-create-bitcoin-wallets-payment-pages-on-coinbase-in-ruby/</loc>
     <lastmod>2014-02-11T16:53:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/ruby-on-rails/</loc>
-    <lastmod>2014-02-11T16:53:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/mule-3/</loc>
-    <lastmod>2014-01-07T14:01:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2014/01/07/scaling-up-mule-with-async-request-handling-continuations/</loc>
     <lastmod>2014-01-07T14:01:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/java-nio/</loc>
-    <lastmod>2013-12-23T11:38:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/log4j-2/</loc>
-    <lastmod>2013-12-23T11:38:00+00:00</lastmod>
   </url>
   
   <url>
@@ -313,48 +103,8 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/event-sourcing/</loc>
-    <lastmod>2013-12-11T21:01:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/kafka/</loc>
-    <lastmod>2013-12-11T21:01:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2013/08/27/bridging-mule-and-msmq-with-zeromq/</loc>
     <lastmod>2013-08-27T17:36:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/c#/</loc>
-    <lastmod>2013-08-27T17:36:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/msmq/</loc>
-    <lastmod>2013-08-27T17:36:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/mule-zeromq-transport/</loc>
-    <lastmod>2013-08-27T17:36:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/zeromq/</loc>
-    <lastmod>2013-08-27T17:36:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/zmq/</loc>
-    <lastmod>2013-08-27T17:36:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jruby/</loc>
-    <lastmod>2013-08-19T11:41:00+00:00</lastmod>
   </url>
   
   <url>
@@ -363,33 +113,8 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/apache-cxf/</loc>
-    <lastmod>2013-08-10T20:07:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2013/08/10/jruby-cxf-a-gem-for-creating-soap-web-services/</loc>
     <lastmod>2013-08-10T20:07:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/ruby/</loc>
-    <lastmod>2013-08-10T20:07:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/soap/</loc>
-    <lastmod>2013-08-10T20:07:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/web-services/</loc>
-    <lastmod>2013-08-10T20:07:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/search-filtering/</loc>
-    <lastmod>2013-07-24T12:59:00+00:00</lastmod>
   </url>
   
   <url>
@@ -403,62 +128,12 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/jersey/</loc>
-    <lastmod>2013-03-25T15:37:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/rest/</loc>
-    <lastmod>2013-03-25T15:37:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/rest-router/</loc>
-    <lastmod>2013-03-25T15:37:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/wadl/</loc>
-    <lastmod>2013-03-25T15:37:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jquery/</loc>
-    <lastmod>2013-03-02T12:37:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/json/</loc>
-    <lastmod>2013-03-02T12:37:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2013/03/02/posting-processing-json-with-jquery-spring-mvc/</loc>
     <lastmod>2013-03-02T12:37:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/spring-mvc/</loc>
-    <lastmod>2013-03-02T12:37:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/replyto/</loc>
-    <lastmod>2013-01-27T17:22:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2013/01/27/replyto-in-zeromq-using-ws-addressing/</loc>
-    <lastmod>2013-01-27T17:22:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/ws-addressing/</loc>
-    <lastmod>2013-01-27T17:22:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/%C3%B8mq/</loc>
     <lastmod>2013-01-27T17:22:00+00:00</lastmod>
   </url>
   
@@ -468,22 +143,7 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/cxf/</loc>
-    <lastmod>2012-12-20T22:17:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2012/12/20/demystifying-apache-cxf-a-restful-hello-world-app/</loc>
-    <lastmod>2012-12-20T22:17:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/how-to/</loc>
-    <lastmod>2012-12-20T22:17:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jax-rs/</loc>
     <lastmod>2012-12-20T22:17:00+00:00</lastmod>
   </url>
   
@@ -493,53 +153,13 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/jax-ws/</loc>
-    <lastmod>2012-12-19T07:56:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2012/11/14/a-practical-solution-for-xml-to-relational-mapping/</loc>
-    <lastmod>2012-11-14T21:09:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/hibernate/</loc>
-    <lastmod>2012-11-14T21:09:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/hyperjaxb3/</loc>
-    <lastmod>2012-11-14T21:09:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jaxb/</loc>
-    <lastmod>2012-11-14T21:09:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jpa/</loc>
     <lastmod>2012-11-14T21:09:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://oncodesign.io/2012/11/06/mule-zeromq-transport-lightweight-rpc-with-0mq-and-protocol-buffers/</loc>
     <lastmod>2012-11-06T22:12:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/junit-4/</loc>
-    <lastmod>2012-10-22T18:23:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/maven/</loc>
-    <lastmod>2012-10-22T18:23:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/soapui/</loc>
-    <lastmod>2012-10-22T18:23:00+00:00</lastmod>
   </url>
   
   <url>
@@ -553,32 +173,7 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/android/</loc>
-    <lastmod>2012-08-18T12:04:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2012/08/18/attaching-a-file-in-cordova-uploading-it-with-jquery-mobile/</loc>
-    <lastmod>2012-08-18T12:04:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/cordova/</loc>
-    <lastmod>2012-08-18T12:04:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jqm/</loc>
-    <lastmod>2012-08-18T12:04:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/jquery-mobile/</loc>
-    <lastmod>2012-08-18T12:04:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/phonegap/</loc>
     <lastmod>2012-08-18T12:04:00+00:00</lastmod>
   </url>
   
@@ -588,23 +183,8 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/clustering/</loc>
-    <lastmod>2012-08-03T10:15:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/ftp/</loc>
-    <lastmod>2012-08-03T10:15:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2012/08/03/sharing-an-ftp-service-between-un-clustered-mule-instances/</loc>
     <lastmod>2012-08-03T10:15:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/rest-module/</loc>
-    <lastmod>2012-07-18T09:55:00+00:00</lastmod>
   </url>
   
   <url>
@@ -618,33 +198,13 @@
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/websocket/</loc>
-    <lastmod>2012-07-06T17:14:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2012/06/24/mule-meet-zeromq.-zeromq-meet-mule./</loc>
     <lastmod>2012-06-24T19:17:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://oncodesign.io/tags/mule-transport-zeromq/</loc>
-    <lastmod>2012-06-24T19:17:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/iso-8583/</loc>
-    <lastmod>2012-06-13T11:09:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oncodesign.io/2012/06/13/mule-iso-8583-module/</loc>
     <lastmod>2012-06-13T11:09:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/dynamic-port/</loc>
-    <lastmod>2012-05-28T20:43:00+00:00</lastmod>
   </url>
   
   <url>
@@ -655,15 +215,6 @@
   <url>
     <loc>https://oncodesign.io/2012/05/26/conventions-conventions-conventions/</loc>
     <lastmod>2012-05-26T11:53:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/tags/spring-integration/</loc>
-    <lastmod>2012-05-26T11:53:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oncodesign.io/categories/</loc>
   </url>
   
 </urlset>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.74.3" />
 
 
 <title>A WebSocket Cordova plugin for Android - On Code &amp; Design</title>
@@ -12,9 +12,8 @@
 
 
 
+
   
-
-
 
 
 
@@ -58,7 +57,7 @@
     
 
     <div class="article-content">
-      <p><span style="background-color: white;">This week I&rsquo;ve investigated the feasibility of leveraging&nbsp;</span><a href="http://avalanche123.com/blog/2012/02/25/interacting-with-zeromq-from-the-browser/" style="background-color: white;" target="_blank">NullMQ</a><span style="background-color: white;">&nbsp;inside a Cordova/PhoneGap application on Android. NullMQ sends and receives messages via <a href="http://en.wikipedia.org/wiki/WebSocket" target="_blank">WebSocket</a>, and unfortunately, Android&rsquo;s browser doesn&rsquo;t support the standard yet.</span><span style="background-color: white;">&nbsp;</span><span style="background-color: white;">I found Cordova plugins on GitHub that implement WebSocket. The problem is that none of them functioned properly against the latest version of the WebSocket spec, that is, RFC 6455. So I decided to <a href="https://github.com/claudemamo/Java-WebSocket" target="_blank">fork the Java-WebSocket project</a> and expose it as a Cordova plugin. The cool thing about the&nbsp;</span><span style="background-color: white;"><a href="https://github.com/Davidiusdadi/Java-WebSocket" target="_blank">Java-WebSocket</a> project is that it supports,&nbsp;</span><span style="background-color: white;">in addition to RFC 6455,</span><span style="background-color: white;">&nbsp;earlier releases of the spec. Although, by default, the plugin is configured to use&nbsp;</span><span style="background-color: white;">RFC 6455.</span><br /><span style="background-color: white;"><br /></span><span style="background-color: white;">The plugin&rsquo;s API is identical to the WebSocket one so you don&rsquo;t need to re-learn a new API or change existing WebSocket calls. To install:</span><br /><ol><li>Include <a href="https://raw.github.com/claudemamo/Java-WebSocket/master/assets/www/websocket/websocket.js">websocket.js</a> in the your HTML file: <br /><br /><script src="https://gist.github.com/claudemamo/3060460.js?file=index.html"></script></li><li><span style="background-color: white;">From your console, enter &lsquo;mvn package&rsquo; in the Java-WebSocket project root directory. Move the produced JAR to your Cordova application classpath.</span></li><br /><li><span style="background-color: white;">Add the following plugin entry to the plugins.xml file:</span><br /><br /><script src="https://gist.github.com/claudemamo/3060460.js?file=plugins.xml"></script></li></ol></p>
+      <p><span style="background-color: white;">This week I&rsquo;ve investigated the feasibility of leveraging </span><a href="http://avalanche123.com/blog/2012/02/25/interacting-with-zeromq-from-the-browser/" style="background-color: white;" target="_blank">NullMQ</a><span style="background-color: white;"> inside a Cordova/PhoneGap application on Android. NullMQ sends and receives messages via <a href="http://en.wikipedia.org/wiki/WebSocket" target="_blank">WebSocket</a>, and unfortunately, Android&rsquo;s browser doesn&rsquo;t support the standard yet.</span><span style="background-color: white;"> </span><span style="background-color: white;">I found Cordova plugins on GitHub that implement WebSocket. The problem is that none of them functioned properly against the latest version of the WebSocket spec, that is, RFC 6455. So I decided to <a href="https://github.com/claudemamo/Java-WebSocket" target="_blank">fork the Java-WebSocket project</a> and expose it as a Cordova plugin. The cool thing about the </span><span style="background-color: white;"><a href="https://github.com/Davidiusdadi/Java-WebSocket" target="_blank">Java-WebSocket</a> project is that it supports, </span><span style="background-color: white;">in addition to RFC 6455,</span><span style="background-color: white;"> earlier releases of the spec. Although, by default, the plugin is configured to use </span><span style="background-color: white;">RFC 6455.</span><br /><span style="background-color: white;"><br /></span><span style="background-color: white;">The plugin&rsquo;s API is identical to the WebSocket one so you don&rsquo;t need to re-learn a new API or change existing WebSocket calls. To install:</span><br /><ol><li>Include <a href="https://raw.github.com/claudemamo/Java-WebSocket/master/assets/www/websocket/websocket.js">websocket.js</a> in the your HTML file: <br /><br /><script src="https://gist.github.com/claudemamo/3060460.js?file=index.html"></script></li><li><span style="background-color: white;">From your console, enter &lsquo;mvn package&rsquo; in the Java-WebSocket project root directory. Move the produced JAR to your Cordova application classpath.</span></li><br /><li><span style="background-color: white;">Add the following plugin entry to the plugins.xml file:</span><br /><br /><script src="https://gist.github.com/claudemamo/3060460.js?file=plugins.xml"></script></li></ol></p>
 
     </div>
   </article>
@@ -90,10 +89,7 @@
 
       <footer class="footer">
         <ul class="footer-links">
-          <li>
-            <a href="https://oncodesign.io/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
-          </li>
-
+          
         </ul>
       </footer>
 

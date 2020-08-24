@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.57.2" />
+<meta name="generator" content="Hugo 0.74.3" />
 
 
 <title>JRuby Complex Classes in Java Method Signatures - On Code &amp; Design</title>
@@ -12,9 +12,8 @@
 
 
 
+
   
-
-
 
 
 
@@ -58,7 +57,7 @@
     
 
     <div class="article-content">
-      <p>As documented in the JRuby wiki,&nbsp;<i><a href="https://github.com/jruby/jruby/wiki/GeneratingJavaClasses#generating-java-classes-ahead-of-time" target="_blank">java_signature</a></i>&nbsp;changes a method&rsquo;s signature to match the signature string passed to it:<br /><script src="https://gist.github.com/claudemamo/6262775.js?file=example(1).rb"></script>Observe that the classes in the method signature&nbsp;are primitive. What if we use a complex class as a parameter type?<br /><br /><script src="https://gist.github.com/claudemamo/6262775.js?file=example(2).rb"></script>Running the above code will give you the following <i>NoMethodError</i> message:<br /><br /><script src="https://gist.github.com/claudemamo/6262775.js?file=error"></script> The way I went about using complex classes in signatures is to utilise&nbsp;<i>add_method_signature</i>&nbsp;instead of&nbsp;<i>java_signature</i>:<br /><br /><script src="https://gist.github.com/claudemamo/6262775.js?file=example(3).rb"></script><i>add_method_signature</i>&nbsp;expects the first argument to be the name of the method that will have its signature changed. For the second argument, it expects it to be a list of classes. The list&rsquo;s first item is the return class (e.g.,&nbsp;<i>void</i>) while the subsequent items are the signature&rsquo;s parameter classes (e.g.,&nbsp;<i>int</i> and <i>MyClass</i>). Note that I invoke&nbsp;<i>become_java!</i>&nbsp;on the complex class. This tells <i>MyClass</i> to materialize itself into a Java class. The <i>false</i> flag is needed so that JRuby&rsquo;s main class loader is used to load the class. Without it, you&rsquo;ll be greeted by a&nbsp;<i>java.lang.ClassNotFoundException</i>.<br /><br /></p>
+      <p>As documented in the JRuby wiki, <i><a href="https://github.com/jruby/jruby/wiki/GeneratingJavaClasses#generating-java-classes-ahead-of-time" target="_blank">java_signature</a></i> changes a method&rsquo;s signature to match the signature string passed to it:<br /><script src="https://gist.github.com/claudemamo/6262775.js?file=example(1).rb"></script>Observe that the classes in the method signature are primitive. What if we use a complex class as a parameter type?<br /><br /><script src="https://gist.github.com/claudemamo/6262775.js?file=example(2).rb"></script>Running the above code will give you the following <i>NoMethodError</i> message:<br /><br /><script src="https://gist.github.com/claudemamo/6262775.js?file=error"></script> The way I went about using complex classes in signatures is to utilise <i>add_method_signature</i> instead of <i>java_signature</i>:<br /><br /><script src="https://gist.github.com/claudemamo/6262775.js?file=example(3).rb"></script><i>add_method_signature</i> expects the first argument to be the name of the method that will have its signature changed. For the second argument, it expects it to be a list of classes. The list&rsquo;s first item is the return class (e.g., <i>void</i>) while the subsequent items are the signature&rsquo;s parameter classes (e.g., <i>int</i> and <i>MyClass</i>). Note that I invoke <i>become_java!</i> on the complex class. This tells <i>MyClass</i> to materialize itself into a Java class. The <i>false</i> flag is needed so that JRuby&rsquo;s main class loader is used to load the class. Without it, you&rsquo;ll be greeted by a <i>java.lang.ClassNotFoundException</i>.<br /><br /></p>
 
     </div>
   </article>
@@ -90,10 +89,7 @@
 
       <footer class="footer">
         <ul class="footer-links">
-          <li>
-            <a href="https://oncodesign.io/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
-          </li>
-
+          
         </ul>
       </footer>
 
