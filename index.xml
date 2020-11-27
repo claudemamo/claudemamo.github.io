@@ -6,10 +6,16 @@
     <description>Recent content on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Aug 2020 08:15:00 +0200</lastBuildDate>
-    
-	<atom:link href="https://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 27 Nov 2020 00:00:00 +0100</lastBuildDate><atom:link href="https://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Second Milestone Release of Smooks 2</title>
+      <link>https://oncodesign.io/2020/11/27/second-milestone-release-of-smooks-2/</link>
+      <pubDate>Fri, 27 Nov 2020 00:00:00 +0100</pubDate>
+      
+      <guid>https://oncodesign.io/2020/11/27/second-milestone-release-of-smooks-2/</guid>
+      <description>We&amp;rsquo;re delighted to announce the second milestone release of Smooks 2. The second milestone is geared towards simplifying Smook&amp;rsquo;s API along with a few goodies. Here’s a rundown of the new notable features:
+SAX NG Earlier versions of Smooks could have visitors applying operations on either DOM nodes or SAX events. To ensure interoperability, one would implement a visitor supporting both DOM node and SAX event processing which meant implementing two different application APIs:</description>
+    </item>
     
     <item>
       <title>First Milestone Release of Smooks 2</title>
