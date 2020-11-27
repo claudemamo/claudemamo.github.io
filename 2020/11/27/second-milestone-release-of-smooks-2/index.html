@@ -66,7 +66,7 @@ features:</p>
 one would implement a visitor supporting both DOM node and SAX event processing which meant implementing two
 different application APIs:</p>
 <script src="https://gist.github.com/claudemamo/db790ce86c7ac65581f62c7b4cd4b2a1.js?file=MyDomAndSaxVisitor.java"></script>
-<p>The above broadly translates into two different execution paths and all the baggage it entails. Smooks 2.0.0-M2 unifies
+<p>The above broadly translated into two different execution paths and all the baggage it entailed. Smooks 2.0.0-M2 unifies
 the DOM and SAX visitor APIs without sacrificing convenience or performance. The new SAX NG filter drops the API
 distinction between DOM and SAX. Instead, it streams SAX events as <strong>partial</strong> DOM elements to SAX NG visitors:</p>
 <script src="https://gist.github.com/claudemamo/db790ce86c7ac65581f62c7b4cd4b2a1.js?file=MySaxNgVisitor.java"></script>
