@@ -13,7 +13,7 @@
       <pubDate>Tue, 16 Feb 2021 00:00:00 +0100</pubDate>
       
       <guid>https://oncodesign.io/2021/02/16/a-sneak-peek-at-smooks-2-pipelines/</guid>
-      <description>*  We’re inching ever closer to releasing Smooks 2 milestone 3. Featuring in this release will be the powerful ability to declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose any series of transformations on an event outside the main execution context before, optionally, directing the pipeline output to the execution result stream or to other destinations.</description>
+      <description>*  We’re inching ever closer to releasing Smooks 2 milestone 3. Featuring in this release will be the powerful ability to declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose any series of transformations on an event outside the main execution context before directing the pipeline output to the execution result stream or to other destinations.</description>
     </item>
     
     <item>
