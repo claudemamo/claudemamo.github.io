@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<title>A Sneak Peek at Smooks 2 Pipelines - On Code &amp; Design</title>
+<meta property="og:title" content="A Sneak Peek at Smooks 2 Pipelines - On Code &amp; Design">
+<meta property="og:type" content="article" />
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://oncodesign.io/css/main.css" media="all">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700">
+<link rel='stylesheet' href="//fonts.googleapis.com/css?family=Noto+Serif">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="https://oncodesign.io/" class="nav-logo"><img src="https://oncodesign.io/images/avatar.png" width="50" height="50"></a>
+    <a class="nav-logo nav-links about-link" href="/about/">About</a>
+  </ul>
+  <ul class="nav-links">
+    
+    <li><a href="https://github.com/claudemamo" target="_blank"><i class="nav-icon fa fa-github fa-3x" aria-hidden="true"></i></a></li>
+    <li><a href="http://mt.linkedin.com/in/claudemamo" target="_blank"><i class="nav-icon fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></li>
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">7 min read</span>
+    
+
+    <h1 class="article-title">A Sneak Peek at Smooks 2 Pipelines</h1>
+
+    
+    <span class="article-date">February 16, 2021</span>
+    
+
+    <div class="article-content">
+      <br/>
+<figure>
+    <img src="/images/pipeline.jpg" alt="pipeline" style="max-width:90%"/>
+    <figcaption><sub><sup>*</sup></sub></figcaption>
+</figure>
+<p>We’re inching ever closer to releasing Smooks 2 milestone 3. Featuring in this release will be the powerful ability to
+declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event
+from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose
+any series of transformations on an event outside the main execution context before, optionally, directing the pipeline
+output to the execution result stream or to other destinations.</p>
+<p>Under the hood, a pipeline is just another instance of Smooks. The Smooks config element declaring a pipeline makes this
+self-evident:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.1.xml"></script>
+<p><em>core:smooks</em> fires a nested Smooks execution whenever an event in the stream matches the <em>filterSourceOn</em> selector. The optional
+<em>core:action</em> element tells the nested Smooks instance what to do with the pipeline’s output. Out-of-the-box actions include
+support for merging the output with the result stream, directing the output to a different stream, or binding the output
+to the execution context’s bean store.</p>
+<p><em>core:config</em> expects a standard <em>smooks-resource-list</em> defining the pipeline’s behaviour. It’s worth highlighting that the
+nested <em>smooks-resource-list</em> element behaves identically to the outer one, and therefore, it accepts resources like visitors,
+readers, and even pipelines (a pipeline within a pipeline!). Moreover, a pipeline is transparent to its nested resources,
+so a resource’s behaviour will remain the same whether it’s declared inside a pipeline or outside it.</p>
+<p>Let’s illustrate the power of pipelines in a real-world use case. Consider this classic data integration problem:</p>
+<blockquote>
+<p>An organisation is required at the end of day to churn through GBs of customer orders captured in a CSV file and hosted
+on an FTP server. Each individual order is to be communicated to the inventory system in JSON and uploaded as XML to a CRM service.
+Furthermore, an <a href="https://unece.org/trade/uncefact/introducing-unedifact">EDIFACT</a> document aggregating the orders needs to be exchanged with the supplier.</p>
+</blockquote>
+<p>A scalable solution powered by Smooks pipelines can be conceptualised to:</p>
+<img src="/images/smooks-2-pipelines.png" alt="Smooks 2 pipelines"/>
+<p>Every data integration point is implemented in its own pipeline. Smooks converts the CSV input into a stream of events,
+triggering the pipelines at different points in the stream. The document root event (i.e., <em>#document</em> or <em>file</em>) triggers the
+EDI pipeline while a record (i.e., an order) event triggers the inventory and CRM pipelines. Time to get cracking and implement
+the solution in a Smooks config.</p>
+<h3 id="reader">Reader</h3>
+<p>The first step to implementing the solution is to turn the CSV file stream into an event stream using the DFDL parser added
+in Smooks 2.0.0-M1 (alternatively, a simpler but less flexible reader from the CSV cartridge can be used for this purpose):</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.2.xml"></script>
+<p><em>csv.dfdl.xsd</em> holds the DFDL schema for translating the CSV into XML:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=csv.dfdl.xsd"></script>
+<p>For the above schema, the <em>dfdl:parser</em> turns a CSV stream such as the following:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=input.csv"></script>
+<p>into the SAX event stream:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=event-stream.xml"></script>
+<p>The events of interest are the <em>file</em>, <em>record</em>, and <em>item</em> events. Coming up next are the pipeline configurations.</p>
+<h3 id="inventory-pipeline">Inventory Pipeline</h3>
+<p>The inventory pipeline maps each order to JSON and writes it to an HTTP stream where the organisation’s inventory system
+is reading on the other end:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.3.xml"></script>
+<p>The <em>filterSourceOn</em> XPath expression selects the event/s for <em>core:smooks</em> to visit. In this snippet, the pipeline visits
+<em>record</em> events, including their child <em>item</em> events. The root event in the pipeline’s context is <em>record</em>; not <em>file</em>.
+Although the parent of the <em>item</em> event is <em>record</em>, the latter has no parent node given that it’s the root event in the
+inventory pipeline. It follows then that the <em>#document</em> selector in the inventory pipeline is equivalent to the <em>record</em>
+selector.</p>
+<p><em>maxNodeDepth</em> is set to 0 (i.e., infinite) so as to append the item events/nodes to the record tree instead of discarding
+them. By default, Smooks never accumulates child events in order to keep a low-memory footprint but in this instance we
+assume the number of item events within a record node is manageable within main memory.</p>
+<p><em>InventoryVisitor</em> visits record events and writes its output to a stream declared within the <em>core:action</em> element
+(the output stream is registered programmatically). Drilling down to the <em>InventoryVisitor</em> class will yield the Java code:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=InventoryVisitor.java"></script>
+<p>The <em>AfterVisitor</em> implementation leverages the popular Jackson library to serialise the record element into JSON which
+is then transparently written out to the inventoryOutputStream with <code>Stream.out(executionContext).write(...)</code>.</p>
+<h3 id="crm-pipeline">CRM Pipeline</h3>
+<p>Like the inventory pipeline, the CRM pipeline visits each <em>record</em> event:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.4.xml"></script>
+<p>Spot the differences between the inventory and CRM pipelines. This pipeline omits <em>core:action</em> because the <em>CrmVisitor</em> resource
+HTTP POSTs the result directly to the CRM service. Another notable difference is the appearance of a new Smooks 2 reader.</p>
+<p><em>core:node-reader</em> delegates the pipeline event stream to an enclosed <em>ftl:freemarker</em> visitor which instantiates the underneath
+template with the selected <em>record</em> event as a parameter:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=purchaseOrder.xml.ftl"></script>
+<p><em>core:node-reader</em> goes on to feed Freemarker’s instantiated template to <em>CrmVisitor</em>, in other words, <em>core:node-reader</em> converts
+the pipeline event stream into one <em>CrmVisitor</em> can visit:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=CrmVisitor.java"></script>
+<p><em>CrmVisitor</em>’s code should be self-explanatory. Observe <em>org.asynchttpclient.AsyncHttpClient</em> is referenced in <code>visitAfter(...)</code>
+to perform a non-blocking HTTP POST. All framework execution in Smooks happens in a single thread so blocking calls should
+be avoided to keep the throughput rate acceptable.</p>
+<h3 id="edi-pipeline">EDI Pipeline</h3>
+<p>The EDI pipeline requires more thought than the earlier pipelines because (a) it needs to aggregate the orders, (b) wrap
+a header and footer around the aggregated orders, and (c) convert the event stream into one that the <em>edifact:unparser</em> visitor
+can digest. After which it needs to write <em>edifact:unparser</em>’s EDI output to the result stream, overwriting the XML stream
+produced from the <em>dfdl:parser</em> reader. The latter is accomplished with the <em>replace</em> pipeline action:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.5.xml"></script>
+<p>The selector for this pipeline is set to <em>#document</em>; not <em>record</em>. <em>#document</em>, which denotes the opening root tag, leads to the
+pipeline firing only once, necessary for creating a single EDIFACT document header and footer. We’ll worry later about how
+to enumerate the <em>record</em> events.</p>
+<p>The subsequent pipeline config leverages <em>core:node-reader</em>, introduced in the previous pipeline, to convert the event stream
+into a stream <em>edifact:unparser</em> (covered furthered on) can understand:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.6.xml"></script>
+<p><em>core:node-reader</em> delivers the pipeline event stream to its child visitors. Triggered FreeMarker visitors proceed to materialise
+their templates and have their output fed to the <em>edifact:unparser</em> for serialisation. The previous snippet has a lot to unpack
+therefore a brief explanation of each enclosed visitor’s role is in order.</p>
+<ul>
+<li>
+<h5 id="header-visitor">Header Visitor</h5>
+</li>
+</ul>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.7.xml"></script>
+<p>On encountering the opening root tag, this FreeMarker visitor feeds the XML header from the <em>header.xml.ftl</em> template to the
+<em>edifact:unparser</em>. The content of <em>header.xml.ftl</em>, shown next, is static for illustration purposes. In the real world, one
+would want to generate dynamically data elements like sequence numbers.</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=header.xml.ftl"></script>
+<ul>
+<li>
+<h5 id="body-visitor">Body Visitor</h5>
+</li>
+</ul>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.8.xml"></script>
+<p>The pipeline within a pipeline collects the item events and appends them to the record tree (<code>maxNodeDepth=&quot;0&quot;</code>) before
+pushing the record tree down to the enclosed FreeMarker visitor. As a side note, this config could be simplified by unwrapping
+the FreeMarker visitor and setting the <em>maxNodeDepth</em> attribute to 0 in the <em>#document</em> pipeline but then that would lead
+to the pipeline reading the entire event stream into memory.</p>
+<p>The <em>body.xml.ftl</em> template warrants a closer look:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=body.xml.ftl"></script>
+<p>FreeMarker materialises and feeds the above segment group to the <em>edifact:unparser</em> for each visited <em>item</em> event.</p>
+<ul>
+<li>
+<h5 id="footer-visitor">Footer Visitor</h5>
+</li>
+</ul>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.9.xml"></script>
+<p>This FreeMarker visitor is fired on the closing root tag, following the serialisation of the header and body. The footer
+residing in <em>footer.xml.ftl</em> is also fed to the <em>edifact:unparser</em>:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=footer.xml.ftl"></script>
+<p>The final piece to the solution is to configure the <em>edifact:unparser</em>:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.10.xml"></script>
+<p>As per the <em>unparseOnElement</em> wildcard selector, the pipeline delivers all events generated from the <em>core:node-reader</em> visitors
+to <em>edifact:unparser</em> to be serialised into EDIFACT before the pipeline merges the serialised events with the result stream.</p>
+<p>Let’s take a step back to view the complete Smooks config:</p>
+<script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.xml"></script>
+<p>A functional version of the <a href="https://github.com/smooks/smooks-examples/pipelines">solution is available on GitHub</a>. Take it for a spin. Your feedback on <a href="https://groups.google.com/g/smooks-user">Smook’s user forum</a> is most welcome.</p>
+<br/>
+<p><sub><sup>* <a href="https://www.flickr.com/photos/54758495@N00/11431784985">&ldquo;Pembroke Reverse Osmosis Plant pipeline&rdquo;</a> by <a href="https://www.flickr.com/photos/54758495@N00">Rrrodrigo</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc/2.0/?ref=ccsearch&amp;atype=rich">CC BY-NC 2.0</a></sup></sub></p>
+
+    </div>
+  </article>
+
+  
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "oncodesign" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+        </ul>
+      </footer>
+
+    </div>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-80349200-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fc0c4604ad8648e"></script>
+  </body>
+</html>
+

@@ -6,7 +6,16 @@
     <description>Recent content on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Nov 2020 00:00:00 +0100</lastBuildDate><atom:link href="https://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Feb 2021 00:00:00 +0100</lastBuildDate><atom:link href="https://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Sneak Peek at Smooks 2 Pipelines</title>
+      <link>https://oncodesign.io/2021/02/16/a-sneak-peek-at-smooks-2-pipelines/</link>
+      <pubDate>Tue, 16 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://oncodesign.io/2021/02/16/a-sneak-peek-at-smooks-2-pipelines/</guid>
+      <description>*  We’re inching ever closer to releasing Smooks 2 milestone 3. Featuring in this release will be the powerful ability to declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose any series of transformations on an event outside the main execution context before, optionally, directing the pipeline output to the execution result stream or to other destinations.</description>
+    </item>
+    
     <item>
       <title>Second Milestone Release of Smooks 2</title>
       <link>https://oncodesign.io/2020/11/27/second-milestone-release-of-smooks-2/</link>
