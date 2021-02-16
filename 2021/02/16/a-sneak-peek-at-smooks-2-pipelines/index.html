@@ -165,8 +165,8 @@ would want to generate dynamically data elements like sequence numbers.</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.8.xml"></script>
 <p>The pipeline within a pipeline collects the item events and appends them to the record tree (<code>maxNodeDepth=&quot;0&quot;</code>) before
 pushing the record tree down to the enclosed FreeMarker visitor. As a side note, this config could be simplified by unwrapping
-the FreeMarker visitor and setting the <em>maxNodeDepth</em> attribute to 0 in the <em>#document</em> pipeline but then that would lead
-to the pipeline reading the entire event stream into memory.</p>
+the FreeMarker visitor and setting the <em>maxNodeDepth</em> attribute to 0 in the <em>#document</em> pipeline but then that would unfortunately
+lead to the pipeline reading the entire event stream into memory.</p>
 <p>The <em>body.xml.ftl</em> template warrants a closer look:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=body.xml.ftl"></script>
 <p>FreeMarker materialises and feeds the above segment group to the <em>edifact:unparser</em> for each visited <em>item</em> event.</p>
