@@ -87,7 +87,7 @@ Furthermore, an <a href="https://unece.org/trade/uncefact/introducing-unedifact"
 <p>A scalable solution powered by Smooks pipelines can be conceptualised to:</p>
 <img src="/images/smooks-2-pipelines.png" alt="Smooks 2 pipelines"/>
 <p>Every data integration point is implemented in its own pipeline. Smooks converts the CSV input into a stream of events,
-triggering the pipelines at different points in the stream. The document root event (i.e., <em>#document</em>/<em>file</em>) triggers the
+triggering the pipelines at different points in the stream. The document root event (i.e., <em>#document</em> or <em>file</em>) triggers the
 EDI pipeline while a record (i.e., an order) event triggers the inventory and CRM pipelines. Time to get cracking and implement
 the solution in a Smooks config.</p>
 <h3 id="reader">Reader</h3>
