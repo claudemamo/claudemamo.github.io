@@ -116,7 +116,7 @@ assume the number of item events within a record node is manageable within main 
 <p><em>InventoryVisitor</em> visits record events and writes its output to a stream declared within the <em>core:action</em> element
 (the output stream is registered programmatically). Drilling down to the <em>InventoryVisitor</em> class will yield the Java code:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=InventoryVisitor.java"></script>
-<p>The <em>AfterVisitor</em> implementation leverages the popular Jackson library to serialise the record element into JSON which
+<p>The <em>AfterVisitor</em> implementation leverages the popular <a href="https://github.com/FasterXML/jackson">Jackson library</a> to serialise the record element into JSON which
 is then transparently written out to the inventoryOutputStream with <code>Stream.out(executionContext).write(...)</code>.</p>
 <h3 id="crm-pipeline">CRM Pipeline</h3>
 <p>Like the inventory pipeline, the CRM pipeline visits each <em>record</em> event:</p>
