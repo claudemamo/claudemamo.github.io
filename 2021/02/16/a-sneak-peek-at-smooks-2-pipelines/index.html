@@ -91,7 +91,7 @@ triggering the pipelines at different points in the stream. The document root ev
 EDI pipeline while <em>record</em> (i.e., an order) events drive the inventory and CRM pipelines. Time to get cracking and implement
 the solution in a Smooks config.</p>
 <h3 id="reader">Reader</h3>
-<p>The first step to implementing the solution is to turn the CSV file stream into an event stream using the DFDL parser added
+<p>The first step to implementing the solution is to turn the CSV file stream into an event stream using the <a href="https://daffodil.apache.org/">DFDL</a> parser added
 in Smooks 2.0.0-M1 (alternatively, a simpler but less flexible reader from the CSV cartridge can be used for this purpose):</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.2.xml"></script>
 <p><em>csv.dfdl.xsd</em> holds the DFDL schema for translating the CSV into XML:</p>
