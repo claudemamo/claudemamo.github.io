@@ -169,7 +169,7 @@ the FreeMarker visitor and setting the <em>maxNodeDepth</em> attribute to 0 in t
 lead to the pipeline reading the entire event stream into memory.</p>
 <p>The <em>body.xml.ftl</em> template warrants a closer look:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=body.xml.ftl"></script>
-<p>FreeMarker materialises and feeds the above segment group to the <em>edifact:unparser</em> for each visited <em>item</em> event.</p>
+<p>FreeMarker materialises and feeds the above segment group to the <em>edifact:unparser</em> for each visited <em>record</em> event.</p>
 <ul>
 <li>
 <h5 id="footer-visitor">Footer Visitor</h5>
