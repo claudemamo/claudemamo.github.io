@@ -76,8 +76,8 @@ support for merging the output with the result stream, directing the output to a
 to the execution context’s bean store.</p>
 <p><em>core:config</em> expects a standard <em>smooks-resource-list</em> defining the pipeline’s behaviour. It’s worth highlighting that the
 nested <em>smooks-resource-list</em> element behaves identically to the outer one, and therefore, it accepts resources like visitors,
-readers, and even pipelines (a pipeline within a pipeline!). Moreover, a pipeline is transparent to its nested resources,
-so a resource’s behaviour remains the same whether it’s declared inside a pipeline or outside it.</p>
+readers, and even pipelines (a pipeline within a pipeline!). Moreover, a pipeline is transparent to its nested resources:
+a resource’s behaviour remains the same whether it’s declared inside a pipeline or outside it.</p>
 <p>Let’s illustrate the power of pipelines in a real-world use case. Consider this classic data integration problem:</p>
 <blockquote>
 <p>An organisation is required at the end of day to churn through GBs of customer orders captured in a CSV file and hosted
