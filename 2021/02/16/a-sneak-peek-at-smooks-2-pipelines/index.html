@@ -123,10 +123,10 @@ is then transparently written out to <em>inventoryOutputStream</em> with <code>S
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.4.xml"></script>
 <p>Spot the differences between the inventory and CRM pipelines. This pipeline omits <em>core:action</em> because the <em>CrmVisitor</em> resource
 HTTP POSTs the result directly to the CRM service. Another notable difference is the appearance of a new Smooks 2 reader.</p>
-<p><em>core:node-reader</em> delegates the pipeline event stream to an enclosed <em>ftl:freemarker</em> visitor which instantiates the underneath
+<p><em>core:delegate-reader</em> delegates the pipeline event stream to an enclosed <em>ftl:freemarker</em> visitor which instantiates the underneath
 template with the selected <em>record</em> event as a parameter:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=purchaseOrder.xml.ftl"></script>
-<p><em>core:node-reader</em> goes on to feed Freemarker’s instantiated template to <em>CrmVisitor</em>, in other words, <em>core:node-reader</em> converts
+<p><em>core:delegate-reader</em> goes on to feed Freemarker’s instantiated template to <em>CrmVisitor</em>, in other words, <em>core:delegate-reader</em> converts
 the pipeline event stream into one <em>CrmVisitor</em> can visit:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=CrmVisitor.java"></script>
 <p><em>CrmVisitor</em>’s code should be self-explanatory. Observe <em>org.asynchttpclient.AsyncHttpClient</em> is referenced in <code>visitAfter(...)</code>
@@ -141,10 +141,10 @@ produced from the <em>dfdl:parser</em> reader. The latter is accomplished with t
 <p>The selector for this pipeline is set to <em>#document</em>; not <em>record</em>. <em>#document</em>, which denotes the opening root tag, leads to the
 pipeline firing only once, necessary for creating a single EDIFACT document header and footer. We’ll worry later about how
 to enumerate the <em>record</em> events.</p>
-<p>The subsequent pipeline config leverages <em>core:node-reader</em>, introduced in the previous pipeline, to convert the event stream
+<p>The subsequent pipeline config leverages <em>core:delegate-reader</em>, introduced in the previous pipeline, to convert the event stream
 into a stream <em>edifact:unparser</em> (covered furthered on) can understand:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.6.xml"></script>
-<p><em>core:node-reader</em> delivers the pipeline event stream to its child visitors. Triggered FreeMarker visitors proceed to materialise
+<p><em>core:delegate-reader</em> delivers the pipeline event stream to its child visitors. Triggered FreeMarker visitors proceed to materialise
 their templates and have their output fed to the <em>edifact:unparser</em> for serialisation. The previous snippet has a lot to unpack
 therefore a brief explanation of each enclosed visitor’s role is in order.</p>
 <ul>
@@ -181,7 +181,7 @@ residing in <em>footer.xml.ftl</em> is also fed to the <em>edifact:unparser</em>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=footer.xml.ftl"></script>
 <p>The final piece to the solution is to configure the <em>edifact:unparser</em>:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.10.xml"></script>
-<p>As per the <em>unparseOnElement</em> wildcard selector, the pipeline delivers all events generated from the <em>core:node-reader</em> visitors
+<p>As per the <em>unparseOnElement</em> wildcard selector, the pipeline delivers all events generated from the <em>core:delegate-reader</em> visitors
 to <em>edifact:unparser</em> to be serialised into EDIFACT before the pipeline merges the serialised events with the result stream.</p>
 <p>Let’s take a step back to view the complete Smooks config:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.xml"></script>
