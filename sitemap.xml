@@ -3,12 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://oncodesign.io/2021/02/16/a-sneak-peek-at-smooks-2-pipelines/</loc>
-    <lastmod>2021-02-16T00:00:00+01:00</lastmod>
+    <loc>https://oncodesign.io/</loc>
+    <lastmod>2021-03-29T00:00:00+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://oncodesign.io/</loc>
+    <loc>https://oncodesign.io/2021/03/29/smooks-2-final-milestone-release/</loc>
+    <lastmod>2021-03-29T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oncodesign.io/2021/02/16/a-sneak-peek-at-smooks-2-pipelines/</loc>
     <lastmod>2021-02-16T00:00:00+01:00</lastmod>
   </url>
   
