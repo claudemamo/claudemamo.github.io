@@ -13,7 +13,7 @@
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0200</pubDate>
       
       <guid>https://oncodesign.io/2021/03/29/smooks-2-final-milestone-release/</guid>
-      <description>The last milestone umbrella release of Smooks 2 is out. Among the things we’ve focused on in this release is performance. In particular, the DFDL cartridge was upgraded to Apache Daffodil 3 in order to leverage Daffodil’s new streaming capabilities. This means that the DFDL cartridge, including the specialised EDI and EDIFACT cartridges, are no longer memory-bound which will allow developers to unleash Smooks’s full potential when processing flat files.</description>
+      <description>The last milestone umbrella release of Smooks 2 is out. Among the things we’ve focused on in this release is performance. In particular, the DFDL cartridge was upgraded to Apache Daffodil 3 in order to leverage Daffodil’s new streaming capabilities. This means that the DFDL cartridge, including the specialised EDI and EDIFACT cartridges, are no longer memory-bound which allows developers to unleash Smooks’s full potential when processing flat files. Other noteworthy performance improvements are:</description>
     </item>
     
     <item>
