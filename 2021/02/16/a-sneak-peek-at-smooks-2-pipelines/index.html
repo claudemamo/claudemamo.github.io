@@ -62,22 +62,11 @@
     <img src="/images/pipeline.jpg" alt="pipeline" style="max-width:90%"/>
     <figcaption><sub><sup>*</sup></sub></figcaption>
 </figure>
-<p>We’re inching ever closer to releasing <a href="https://www.smooks.org/">Smooks</a> 2 milestone 3. Featuring in this release will be the powerful ability to
-declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event
-from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose
-any series of transformations on an event outside the main execution context before directing the pipeline output to the
-execution result stream or to other destinations.</p>
-<p>Under the hood, a pipeline is just another instance of Smooks. This is self-evident from the Smooks config element declaring
-a pipeline:</p>
+<p>We’re inching ever closer to releasing <a href="https://www.smooks.org/">Smooks</a> 2 milestone 3. Featuring in this release will be the powerful ability to declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose any series of transformations on an event outside the main execution context before directing the pipeline output to the execution result stream or to other destinations.</p>
+<p>Under the hood, a pipeline is just another instance of Smooks. This is self-evident from the Smooks config element declaring a pipeline:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.1.xml"></script>
-<p><em>core:smooks</em> fires a nested Smooks execution whenever an event in the stream matches the <em>filterSourceOn</em> selector. The optional
-<em>core:action</em> element tells the nested Smooks instance what to do with the pipeline’s output. Out-of-the-box actions include
-support for merging the output with the result stream, directing the output to a different stream, or binding the output
-to the execution context’s bean store.</p>
-<p><em>core:config</em> expects a standard <em>smooks-resource-list</em> defining the pipeline’s behaviour. It’s worth highlighting that the
-nested <em>smooks-resource-list</em> element behaves identically to the outer one, and therefore, it accepts resources like visitors,
-readers, and even pipelines (a pipeline within a pipeline!). Moreover, a pipeline is transparent to its nested resources:
-a resource’s behaviour remains the same whether it’s declared inside a pipeline or outside it.</p>
+<p><code>core:smooks</code> fires a nested Smooks execution whenever an event in the stream matches the <code>filterSourceOn</code> selector. The optional<code>core:action</code> element tells the nested Smooks instance what to do with the pipeline’s output. Out-of-the-box actions include support for merging the output with the result stream, directing the output to a different stream, or binding the output to the execution context’s bean store.</p>
+<p><code>core:config</code> expects a standard <code>smooks-resource-list</code> defining the pipeline’s behaviour. It’s worth highlighting that the nested <code>smooks-resource-list</code> element behaves identically to the outer one, and therefore, it accepts resources like visitors, readers, and even pipelines (a pipeline within a pipeline!). Moreover, a pipeline is transparent to its nested resources:a resource’s behaviour remains the same whether it’s declared inside a pipeline or outside it.</p>
 <p>Let’s illustrate the power of pipelines in a real-world use case. Consider this classic data integration problem:</p>
 <blockquote>
 <p>An organisation is required at the end of day to churn through GBs of customer orders captured in a CSV file and hosted
@@ -87,75 +76,48 @@ Furthermore, an <a href="https://unece.org/trade/uncefact/introducing-unedifact"
 <p>A scalable solution powered by Smooks pipelines can be conceptualised to:</p>
 <img src="/images/smooks-2-pipelines.png" alt="Smooks 2 pipelines"/>
 <p>Every data integration point is implemented in its own pipeline. Smooks converts the CSV input into a stream of events,
-triggering the pipelines at different points in the stream. The document root event (i.e., <em>#document</em> or <em>file</em>) triggers the
-EDI pipeline while <em>record</em> (i.e., order) events drive the inventory and CRM pipelines. Time to get cracking and implement
-the solution in a Smooks config.</p>
+triggering the pipelines at different points in the stream. The document root event (i.e., <code>#document</code> or <code>file</code>) triggers the EDI pipeline while <code>record</code> (i.e., order) events drive the inventory and CRM pipelines. Time to get cracking and implement the solution in a Smooks config.</p>
 <h3 id="reader">Reader</h3>
-<p>The first step to implementing the solution is to turn the CSV file stream into an event stream using the <a href="https://daffodil.apache.org/">DFDL</a> parser added
-in Smooks 2.0.0-M1 (alternatively, a simpler but less flexible reader from the CSV cartridge can be used for this purpose):</p>
+<p>The first step to implementing the solution is to turn the CSV file stream into an event stream using the <a href="https://daffodil.apache.org/">DFDL</a> parser added in Smooks 2.0.0-M1 (alternatively, a simpler but less flexible reader from the CSV cartridge can be used for this purpose):</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.2.xml"></script>
 <p><em>csv.dfdl.xsd</em> holds the DFDL schema for translating the CSV into XML:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=csv.dfdl.xsd"></script>
-<p>For the above schema, the <em>dfdl:parser</em> turns a CSV stream such as the following:</p>
+<p>For the above schema, the <code>dfdl:parser</code> turns a CSV stream such as the following:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=input.csv"></script>
 <p>into the SAX event stream:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=event-stream.xml"></script>
-<p>The events of interest are the <em>file</em>, <em>record</em>, and <em>item</em> events. Coming up next are the pipeline configurations.</p>
+<p>The events of interest are the <code>file</code>, <code>record</code>, and <code>item</code> events. Coming up next are the pipeline configurations.</p>
 <h3 id="inventory-pipeline">Inventory Pipeline</h3>
-<p>The inventory pipeline maps each order to JSON and writes it to an HTTP stream where the organisation’s inventory system
-is reading on the other end:</p>
+<p>The inventory pipeline maps each order to JSON and writes it to an HTTP stream where the organisation’s inventory system is reading on the other end:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.3.xml"></script>
-<p>The <em>filterSourceOn</em> XPath expression selects the event/s for <em>core:smooks</em> to visit. In this snippet, the pipeline visits
-<em>record</em> events, including their child <em>item</em> events. The root event in the pipeline’s context is <em>record</em>; not <em>file</em>.
-Although the parent of the <em>item</em> event is <em>record</em>, the latter has no parent node given that it’s the root event in the
-inventory pipeline. It follows then that the <em>#document</em> selector in the inventory pipeline is equivalent to the <em>record</em>
-selector.</p>
-<p><em>maxNodeDepth</em> is set to 0 (i.e., infinite) so as to append the item events/nodes to the record tree instead of discarding
-them. By default, Smooks never accumulates child events in order to keep a low-memory footprint but in this instance we
-assume the number of item events within a record node is manageable within main memory.</p>
-<p><em>InventoryVisitor</em> visits record events and writes its output to a stream declared within the <em>core:action</em> element
-(the output stream is registered programmatically). Drilling down to the <em>InventoryVisitor</em> class will yield the Java code:</p>
+<p>The <code>filterSourceOn</code> XPath expression selects the event/s for <code>core:smooks</code> to visit. In this snippet, the pipeline visits <code>record</code> events, including their child <code>item</code> events. The root event in the pipeline’s context is <code>record</code>; not <code>file</code>. Although the parent of the <code>item</code> event is <code>record</code>, the latter has no parent node given that it’s the root event in the inventory pipeline. It follows then that the <code>#document</code> selector in the inventory pipeline is equivalent to the <code>record</code> selector.</p>
+<p><code>maxNodeDepth</code> is set to 0 (i.e., infinite) so as to append the item events/nodes to the record tree instead of discarding them. By default, Smooks never accumulates child events in order to keep a low-memory footprint but in this instance we assume the number of item events within a record node is manageable within main memory.</p>
+<p><code>InventoryVisitor</code> visits record events and writes its output to a stream declared within the <code>core:action</code> element (the output stream is registered programmatically). Drilling down to the <code>InventoryVisitor</code> class will yield the Java code:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=InventoryVisitor.java"></script>
-<p>The <em>AfterVisitor</em> implementation leverages the popular <a href="https://github.com/FasterXML/jackson">Jackson library</a> to serialise the record element into JSON which
-is then transparently written out to <em>inventoryOutputStream</em> with <code>Stream.out(executionContext).write(...)</code>.</p>
+<p>The <code>AfterVisitor</code> implementation leverages the popular <a href="https://github.com/FasterXML/jackson">Jackson library</a> to serialise the record element into JSON which is then transparently written out to <code>inventoryOutputStream</code> with <code>Stream.out(executionContext).write(...)</code>.</p>
 <h3 id="crm-pipeline">CRM Pipeline</h3>
-<p>Like the inventory pipeline, the CRM pipeline visits each <em>record</em> event:</p>
+<p>Like the inventory pipeline, the CRM pipeline visits each <code>record</code> event:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.4.xml"></script>
-<p>Spot the differences between the inventory and CRM pipelines. This pipeline omits <em>core:action</em> because the <em>CrmVisitor</em> resource
-HTTP POSTs the result directly to the CRM service. Another notable difference is the appearance of a new Smooks 2 reader.</p>
-<p><em>core:delegate-reader</em> delegates the pipeline event stream to an enclosed <em>ftl:freemarker</em> visitor which instantiates the underneath
-template with the selected <em>record</em> event as a parameter:</p>
+<p>Spot the differences between the inventory and CRM pipelines. This pipeline omits <code>core:action</code> because the <code>CrmVisitor</code> resource HTTP POSTs the result directly to the CRM service. Another notable difference is the appearance of a new Smooks 2 reader.</p>
+<p><code>core:delegate-reader</code> delegates the pipeline event stream to an enclosed <code>ftl:freemarker</code> visitor which instantiates the underneath template with the selected <code>record</code> event as a parameter:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=purchaseOrder.xml.ftl"></script>
-<p><em>core:delegate-reader</em> goes on to feed Freemarker’s instantiated template to <em>CrmVisitor</em>, in other words, <em>core:delegate-reader</em> converts
-the pipeline event stream into one <em>CrmVisitor</em> can visit:</p>
+<p><code>core:delegate-reader</code> goes on to feed Freemarker’s instantiated template to <code>CrmVisitor</code>, in other words, <code>core:delegate-reader</code> converts the pipeline event stream into one <code>CrmVisitor</code> can visit:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=CrmVisitor.java"></script>
-<p><em>CrmVisitor</em>’s code should be self-explanatory. Observe <em>org.asynchttpclient.AsyncHttpClient</em> is referenced in <code>visitAfter(...)</code>
-to perform a non-blocking HTTP POST. All framework execution in Smooks happens in a single thread so blocking calls should
-be avoided to keep the throughput rate acceptable.</p>
+<p><code>CrmVisitor</code>’s code should be self-explanatory. Observe <code>org.asynchttpclient.AsyncHttpClient</code> is referenced in <code>visitAfter(...)</code>to perform a non-blocking HTTP POST. All framework execution in Smooks happens in a single thread so blocking calls should be avoided to keep the throughput rate acceptable.</p>
 <h3 id="edi-pipeline">EDI Pipeline</h3>
-<p>The EDI pipeline requires more thought than the earlier pipelines because (a) it needs to aggregate the orders, (b) wrap
-a header and footer around the aggregated orders, and (c) convert the event stream into one that the <em>edifact:unparser</em> visitor
-can digest. After which it needs to write <em>edifact:unparser</em>’s EDI output to the result stream, overwriting the XML stream
-produced from the <em>dfdl:parser</em> reader. The latter is accomplished with the <em>replace</em> pipeline action:</p>
+<p>The EDI pipeline requires more thought than the earlier pipelines because (a) it needs to aggregate the orders, (b) wrap a header and footer around the aggregated orders, and (c) convert the event stream into one that the <code>edifact:unparser</code> visitor can digest. After which it needs to write <code>edifact:unparser</code>’s EDI output to the result stream, overwriting the XML stream produced from the <code>dfdl:parser</code> reader. The latter is accomplished with the <code>replace</code> pipeline action:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.5.xml"></script>
-<p>The selector for this pipeline is set to <em>#document</em>; not <em>record</em>. <em>#document</em>, which denotes the opening root tag, leads to the
-pipeline firing only once, necessary for creating a single EDIFACT document header and footer. We’ll worry later about how
-to enumerate the <em>record</em> events.</p>
-<p>The subsequent pipeline config leverages <em>core:delegate-reader</em>, introduced in the previous pipeline, to convert the event stream
-into a stream <em>edifact:unparser</em> (covered furthered on) can understand:</p>
+<p>The selector for this pipeline is set to <code>#document</code>; not <code>record</code>. <code>#document</code>, which denotes the opening root tag, leads to the pipeline firing only once, necessary for creating a single EDIFACT document header and footer. We’ll worry later about how to enumerate the <code>record</code> events.</p>
+<p>The subsequent pipeline config leverages <code>core:delegate-reader</code>, introduced in the previous pipeline, to convert the event stream into a stream <code>edifact:unparser</code> (covered furthered on) can understand:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.6.xml"></script>
-<p><em>core:delegate-reader</em> delivers the pipeline event stream to its child visitors. Triggered FreeMarker visitors proceed to materialise
-their templates and have their output fed to the <em>edifact:unparser</em> for serialisation. The previous snippet has a lot to unpack
-therefore a brief explanation of each enclosed visitor’s role is in order.</p>
+<p><code>core:delegate-reader</code> delivers the pipeline event stream to its child visitors. Triggered FreeMarker visitors proceed to materialise their templates and have their output fed to the <code>edifact:unparser</code> for serialisation. The previous snippet has a lot to unpack therefore a brief explanation of each enclosed visitor’s role is in order.</p>
 <ul>
 <li>
 <h5 id="header-visitor">Header Visitor</h5>
 </li>
 </ul>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.7.xml"></script>
-<p>On encountering the opening root tag, this FreeMarker visitor feeds the XML header from the <em>header.xml.ftl</em> template to the
-<em>edifact:unparser</em>. The content of <em>header.xml.ftl</em>, shown next, is static for illustration purposes. In the real world, one
-would want to generate dynamically data elements like sequence numbers.</p>
+<p>On encountering the opening root tag, this FreeMarker visitor feeds the XML header from the <em>header.xml.ftl</em> template to the<code>edifact:unparser</code>. The content of <em>header.xml.ftl</em>, shown next, is static for illustration purposes. In the real world, one would want to generate dynamically data elements like sequence numbers.</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=header.xml.ftl"></script>
 <ul>
 <li>
@@ -163,26 +125,21 @@ would want to generate dynamically data elements like sequence numbers.</p>
 </li>
 </ul>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.8.xml"></script>
-<p>The pipeline within a pipeline collects the item events and appends them to the record tree (<code>maxNodeDepth=&quot;0&quot;</code>) before
-pushing the record tree down to the enclosed FreeMarker visitor. As a side note, the body logic could be simplified by unnesting
-the FreeMarker visitor and setting the <em>maxNodeDepth</em> attribute to 0 in the <em>#document</em> pipeline. Unfortunately, such a
-simplification would come at the cost of reading the entire event stream into memory.</p>
+<p>The pipeline within a pipeline collects the item events and appends them to the record tree (<code>maxNodeDepth=&quot;0&quot;</code>) before pushing the record tree down to the enclosed FreeMarker visitor. As a side note, the body logic could be simplified by unnesting the FreeMarker visitor and setting the <code>maxNodeDepth</code> attribute to 0 in the <code>#document</code> pipeline. Unfortunately, such a simplification would come at the cost of reading the entire event stream into memory.</p>
 <p>The <em>body.xml.ftl</em> template warrants a closer look:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=body.xml.ftl"></script>
-<p>FreeMarker materialises and feeds the above segment group to the <em>edifact:unparser</em> for each visited <em>record</em> event.</p>
+<p>FreeMarker materialises and feeds the above segment group to the <code>edifact:unparser</code> for each visited <code>record</code> event.</p>
 <ul>
 <li>
 <h5 id="footer-visitor">Footer Visitor</h5>
 </li>
 </ul>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.9.xml"></script>
-<p>This FreeMarker visitor is fired on the closing root tag, following the serialisation of the header and body. The footer
-residing in <em>footer.xml.ftl</em> is also fed to the <em>edifact:unparser</em>:</p>
+<p>This FreeMarker visitor is fired on the closing root tag, following the serialisation of the header and body. The footer residing in <em>footer.xml.ftl</em> is also fed to the <code>edifact:unparser</code>:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=footer.xml.ftl"></script>
-<p>The final piece to the solution is to configure the <em>edifact:unparser</em>:</p>
+<p>The final piece to the solution is to configure the <code>edifact:unparser</code>:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.10.xml"></script>
-<p>As per the <em>unparseOnElement</em> wildcard selector, the pipeline delivers all events generated from the <em>core:delegate-reader</em> visitors
-to <em>edifact:unparser</em> to be serialised into EDIFACT before the pipeline merges the serialised events with the result stream.</p>
+<p>As per the <code>unparseOnElement</code> wildcard selector, the pipeline delivers all events generated from the <code>core:delegate-reader</code> visitors to <code>edifact:unparser</code> to be serialised into EDIFACT before the pipeline merges the serialised events with the result stream.</p>
 <p>Let’s take a step back to view the complete Smooks config:</p>
 <script src="https://gist.github.com/claudemamo/a65e33b1ee62984cb507b77baea75100.js?file=smooks-config.xml"></script>
 <p>A functional version of the <a href="https://github.com/smooks/smooks-examples/tree/master/pipelines">solution is available on GitHub</a>. Take it for a spin. Your feedback on <a href="https://groups.google.com/g/smooks-user">Smook’s user forum</a> is most welcome.</p>
