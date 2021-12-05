@@ -6,11 +6,21 @@
     <description>Recent content on On Code &amp; Design</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0200</lastBuildDate><atom:link href="https://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Dec 2021 20:45:00 +0200</lastBuildDate><atom:link href="https://oncodesign.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Smooks DFDL Filter in a Cross Domain Solution</title>
+      <link>https://oncodesign.io/2021/12/05/smooks-dfdl-filter-in-a-cross-domain-solution/</link>
+      <pubDate>Sun, 05 Dec 2021 20:45:00 +0200</pubDate>
+      
+      <guid>https://oncodesign.io/2021/12/05/smooks-dfdl-filter-in-a-cross-domain-solution/</guid>
+      <description>In the cyber security landscape, a cross domain solution is a bridge connecting two different security domains, permitting data to flow from one domain into another while minimising the associated security risks. A filter, or more formally a verification engine, is a suggested component in a cross domain solution.
+  A filter inspects for anomalies the content flowing through the bridge. Data failing inspection is captured for investigation by the security team.</description>
+    </item>
+    
     <item>
       <title>Smooks 2 Final Milestone Release</title>
       <link>https://oncodesign.io/2021/03/29/smooks-2-final-milestone-release/</link>
-      <pubDate>Mon, 29 Mar 2021 00:00:00 +0200</pubDate>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2021/03/29/smooks-2-final-milestone-release/</guid>
       <description>The last milestone umbrella release of Smooks 2 is out. Among the things we’ve focused on in this release is performance. In particular, the DFDL cartridge was upgraded to Apache Daffodil 3 in order to leverage Daffodil’s new streaming capabilities. This means that the DFDL cartridge, including the specialised EDI and EDIFACT cartridges, are no longer memory-bound which allows developers to unleash Smooks’s full potential when processing large flat files.</description>
@@ -19,7 +29,7 @@
     <item>
       <title>A Sneak Peek at Smooks 2 Pipelines</title>
       <link>https://oncodesign.io/2021/02/16/a-sneak-peek-at-smooks-2-pipelines/</link>
-      <pubDate>Tue, 16 Feb 2021 00:00:00 +0100</pubDate>
+      <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2021/02/16/a-sneak-peek-at-smooks-2-pipelines/</guid>
       <description>*  We’re inching ever closer to releasing Smooks 2 milestone 3. Featuring in this release will be the powerful ability to declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose any series of transformations on an event outside the main execution context before directing the pipeline output to the execution result stream or to other destinations.</description>
@@ -28,7 +38,7 @@
     <item>
       <title>Second Milestone Release of Smooks 2</title>
       <link>https://oncodesign.io/2020/11/27/second-milestone-release-of-smooks-2/</link>
-      <pubDate>Fri, 27 Nov 2020 00:00:00 +0100</pubDate>
+      <pubDate>Fri, 27 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2020/11/27/second-milestone-release-of-smooks-2/</guid>
       <description>We&amp;rsquo;re delighted to announce the second milestone release of Smooks 2. The second milestone is geared towards simplifying Smook&amp;rsquo;s API along with a few goodies. Here’s a rundown of the new notable features:

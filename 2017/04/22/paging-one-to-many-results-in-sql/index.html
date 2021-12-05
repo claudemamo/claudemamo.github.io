@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.80.0" />
+<meta name="generator" content="Hugo 0.89.4" />
 
 
 <title>Paging One-to-Many Results in SQL - On Code &amp; Design</title>
@@ -93,9 +93,9 @@ pagination problem as it helps us simulate logical counts and offsets based on t
 row <em>x</em> and <em>y</em> have the same rank if and only if row <em>x</em>&rsquo;s author ID and name are equal
 to row <em>y</em>&rsquo;s author&rsquo;s ID and name:</p>
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-3.txt"></script>
-<p>With the *offset_* rank column, we can scroll forwards or backwards taking into account
+<p>With the <em>offset_</em> rank column, we can scroll forwards or backwards taking into account
 that duplicate authors in the result have the same rank. Say we want to get records
-starting from offset 1. Keeping in mind _rank = offset + 1_, this requirement would be simply expressed as:</p>
+starting from offset 1. Keeping in mind <em>rank = offset + 1</em>, this requirement would be simply expressed as:</p>
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=dense-rank-offset-1.sql"></script>
 <script src="https://gist.github.com/claudemamo/0ba4ad21df38dacee9d64258c0166da4.js?file=result-4.txt"></script>
 <p>To add a logical count, another rank, representing the count, is re-computed over the sub-select&rsquo;s result:</p>
@@ -172,7 +172,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fc0c4604ad8648e"></script>
   </body>

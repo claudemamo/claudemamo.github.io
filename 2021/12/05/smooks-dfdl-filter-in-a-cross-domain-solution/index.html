@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.89.4" />
+
+
+<title>Smooks DFDL Filter in a Cross Domain Solution - On Code &amp; Design</title>
+<meta property="og:title" content="Smooks DFDL Filter in a Cross Domain Solution - On Code &amp; Design">
+<meta property="og:type" content="article" />
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://oncodesign.io/css/main.css" media="all">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700">
+<link rel='stylesheet' href="//fonts.googleapis.com/css?family=Noto+Serif">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="https://oncodesign.io/" class="nav-logo"><img src="https://oncodesign.io/images/avatar.png" width="50" height="50"></a>
+    <a class="nav-logo nav-links about-link" href="/about/">About</a>
+  </ul>
+  <ul class="nav-links">
+    
+    <li><a href="https://github.com/claudemamo" target="_blank"><i class="nav-icon fa fa-github fa-3x" aria-hidden="true"></i></a></li>
+    <li><a href="http://mt.linkedin.com/in/claudemamo" target="_blank"><i class="nav-icon fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></li>
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3 min read</span>
+    
+
+    <h1 class="article-title">Smooks DFDL Filter in a Cross Domain Solution</h1>
+
+    
+    <span class="article-date">December 5, 2021</span>
+    
+
+    <div class="article-content">
+      <p>In the cyber security landscape, a <a href="https://www.cyber.gov.au/acsc/view-all-content/publications/fundamentals-cross-domain-solutions">cross domain solution</a> is a bridge connecting two different security domains, permitting data to flow from one domain into another while minimising the associated security risks.
+A filter, or more formally a <a href="https://www.ncsc.gov.uk/collection/cross-domain-solutions/using-the-principles/content-based-attack-protection">verification engine</a>, is a suggested component in a cross domain solution.</p>
+<br/>
+<img src="/images/cross-domain-solution.png" alt="Cross Domain Solution"/>
+<br/>
+<p>A filter inspects for anomalies the content flowing through the bridge. Data failing inspection
+is captured for investigation by the security team. Given this brief description, I argue for the following properties in a verification engine:</p>
+<ul>
+<li>
+<p>Validation: syntactically and semantically validates complex data formats</p>
+</li>
+<li>
+<p>Content-based routing: routes valid data to its destination while invalid data is routed to a different channel</p>
+</li>
+<li>
+<p>Data streaming: filters data whatever the size which means parsing the data and then reassembling it</p>
+</li>
+<li>
+<p>Open to scrutiny: open source software, by definition, is a prime example of this property</p>
+</li>
+</ul>
+<p><a href="https://www.smooks.org/v2/">Smooks</a>, with its strong support for SAX event streaming and XPath-driven routing, alongside <a href="https://daffodil.apache.org/">DFDL</a>&rsquo;s transformation and validation features, manifest the above properties. Picture a situation where <a href="https://en.wikipedia.org/wiki/National_Imagery_Transmission_Format">NITF</a> (National Imagery Transmission Format) files need to be imported from an untrusted system into a trusted one. Widely used in national security systems, NITF is a binary file format that encapsulates imagery (e.g., JPEG) and its metadata. As part of the import, a filter is needed to unpack the NITF stream, ensure it&rsquo;s as expected, and repack it before being routed to its destination. Should verification fail, the bad data is put aside for human intervention. This is how such a filter is described in a Smooks config:</p>
+<script src="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92.js?file=smooks-config.xml"></script>
+<p><a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L6"><code>dfdl:parser</code></a> ingests the binary content from the input source and validates the produced XML stream. Driving the transformation and validation behaviour is the XML schema <code>nitf.dfdl.xsd</code> which is copied from the <a href="https://github.com/DFDLSchemas/NITF">public DFDL schema repository</a> and tweaked in order to route the data depending on its correctness. The first tweak is to turn invalid NITF data into hex with an <code>InvalidData</code> element wrapped around it like so:</p>
+<script src="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92.js?file=bad-data.xml"></script>
+<p>The second tweak is to nest legit data within a <code>ValidData</code> element:</p>
+<script src="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92.js?file=good-data.xml"></script>
+<p>Following ingestion, Smooks will either:</p>
+<p>   a. <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L8-L20">Fire the happy path</a> on encountering events that are not descendants of the <code>InvalidData</code> node <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. A pipeline executes <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L16-L17"><code>dfdl:unparser</code></a> to reassemble the data in its original format, to then go on and replace the XML execution result stream with the reassembled binary data which will be delivered to the destination.</p>
+<p>   b. <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L22-L33">Fire the unhappy path</a>. A different pipeline streams <code>InvalidData</code> to an output stream named <code>deadLetterStream</code>.</p>
+<p>Voilà, we have implemented a low-cost sophisticated verification engine with a few lines of XML. The complete source code of this <a href="https://github.com/smooks/smooks-examples/tree/master/cross-domain-solution">example is available online</a>.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><sub><sup>Smooks 2.0.0-RC1 will feature support for selector negation.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+  </article>
+
+  
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "oncodesign" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+        </ul>
+      </footer>
+
+    </div>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-80349200-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fc0c4604ad8648e"></script>
+  </body>
+</html>
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.89.4" />
+
+
+<title>Smooks as a DFDL Filter in a Cross Domain Solution - On Code &amp; Design</title>
+<meta property="og:title" content="Smooks as a DFDL Filter in a Cross Domain Solution - On Code &amp; Design">
+<meta property="og:type" content="article" />
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://oncodesign.io/css/main.css" media="all">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700">
+<link rel='stylesheet' href="//fonts.googleapis.com/css?family=Noto+Serif">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <ul class="nav-links">
+    <a href="https://oncodesign.io/" class="nav-logo"><img src="https://oncodesign.io/images/avatar.png" width="50" height="50"></a>
+    <a class="nav-logo nav-links about-link" href="/about/">About</a>
+  </ul>
+  <ul class="nav-links">
+    
+    <li><a href="https://github.com/claudemamo" target="_blank"><i class="nav-icon fa fa-github fa-3x" aria-hidden="true"></i></a></li>
+    <li><a href="http://mt.linkedin.com/in/claudemamo" target="_blank"><i class="nav-icon fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></li>
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3 min read</span>
+    
+
+    <h1 class="article-title">Smooks as a DFDL Filter in a Cross Domain Solution</h1>
+
+    
+    <span class="article-date">August 24, 2020</span>
+    
+
+    <div class="article-content">
+      <p>In the cyber security landscape, a cross domain solution is a bridge connecting two different security
+domains, permitting data to flow from one domain into another while minimising the associated security risks.
+A recommended component in a cross domain solution is what&rsquo;s formally known in some circles as a verification engine, or informally, a filter:
+&hellip;</p>
+<p>A filter inspects the content flowing through the solution for anomalies. Data failing inspection
+is captured for investigation by the security team. Given this brief description, some desirable properties can be
+proposed for a verification engine:</p>
+<ul>
+<li>Validation: be able to syntactically and semantically validate complex data formats</li>
+<li>Content-based routing: valid data is allowed to proceed to its destination while invalid data is rerouted to a different channel</li>
+<li>Data streaming: filters data whatever the size which would mean parsing the data and then re-assembling it for the destination</li>
+<li>Open to scrutiny: open source software, by definition, is a great example of this property</li>
+</ul>
+<p>Smooks, with its strong support for SAX event streaming and XPath-driven routing, alongside DFDL&rsquo;s transformation and validation features, tick all the boxes. Let&rsquo;s imagine a situation where NITF (National Imagery Transmission Format) files need to be imported from an untrusted system into a trusted one. Widely used in national security settings, NITF is a binary file format that encapsulates imagery (e.g., JPEG) and its metadata. The filter&rsquo;s role would be to unpack the data, ensure it&rsquo;s as expected, and repack it for routing to the destination. Should verification fail, the bad data is put aside for further action. This is how the behaviour is expressed in a Smooks config:</p>
+<p>[config]</p>
+<p><code>dfdl:parser</code> ingests the binary content from the input source and validates the produced XML. Driving the transformation and validation behaviour is the XML schema <code>nitf.dfdl.xsd</code> which is copied from the public DFDL schema repository and tweaked in order to route the data depending on its correctness. The first tweak is to turn an invalid NITF into hex with an <code>InvalidData</code> element wrapped around it like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;nitf:NITF</span> <span style="color:#a6e22e">xmlns:nitf=</span><span style="color:#e6db74">&#34;urn:nitf:2.1&#34;</span> <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span><span style="color:#f92672">&gt;&lt;InvalidData&gt;</span>4E49544630322E3130303342463031695F33303031612020203139393731323137313032363330436865636B7320616E20756E636F6D7072657373656420313032347831303234203820626974206D6F6E6F20696D61676520776974682047454F63656E7472696320646174612E204169726669656C6455202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020203030303030303030303030EF...<span style="color:#f92672">&lt;/InvalidData&gt;&lt;/nitf:NITF&gt;</span>
+</code></pre></div><p>The second tweak is to nest legit data within a <code>ValidData</code> element:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;nitf:NITF</span> <span style="color:#a6e22e">xmlns:nitf=</span><span style="color:#e6db74">&#34;urn:nitf:2.1&#34;</span> <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span><span style="color:#f92672">&gt;&lt;nitf:ValidData&gt;&lt;Header&gt;&lt;FileProfileName&gt;</span>NITF<span style="color:#f92672">&lt;/FileProfileName&gt;&lt;FileVersion&gt;</span>02.10<span style="color:#f92672">&lt;/FileVersion&gt;&lt;ComplexityLevel&gt;</span>3<span style="color:#f92672">&lt;/ComplexityLevel&gt;&lt;StandardType&gt;</span>BF01<span style="color:#f92672">&lt;/StandardType&gt;&lt;OriginatingStationID&gt;</span>i_3001a<span style="color:#f92672">&lt;/OriginatingStationID&gt;&lt;FileDateAndTime&gt;</span>1997-12-17T10:26:30+00:00<span style="color:#f92672">&lt;/FileDateAndTime&gt;&lt;FileTitle&gt;</span>Checks an uncompressed 1024x1024 8 bit mono image with GEOcentric data. Airfield<span style="color:#f92672">&lt;/FileTitle&gt;&lt;SecurityClassification&gt;</span>U<span style="color:#f92672">&lt;/SecurityClassification&gt;&lt;SecurityClassificationSystem</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;Codewords</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;ControlAndHandling</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;ReleasingInstructions</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;DeclassificationType</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;DeclassificationDate</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;DeclassificationExemption</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;Downgrade</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;DowngradeDate</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;ClassificationText</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;ClassificationAuthorityType</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;ClassificationAuthority</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;ClassificationReason</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;SecuritySourceDate</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;&lt;SecurityControlNumber</span> <span style="color:#a6e22e">xsi:nil=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;</span>
+...<span style="color:#f92672">&lt;/nitf:ValidData&gt;</span>
+</code></pre></div><p>Following ingestion, Smooks will either:</p>
+<p>a. Fire the happy path, a pipeline that re-assembles the data in its original format, to go on and replace the XML result steam with the binary data to be delivered to the destination.</p>
+<p>b. Fire the unhappy path, another pipeline that streams the <code>InvalidData</code> to an output stream named <code>deadLetterStream</code>.</p>
+<p>Voila, we have build a Verification engine a few lines of XML,</p>
+
+    </div>
+  </article>
+
+  
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "oncodesign" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+        </ul>
+      </footer>
+
+    </div>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-80349200-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fc0c4604ad8648e"></script>
+  </body>
+</html>
+
