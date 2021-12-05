@@ -75,7 +75,7 @@ is captured for investigation by the security team. Given this brief description
 <p>Data streaming: filters data whatever the size which means parsing the data and then reassembling it</p>
 </li>
 <li>
-<p>Open to scrutiny: open source software, by definition, is a prime example of this property</p>
+<p>Open to evaluation: open source software, by definition, is a prime example of this property</p>
 </li>
 </ul>
 <p><a href="https://www.smooks.org/v2/">Smooks</a>, with its strong support for SAX event streaming and XPath-driven routing, alongside <a href="https://daffodil.apache.org/">DFDL</a>&rsquo;s transformation and validation features, manifest the above properties. Picture a situation where <a href="https://en.wikipedia.org/wiki/National_Imagery_Transmission_Format">NITF</a> (National Imagery Transmission Format) files need to be imported from an untrusted system into a trusted one. Widely used in national security systems, NITF is a binary file format that encapsulates imagery (e.g., JPEG) and its metadata. As part of the import, a filter is needed to unpack the NITF stream, ensure it&rsquo;s as expected, and repack it before being routed to its destination. Should verification fail, the bad data is put aside for human intervention. This is how such a filter is described in a Smooks config:</p>
