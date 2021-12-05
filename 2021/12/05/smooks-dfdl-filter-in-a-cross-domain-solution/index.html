@@ -60,7 +60,7 @@
       <p>In the cyber security landscape, a <a href="https://www.cyber.gov.au/acsc/view-all-content/publications/fundamentals-cross-domain-solutions">cross domain solution</a> is a bridge connecting two different security domains, permitting data to flow from one domain into another while minimising the associated security risks.
 A filter, or more formally a <a href="https://www.ncsc.gov.uk/collection/cross-domain-solutions/using-the-principles/content-based-attack-protection">verification engine</a>, is a suggested component in a cross domain solution.</p>
 <br/>
-<img src="/images/cross-domain-solution.png" alt="Cross Domain Solution" style="max-width:90%"/>
+<img src="/images/cross-domain-solution.png" alt="Cross Domain Solution"/>
 <br/>
 <p>A filter inspects for anomalies the content flowing through the bridge. Data failing inspection
 is captured for investigation by the security team. Given this brief description, I argue for the following properties in a verification engine:</p>
@@ -87,12 +87,12 @@ is captured for investigation by the security team. Given this brief description
 <p>Following ingestion, Smooks will either:</p>
 <p>   a. <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L8-L20">Fire the happy path</a> on encountering events that are not descendants of the <code>InvalidData</code> node <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. A pipeline executes <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L16-L17"><code>dfdl:unparser</code></a> to reassemble the data in its original format, to then go on and replace the XML execution result stream with the reassembled binary data which will be delivered to the destination.</p>
 <p>   b. <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L22-L33">Fire the unhappy path</a>. A different pipeline streams <code>InvalidData</code> to an output stream named <code>deadLetterStream</code>.</p>
-<p>Voilà, we have implemented a low-cost efficient verification engine with a few lines of XML. The complete source code of this <a href="https://github.com/smooks/smooks-examples/tree/master/cross-domain-solution">example is available online</a>.</p>
+<p>Voilà, we&rsquo;ve implemented a low-cost efficient verification engine with a few lines of XML. The complete source code of this <a href="https://github.com/smooks/smooks-examples/tree/master/cross-domain-solution">example is available online</a>.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>Smooks 2.0.0-RC1 will feature support for selector negation.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Smooks 2.0.0 RC1 will feature support for selector negation.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
