@@ -14,7 +14,7 @@
       
       <guid>https://oncodesign.io/2021/12/05/smooks-dfdl-filter-in-a-cross-domain-solution/</guid>
       <description>In the cyber security space, a cross domain solution is a bridge connecting two different security domains, permitting data to flow from one domain into another while minimising the associated security risks. A filter, or more formally a verification engine, is a suggested component in a cross domain solution.
-  A filter inspects for anomalies occurring in the content flowing through the bridge. Data failing inspection is captured for investigation by the security team.</description>
+  A filter inspects for anomalies in the content flowing through the bridge. Data failing inspection is captured for investigation by the security team.</description>
     </item>
     
     <item>
