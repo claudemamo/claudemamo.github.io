@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.89.4" />
+<meta name="generator" content="Hugo 0.90.0" />
 
 
 <title>Smooks DFDL Filter in a Cross Domain Solution - On Code &amp; Design</title>
@@ -84,7 +84,7 @@
 <script src="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92.js?file=good-data.xml"></script>
 <p>After ingestion, Smooks fires one of the following paths:</p>
 <p>   a. <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L8-L20">Happy path</a> on encountering events that are not descendants of the <code>InvalidData</code> node [1]. A pipeline executes <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L16-L17"><code>dfdl:unparser</code></a> to reassemble the data in its original format, to then go on and replace the XML execution result stream with the reassembled binary data which will be delivered to the destination (i.e., the trusted sytem).</p>
-<p>   b. <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L22-L33">Unhappy path</a> on encountering the <code>InvalidData</code> node. This path&rsquo;s pipeline streams the hex content of <code>InvalidData</code> to an output resource named <code>deadLetterStream</code>.</p>
+<p>   b. <a href="https://gist.github.com/claudemamo/56d73cf6af94a6eae4928beaf60a0e92#file-smooks-config-xml-L22-L33">Unhappy path</a> on encountering the <code>InvalidData</code> node. This path&rsquo;s pipeline streams the hex content of <code>InvalidData</code> to a side output resource named <code>deadLetterStream</code>.</p>
 <p>Voilà, a low-cost efficient verification engine was implemented with a few lines of XML. The complete source code of this <a href="https://github.com/smooks/smooks-examples/tree/master/cross-domain-solution">example is available online</a>.</p>
 <p><sub><sup>1. Smooks 2 RC1 will feature support for selector negation.</sup></sub></p>
 
