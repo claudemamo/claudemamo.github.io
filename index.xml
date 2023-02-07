@@ -14,7 +14,7 @@
       
       <guid>https://oncodesign.io/2021/12/05/smooks-dfdl-filter-in-a-cross-domain-solution/</guid>
       <description>In the cyber security space, a cross domain solution is a bridge connecting two different security domains, permitting data to flow from one domain into another while minimising the associated security risks. A filter, or more formally a verification engine, is a suggested component in a cross domain solution.
-  A filter inspects the content flowing through the bridge. Data failing inspection is captured for investigation by the security team.</description>
+A filter inspects the content flowing through the bridge. Data failing inspection is captured for investigation by the security team. Given this brief description, I argue for the following properties in a verification engine:</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2021/02/16/a-sneak-peek-at-smooks-2-pipelines/</guid>
-      <description>*  We’re inching ever closer to releasing Smooks 2 milestone 3. Featuring in this release will be the powerful ability to declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose any series of transformations on an event outside the main execution context before directing the pipeline output to the execution result stream or to other destinations.</description>
+      <description>* We’re inching ever closer to releasing Smooks 2 milestone 3. Featuring in this release will be the powerful ability to declare pipelines. A pipeline is a flexible, yet simple, Smooks construct that isolates the processing of a targeted event from its main processing as well as from the processing of other pipelines. In practice, this means being able to compose any series of transformations on an event outside the main execution context before directing the pipeline output to the execution result stream or to other destinations.</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@ The other day I read a simple yet thought-provoking thread on a message board. A
       
       <guid>https://oncodesign.io/2017/04/22/paging-one-to-many-results-in-sql/</guid>
       <description>Pagination in databases, the division of query results into manageable subsets, is often implemented in terms of SQL constructs like LIMIT or FETCH FIRST, and OFFSET. This works well when the result is compromised of one-to-one relationships. On the other hand, hypothesise what happens if the relationship is a one-to-many as in the following DDL [1]:
- An author can write n books as expressed in the foreign key constraint declared on Book&amp;rsquo;s authorId column.</description>
+An author can write n books as expressed in the foreign key constraint declared on Book&amp;rsquo;s authorId column.</description>
     </item>
     
     <item>
@@ -150,10 +150,10 @@ A task given to me at my second job was to write training material about an open
     
     <item>
       <title>Dynamically Create Rules using Drools &amp; Rule Templates</title>
-      <link>https://oncodesign.io/2015/08/10/dynamically-create-rules-using-drools-rule-templates/</link>
+      <link>https://oncodesign.io/2015/08/10/dynamically-create-rules-using-drools--rule-templates/</link>
       <pubDate>Mon, 10 Aug 2015 15:12:00 +0000</pubDate>
       
-      <guid>https://oncodesign.io/2015/08/10/dynamically-create-rules-using-drools-rule-templates/</guid>
+      <guid>https://oncodesign.io/2015/08/10/dynamically-create-rules-using-drools--rule-templates/</guid>
       <description>Rules are used for a variety of stuff in the systems we build. Most often these rules are hard-coded in our application logic. The trouble is that sometimes we want to have the end-user the ability to define his own rules. Imagine an order processing system. The supplier wants to be notified on any range of events as they occur throughout the system but the notification rules are not known ahead of time.</description>
     </item>
     
@@ -184,15 +184,15 @@ AS2 (Applicability Statement 2) is a protocol that operates over HTTP/s and is t
       
       <guid>https://oncodesign.io/2014/02/19/safely-prevent-template-caching-in-angularjs/</guid>
       <description>AngularJS&amp;rsquo;s $templateCache can be a pain in the ass. Sometimes we don&amp;rsquo;t want templates to be cached. A quick Internet search to disable caching gives the following workaround:
- But as I have learnt with the UI Bootsrap module, this may cause AngularJS modules that use $templateCache to break. A solution is to tweak the above workaround so that new cache entries are removed on route change instead of indiscriminately removing all entries:</description>
+But as I have learnt with the UI Bootsrap module, this may cause AngularJS modules that use $templateCache to break. A solution is to tweak the above workaround so that new cache entries are removed on route change instead of indiscriminately removing all entries:</description>
     </item>
     
     <item>
       <title>Dynamically Create BitCoin Wallets &amp; Payment Pages on Coinbase in Ruby</title>
-      <link>https://oncodesign.io/2014/02/11/dynamically-create-bitcoin-wallets-payment-pages-on-coinbase-in-ruby/</link>
+      <link>https://oncodesign.io/2014/02/11/dynamically-create-bitcoin-wallets--payment-pages-on-coinbase-in-ruby/</link>
       <pubDate>Tue, 11 Feb 2014 16:53:00 +0000</pubDate>
       
-      <guid>https://oncodesign.io/2014/02/11/dynamically-create-bitcoin-wallets-payment-pages-on-coinbase-in-ruby/</guid>
+      <guid>https://oncodesign.io/2014/02/11/dynamically-create-bitcoin-wallets--payment-pages-on-coinbase-in-ruby/</guid>
       <description>Last weekend, as part of my new year&amp;rsquo;s resolution to dedicate some time to good causes, I participated in Hack4good: a global 48 hour hackathon aimed at bringing ideas for the social good into life. In Malta, our team brought forward a crowd funding solution for charitable fundraisers with minimal transaction fees. To this end, we selected BitCoin as the donation currency and Coinbase to host fundraise donations.
 One requirement in our project was to have Coinbase automatically issue a BitCoin wallet to each fundraiser.</description>
     </item>
@@ -242,7 +242,7 @@ One requirement in our project was to have Coinbase automatically issue a BitCoi
       <description>As documented in the JRuby wiki, java_signature changes a method&amp;rsquo;s signature to match the signature string passed to it:
 Observe that the classes in the method signature are primitive. What if we use a complex class as a parameter type?
 Running the above code will give you the following NoMethodError message:
- The way I went about using complex classes in signatures is to utilise add_method_signature instead of java_signature:
+The way I went about using complex classes in signatures is to utilise add_method_signature instead of java_signature:
 add_method_signature expects the first argument to be the name of the method that will have its signature changed.</description>
     </item>
     
@@ -277,12 +277,12 @@ Consider the Mule config below:</description>
     
     <item>
       <title>Posting &amp; Processing JSON with jQuery &amp; Spring MVC</title>
-      <link>https://oncodesign.io/2013/03/02/posting-processing-json-with-jquery-spring-mvc/</link>
+      <link>https://oncodesign.io/2013/03/02/posting--processing-json-with-jquery--spring-mvc/</link>
       <pubDate>Sat, 02 Mar 2013 12:37:00 +0000</pubDate>
       
-      <guid>https://oncodesign.io/2013/03/02/posting-processing-json-with-jquery-spring-mvc/</guid>
+      <guid>https://oncodesign.io/2013/03/02/posting--processing-json-with-jquery--spring-mvc/</guid>
       <description>Consider an HTML form containing numerous input fields. When the user clicks on the form&amp;rsquo;s submit button, the fields need to be sent as JSON to a service that under the hood is implemented in Spring MVC. A jQuery function transforms and posts the form&amp;rsquo;s inputs:
- Through the $(&amp;lsquo;form&amp;rsquo;).submit(&amp;hellip;) function (line 61), jQuery intercepts any click on the submit button and posts the form with the $.ajax(&amp;hellip;) function (line 63).</description>
+Through the $(&amp;lsquo;form&amp;rsquo;).submit(&amp;hellip;) function (line 61), jQuery intercepts any click on the submit button and posts the form with the $.ajax(&amp;hellip;) function (line 63). Before sending the data, jQuery transforms the form&amp;rsquo;s inputs to JSON using JSON.</description>
     </item>
     
     <item>
@@ -331,7 +331,8 @@ In the Java world, we use JAX-RS for mapping a class to a RESTful service. Givin
       <pubDate>Wed, 14 Nov 2012 21:09:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/11/14/a-practical-solution-for-xml-to-relational-mapping/</guid>
-      <description>A challenge in the field of integration is persisting&amp;nbsp;to a relational database&amp;nbsp;the contents of an XML document [1].&amp;nbsp;At first glance, this might seem like a no-brainer. Create a database table where each column maps to an element defined in the XML document&#39;s XSD. Then write an INSERT SQL statement that iterates through each element of the XML document.&amp;nbsp;But what if an XML element has attributes? What about elements containing other elements?</description>
+      <description>A challenge in the field of integration is persisting&amp;nbsp;to a relational database&amp;nbsp;the contents of an XML document [1].&amp;nbsp;At first glance, this might seem like a no-brainer. Create a database table where each column maps to an element defined in the XML document&#39;s XSD. Then write an INSERT SQL statement that iterates through each element of the XML document.&amp;nbsp;
+But what if an XML element has attributes? What about elements containing other elements?</description>
     </item>
     
     <item>
@@ -363,10 +364,10 @@ In the Java world, we use JAX-RS for mapping a class to a RESTful service. Givin
     
     <item>
       <title>Attaching a file in Cordova &amp; uploading it with jQuery Mobile</title>
-      <link>https://oncodesign.io/2012/08/18/attaching-a-file-in-cordova-uploading-it-with-jquery-mobile/</link>
+      <link>https://oncodesign.io/2012/08/18/attaching-a-file-in-cordova--uploading-it-with-jquery-mobile/</link>
       <pubDate>Sat, 18 Aug 2012 12:04:00 +0000</pubDate>
       
-      <guid>https://oncodesign.io/2012/08/18/attaching-a-file-in-cordova-uploading-it-with-jquery-mobile/</guid>
+      <guid>https://oncodesign.io/2012/08/18/attaching-a-file-in-cordova--uploading-it-with-jquery-mobile/</guid>
       <description>This post is for those unlucky souls who are tasked with developing an Android solution that attaches a file to an HTML form using Cordova and uploads the form via jQuery Mobile. Documentation on these topics is scarce so I&amp;rsquo;ve created a minimal example on my GitHub page demonstrating how to do this. Instructions to run the example are found inside the project&amp;rsquo;s README file.</description>
     </item>
     
@@ -404,7 +405,7 @@ The clustering solution offered by Mule EE 3.2 addresses this issue by having Mu
       <pubDate>Fri, 06 Jul 2012 17:14:00 +0000</pubDate>
       
       <guid>https://oncodesign.io/2012/07/06/a-websocket-cordova-plugin-for-android/</guid>
-      <description>This week I&amp;rsquo;ve investigated the feasibility of leveraging NullMQinside a Cordova/PhoneGap application on Android. NullMQ sends and receives messages via WebSocket, and unfortunately, Android&amp;rsquo;s browser doesn&amp;rsquo;t support the standard yet.I found Cordova plugins on GitHub that implement WebSocket. The problem is that none of them functioned properly against the latest version of the WebSocket spec, that is, RFC 6455. So I decided to fork the Java-WebSocket project and expose it as a Cordova plugin.</description>
+      <description>This week I&amp;rsquo;ve investigated the feasibility of leveraging NullMQ inside a Cordova/PhoneGap application on Android. NullMQ sends and receives messages via WebSocket, and unfortunately, Android&amp;rsquo;s browser doesn&amp;rsquo;t support the standard yet. I found Cordova plugins on GitHub that implement WebSocket. The problem is that none of them functioned properly against the latest version of the WebSocket spec, that is, RFC 6455. So I decided to fork the Java-WebSocket project and expose it as a Cordova plugin.</description>
     </item>
     
     <item>
